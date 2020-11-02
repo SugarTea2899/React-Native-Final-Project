@@ -1,21 +1,53 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { Text, View } from 'react-native';
+import { DarkTheme, NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeScreen from './src/components/Main/HomeScreen/HomeScreen';
+import SearchScreen from './src/components/Main/SearchScreen/SearchScreen';
+import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import DownloadScreen from './src/components/Main/DownloadScreen/DownloadScreen';
+import BrowseScreen from './src/components/Main/BrowseScreen/BrowseScreen';
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer theme={DarkTheme}>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+            switch (route.name){
+              case 'Home':
+                iconName = "home";
+                break;
+              case 'Download':
+                iconName = 'download';
+                break;
+              case 'Browse':
+                iconName = 'earth';
+                break;
+              case 'Search':
+                iconName = 'search1';
+                break;
+            }
+            return <AntDesign name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'dodgerblue',
+          inactiveTintColor: 'gray',
+          tabStyle: {
+            paddingBottom: 4
+          }
+        }}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Download" component={DownloadScreen} />
+        <Tab.Screen name="Browse" component={BrowseScreen} />
+        <Tab.Screen name="Search" component={SearchScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

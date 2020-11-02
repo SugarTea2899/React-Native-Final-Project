@@ -4,7 +4,6 @@ import { DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './src/components/Main/HomeScreen/HomeScreen';
 import SearchScreen from './src/components/Main/SearchScreen/SearchScreen';
-import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import DownloadScreen from './src/components/Main/DownloadScreen/DownloadScreen';
 import BrowseScreen from './src/components/Main/BrowseScreen/BrowseScreen';
@@ -13,7 +12,7 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer theme={DarkTheme}>
+    <NavigationContainer theme={DarkTheme}>     
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -22,7 +21,7 @@ export default function App() {
               case 'Home':
                 iconName = "home";
                 break;
-              case 'Download':
+              case 'Downloads':
                 iconName = 'download';
                 break;
               case 'Browse':
@@ -44,7 +43,7 @@ export default function App() {
         }}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Download" component={DownloadScreen} />
+        <Tab.Screen name="Downloads" component={DownloadScreen} />
         <Tab.Screen name="Browse" component={BrowseScreen} />
         <Tab.Screen name="Search" component={SearchScreen} />
       </Tab.Navigator>

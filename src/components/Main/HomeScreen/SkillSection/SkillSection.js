@@ -9,6 +9,21 @@ const SkillSection = () => {
                 <View style={styles.skill}>
                     <Text style={styles.skillName}>Angular</Text>
                 </View>
+                <View style={styles.skill}>
+                    <Text style={styles.skillName}>JavaScript</Text>
+                </View>
+                <View style={styles.skill}>
+                    <Text style={styles.skillName}>C#</Text>
+                </View>
+                <View style={styles.skill}>
+                    <Text style={styles.skillName}>Java</Text>
+                </View>
+                <View style={styles.skill}>
+                    <Text style={styles.skillName}>Node.js</Text>
+                </View>
+                <View style={styles.skill}>
+                    <Text style={styles.skillName}>ASP.NET</Text>
+                </View>
             </ScrollView>
         </View>
     );
@@ -29,10 +44,14 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     skill: {
-        marginTop: 8,
-        padding: 8,
+        marginTop: 15,
+        paddingLeft: 15,
+        paddingRight: 15,
+        paddingTop: 5,
+        paddingBottom: 5,
         backgroundColor: 'gray',
-        borderRadius: 18
+        borderRadius: 18,
+        marginRight: 10
     }
 })
 export default SkillSection;

@@ -7,10 +7,10 @@ import AuthorSection from './AuthorSection/AuthorSection';
 const BrowseScreen = () => {
     return (
         <View style={{ flex: 1}}>
-            <ScrollView style={styles.container}>
+            <ScrollView>
                 <ImageButtonSection />
                 <SkillSection />
-                <PathSection />
+                <PathSection title={'Paths'} />
                 <AuthorSection />
             </ScrollView>
         </View>
@@ -18,9 +18,7 @@ const BrowseScreen = () => {
 }
 
 const styles = StyleSheet.create({
-    container: {
 
-    }
 })
 
 export default BrowseScreen;

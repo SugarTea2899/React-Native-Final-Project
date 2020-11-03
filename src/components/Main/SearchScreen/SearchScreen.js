@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import ListCourse from '../Courses/ListCourses/ListCourse';
+import ListCourse from '../../Courses/ListCourse';
 
 
 const SearchScreen = () => {

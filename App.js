@@ -7,6 +7,7 @@ import SearchScreen from './src/components/Main/SearchScreen/SearchScreen';
 import { AntDesign } from '@expo/vector-icons';
 import DownloadScreen from './src/components/Main/DownloadScreen/DownloadScreen';
 import BrowseScreen from './src/components/Main/BrowseScreen/BrowseScreen';
+import CourseDetail from './src/components/CourseDetail/CourseDetail';
 
 const Tab = createBottomTabNavigator();
 
@@ -43,7 +44,7 @@ export default function App() {
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Downloads" component={DownloadScreen} />
         <Tab.Screen name="Browse" component={BrowseScreen} />
-        <Tab.Screen name="Search" component={SearchScreen} />
+        <Tab.Screen name="Search" component={CourseDetail} />
       </Tab.Navigator>
     </NavigationContainer>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, Text, Image } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import ListCourseItem from '../ListCourseItem/ListCourseItem';
+import ListCourseItem from './ListCourseItem/ListCourseItem';
 
 const courses = [
     {
@@ -11,7 +11,7 @@ const courses = [
         level: 'Beginer',
         date: 'Oct 2020',
         time: '2h 8m',
-        image: require('../../../../../assets/background_1.jpg')
+        image: require('../../../assets/background_1.jpg')
     },
     {
         id: '2',
@@ -20,7 +20,7 @@ const courses = [
         level: 'Beginer',
         date: 'Oct 2020',
         time: '2h 8m',
-        image: require('../../../../../assets/background_1.jpg')
+        image: require('../../../assets/background_1.jpg')
     },
     {
         id: '3',
@@ -29,7 +29,7 @@ const courses = [
         level: 'Beginer',
         date: 'Oct 2020',
         time: '2h 8m',
-        image: require('../../../../../assets/background_1.jpg')
+        image: require('../../../assets/background_1.jpg')
     },
     {
         id: '4',
@@ -38,7 +38,7 @@ const courses = [
         level: 'Beginer',
         date: 'Oct 2020',
         time: '2h 8m',
-        image: require('../../../../../assets/background_1.jpg')
+        image: require('../../../assets/background_1.jpg')
     },
     {
         id: '5',
@@ -47,7 +47,7 @@ const courses = [
         level: 'Beginer',
         date: 'Oct 2020',
         time: '2h 8m',
-        image: require('../../../../../assets/background_1.jpg')
+        image: require('../../../assets/background_1.jpg')
     },
     {
         id: '6',
@@ -56,7 +56,7 @@ const courses = [
         level: 'Beginer',
         date: 'Oct 2020',
         time: '2h 8m',
-        image: require('../../../../../assets/background_1.jpg')
+        image: require('../../../assets/background_1.jpg')
     },
     {
         id: '7',
@@ -65,7 +65,7 @@ const courses = [
         level: 'Beginer',
         date: 'Oct 2020',
         time: '2h 8m',
-        image: require('../../../../../assets/background_1.jpg')
+        image: require('../../../assets/background_1.jpg')
     }
 ]
 

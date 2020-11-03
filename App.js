@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import {  StatusBar } from 'react-native';
 import { DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './src/components/Main/HomeScreen/HomeScreen';
@@ -12,7 +12,8 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer theme={DarkTheme}>     
+    <NavigationContainer theme={DarkTheme}>
+      <StatusBar backgroundColor={'#363636'} />     
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {

@@ -27,7 +27,7 @@ const ImageButtonSection = () => {
 
 const styles = StyleSheet.create({
     firstButton: {
-        marginTop: 30,
+        marginTop: 15,
         marginRight: 10,
         marginLeft: 10
     },

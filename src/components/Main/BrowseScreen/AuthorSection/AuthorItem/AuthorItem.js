@@ -2,11 +2,11 @@ import React from 'react';
 import { View, StyleSheet, ScrollView, Text, Image } from 'react-native';
 
 
-const AuthorItem = () => {
+const AuthorItem = ({author}) => {
     return (
         <View style={styles.container}>
-            <Image source={require('../../../../../../assets/author1.jpg')} style={styles.image} />
-            <Text style={styles.text}>Simon Allardice</Text>
+            <Image source={author.image} style={styles.image} />
+            <Text style={styles.text}>{author.name}</Text>
         </View>
     )
 }

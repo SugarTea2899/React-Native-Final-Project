@@ -2,17 +2,21 @@ import React from 'react';
 import { View, StyleSheet, ScrollView, Text, Image } from 'react-native';
 import AuthorItem from './AuthorItem/AuthorItem';
 
+const author ={
+    name: 'Simon Allardice',
+    image: require('../../../../../assets/author1.jpg')
+}
 const AuthorSection = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Top authors</Text>
             <ScrollView horizontal={true}>
-                <AuthorItem />
-                <AuthorItem />
-                <AuthorItem />
-                <AuthorItem />
-                <AuthorItem />
-                <AuthorItem />
+                <AuthorItem author={author} />
+                <AuthorItem author={author}/>
+                <AuthorItem author={author}/>
+                <AuthorItem author={author}/>
+                <AuthorItem author={author}/>
+                <AuthorItem author={author}/>
             </ScrollView>
         </View>
     );

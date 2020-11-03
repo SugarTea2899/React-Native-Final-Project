@@ -2,22 +2,28 @@ import React from 'react';
 import { View, StyleSheet, ScrollView, Text } from 'react-native';
 import PathItem from './PathItem/PathItem';
 
-const PathSection = () => {
+const path = {
+    title: 'Big Data LDN 2020',
+    numCourse: 44,
+    image: require('../../../../../assets/background_1.jpg')
+}
+
+const PathSection = ({title}) => {
 
     return (
         <View style={styles.container}>
             <View style={styles.textGroup}>
                 <Text style={styles.path}>
-                    Paths
+                    {title}
                 </Text>
                 <Text style={styles.seeALL}>
-                    See all >
+                    {'See all >'}
                 </Text>
             </View>
             <ScrollView horizontal={true}>
-                <PathItem />
-                <PathItem />
-                <PathItem />
+                <PathItem path={path}/>
+                <PathItem path={path}/>
+                <PathItem path={path}/>
             </ScrollView>
         </View>
     );
@@ -26,8 +32,8 @@ const PathSection = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginLeft: 10,
         marginTop: 50,
+        marginLeft: 10
     },
     textGroup: {
         flexDirection: 'row',

@@ -1,16 +1,16 @@
 import React from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
 
-const PathItem = () => {
+const PathItem = ({path}) => {
     return (
         <View style={styles.container}>
-            <Image style={styles.image} source={require('../../../../../../assets/background_1.jpg')} />
+            <Image style={styles.image} source={path.image} />
             <View style={styles.textGroup}>
                 <Text style={styles.title}>
-                    Big Data LDN 2020
+                    {path.title}
                 </Text>
                 <Text style={styles.course}>
-                    52 courses
+                    {`${path.numCourse} courses`}
                 </Text>
             </View>
         </View>

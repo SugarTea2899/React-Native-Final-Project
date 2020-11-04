@@ -8,7 +8,7 @@ const Login = () => {
     return (
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.scrollView}>
-                <MyInput lable={'USERNAME'} isPassWord={false}/>
+                <MyInput lable={'USERNAME'} />
                 <MyInput style={{marginTop: 35}} isPassWord={true} lable={'PASSWORD'}/>
                 <Text style={styles.forgotPassword}>Forgot Password?</Text>
                 <MyButton style={styles.button}  text={'LOGIN'} />

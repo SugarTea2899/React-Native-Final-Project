@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, ScrollView, StyleSheet, TextInput, Text } from 'react-native';
 
-const MyInput = ({style, lable, isPassWord}) => {
+const MyInput = ({style, lable, isPassWord = false}) => {
     return (
         <View style={[styles.container, style]}>
             <Text style={styles.text}>

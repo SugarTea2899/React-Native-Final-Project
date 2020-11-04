@@ -9,10 +9,10 @@ const HomeScreen = () => {
     return (
         <View style={{flex: 1, marginBottom: 20}}>
             <ScrollView >
-                <CourseSection title={'History'} />
+                <CourseSection style={{marginTop: 20}} title={'History'} />
                 <PathSection title={'Paths'}/>
                 <PathSection title={'Channels'}/>
-                <CourseSection title={'Bookmark'} />
+                <CourseSection style={{marginTop: 50}} title={'Bookmark'} />
             </ScrollView>
         </View>
 

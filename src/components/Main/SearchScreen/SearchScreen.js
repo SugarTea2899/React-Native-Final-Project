@@ -7,7 +7,6 @@ import ListCourse from '../../Courses/ListCourse';
 const SearchScreen = () => {
     return (
         <View style={styles.container}>
-
             <View style={styles.containerBar}>
                 <View style={styles.bar}>
                     <TextInput style={styles.textInput} placeholder={'Search'} placeholderTextColor={'lightgray'} />
@@ -15,7 +14,7 @@ const SearchScreen = () => {
                 </View>
             </View>
 
-            <ListCourse />
+            <ListCourse style={{marginTop: 20}}/>
         </View>
     );
 }

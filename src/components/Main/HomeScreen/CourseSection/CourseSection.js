@@ -11,9 +11,9 @@ const course = {
     image: require('../../../../../assets/background_1.jpg')
 }
 
-const CourseSection = ({title}) => {
+const CourseSection = ({title, style}) => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, style]}>
             <View style={styles.textGroup}>
                 <Text style={styles.title}>
                     {title}
@@ -33,8 +33,7 @@ const CourseSection = ({title}) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginLeft: 10,
-        marginTop: 50
+        marginLeft: 10
     },
     title: {
         fontSize: 18,

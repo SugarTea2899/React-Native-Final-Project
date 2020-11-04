@@ -70,9 +70,9 @@ const courses = [
 ]
 
 
-const ListCourse = () => {
+const ListCourse = ({style}) => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, style]}>
             <FlatList
                 data={courses}
                 renderItem={({item}) => <ListCourseItem course={item}/>}
@@ -85,8 +85,7 @@ const ListCourse = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginLeft: 10,
-        marginTop: 20
+        marginLeft: 10
     }
 });
 

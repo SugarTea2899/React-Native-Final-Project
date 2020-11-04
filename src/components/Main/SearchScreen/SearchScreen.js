@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
         flex: 1
     },
     containerBar: {
-        backgroundColor: '#363636',
-        paddingBottom: 15
+        backgroundColor: '#121212',
+        paddingBottom: 12
     },
 
     bar: {
-        height: 60,
+        height: 45,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -40,9 +40,9 @@ const styles = StyleSheet.create({
     },
     textInput: {
         flex: 1,
-        height: 50,
+        height: 40,
         width: 'auto',
-        fontSize: 20,
+        fontSize: 17,
         marginRight: 10,
         color: 'white'
     },

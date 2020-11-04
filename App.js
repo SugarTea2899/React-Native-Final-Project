@@ -10,13 +10,14 @@ import BrowseScreen from './src/components/Main/BrowseScreen/BrowseScreen';
 import CourseDetail from './src/components/CourseDetail/CourseDetail';
 import Login from './src/components/Authentication/Login/Login';
 import Register from './src/components/Authentication/Register/Register';
+import HomeStack from './src/components/Stack/HomeStack/HomeStack';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer theme={DarkTheme}>
-      <StatusBar backgroundColor={'#363636'} />     
+      <StatusBar backgroundColor={'#121212'} />     
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -43,7 +44,7 @@ export default function App() {
           inactiveTintColor: 'gray'
         }}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Home" component={HomeStack} />
         <Tab.Screen name="Downloads" component={DownloadScreen} />
         <Tab.Screen name="Browse" component={BrowseScreen} />
         <Tab.Screen name="Search" component={SearchScreen} />

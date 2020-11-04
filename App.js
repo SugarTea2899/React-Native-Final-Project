@@ -11,6 +11,7 @@ import CourseDetail from './src/components/CourseDetail/CourseDetail';
 import Login from './src/components/Authentication/Login/Login';
 import Register from './src/components/Authentication/Register/Register';
 import HomeStack from './src/components/Stack/HomeStack/HomeStack';
+import SearchStack from './src/components/Stack/SearchStack/SearchStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -47,7 +48,7 @@ export default function App() {
         <Tab.Screen name="Home" component={HomeStack} />
         <Tab.Screen name="Downloads" component={DownloadScreen} />
         <Tab.Screen name="Browse" component={BrowseScreen} />
-        <Tab.Screen name="Search" component={SearchScreen} />
+        <Tab.Screen name="Search" component={SearchStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );

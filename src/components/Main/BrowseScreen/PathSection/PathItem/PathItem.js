@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     container: {
         height: 200,
         width: 230,
-        backgroundColor: '#262525',
+        backgroundColor: '#151c2e',
         marginRight: 20
     },
     image: {

@@ -2,19 +2,19 @@ import React from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import ListCourse from '../../Courses/ListCourse';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
+const Tab = createMaterialTopTabNavigator();
 
 const SearchScreen = () => {
     return (
         <View style={styles.container}>
-            <View style={styles.containerBar}>
-                <View style={styles.bar}>
-                    <TextInput style={styles.textInput} placeholder={'Search'} placeholderTextColor={'lightgray'} />
-                    <FontAwesome style={styles.customIcon} name="remove" size={24} color="white" />
-                </View>
-            </View>
-
-            <ListCourse style={{marginTop: 20}}/>
+            <Tab.Navigator>
+                <Tab.Screen name="ALL" component={ListCourse} />
+                <Tab.Screen name="COURSES" component={ListCourse} />
+                <Tab.Screen name="PATHS" component={ListCourse} />
+                <Tab.Screen name="AUTHORS" component={ListCourse} />
+            </Tab.Navigator>
         </View>
     );
 }
@@ -22,32 +22,6 @@ const SearchScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1
-    },
-    containerBar: {
-        backgroundColor: '#121212',
-        paddingBottom: 12
-    },
-
-    bar: {
-        height: 45,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderBottomColor: 'lightgray',
-        borderBottomWidth: 1,
-        marginLeft: 35,
-        marginRight: 20
-    },
-    textInput: {
-        flex: 1,
-        height: 40,
-        width: 'auto',
-        fontSize: 17,
-        marginRight: 10,
-        color: 'white'
-    },
-    customIcon: {
-        marginRight: 4
     }
 });
 export default SearchScreen;

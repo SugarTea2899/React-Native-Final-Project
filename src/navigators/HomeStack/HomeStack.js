@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HeaderRight from '../../components/Other/HeaderRight/HeaderRight';
 import HomeScreen from '../../components/Main/HomeScreen/HomeScreen';
 import Profile from '../../components/AccountManagement/Profile/Profile';
+import CourseDetail from '../../components/CourseDetail/CourseDetail'
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,10 @@ const HomeStack = () => {
             <Stack.Screen
                 name="Profile"
                 component={Profile}
+            />
+            <Stack.Screen 
+                name="CourseDetail"
+                component={CourseDetail}
             />
         </Stack.Navigator>
     );

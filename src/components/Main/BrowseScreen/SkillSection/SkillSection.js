@@ -6,7 +6,7 @@ const SkillSection = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Popular Skills</Text>
-            <ScrollView horizontal={true}>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 <SkillItem ticked content={'React Native'}/>
                 <SkillItem ticked content={'React JS'}/>
                 <SkillItem ticked content={'JavaScript'}/>

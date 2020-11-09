@@ -4,7 +4,7 @@ import { View, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-nati
 const DescriptionSection = () => {
     return (
         <View style={styles.container}>
-            <ScrollView nestedScrollEnabled={true} style={styles.scrollView}>
+            <ScrollView nestedScrollEnabled={true} style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <Text style={styles.text}>
                     A front-end web developer is responsible for implementing visual and interactive elements that users engage with through their web browser when using a web application. They are usually supported by back-end web developers, who are responsible for server-side application logic and integration of the work front-end developers do.
                 </Text>

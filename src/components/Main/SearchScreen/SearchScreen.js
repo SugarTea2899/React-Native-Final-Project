@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
 import ListCourse from '../../Courses/ListCourse';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import ListAuthors from '../../Authors/ListAuthors/ListAuthors';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -13,7 +13,7 @@ const SearchScreen = () => {
                 <Tab.Screen name="ALL" component={ListCourse} />
                 <Tab.Screen name="COURSES" component={ListCourse} />
                 <Tab.Screen name="PATHS" component={ListCourse} />
-                <Tab.Screen name="AUTHORS" component={ListCourse} />
+                <Tab.Screen name="AUTHORS" component={ListAuthors} />
             </Tab.Navigator>
         </View>
     );

@@ -1,16 +1,18 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Text, Image } from 'react-native';
+import { View, StyleSheet, ScrollView, Text, Image, TouchableOpacity } from 'react-native';
 
-const CourseItem = ({course}) => {
+const CourseItem = ({course, navigation}) => {
     return (
-        <View style={styles.container}>
-            <Image source={course.image} style={styles.image} />
-            <View style={styles.textGroup}>
-                <Text style={styles.title}>{course.title}</Text>
-                <Text style={styles.otherText}>{course.author}</Text>
-                <Text style={styles.otherText}>{`${course.level}  -  ${course.date}  -  ${course.time}`}</Text>
-            </View>
-        </View>
+        <TouchableOpacity onPress={() => navigation.navigate('CourseDetail', {id: course.id})}>
+            <View style={styles.container}>
+                <Image source={course.image} style={styles.image} />
+                <View style={styles.textGroup}>
+                    <Text style={styles.title}>{course.title}</Text>
+                    <Text style={styles.otherText}>{course.author}</Text>
+                    <Text style={styles.otherText}>{`${course.level}  -  ${course.date}  -  ${course.time}`}</Text>
+                </View>
+            </View>            
+        </TouchableOpacity>
     );
 }
 

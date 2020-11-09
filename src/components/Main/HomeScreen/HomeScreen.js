@@ -5,11 +5,11 @@ import CourseSection from './CourseSection/CourseSection';
 
 
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
     return (
         <View style={{flex: 1, marginBottom: 20}}>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <CourseSection style={{marginTop: 20}} title={'History'} />
+                <CourseSection navigation={navigation} style={{marginTop: 20}} title={'History'} />
                 <PathSection title={'Paths'}/>
                 <PathSection title={'Channels'}/>
                 <CourseSection style={{marginTop: 50}} title={'Bookmark'} />

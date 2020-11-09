@@ -11,7 +11,7 @@ const CourseDetail = () => {
                 <Image style={styles.image}  source={require('../../../assets/video.png')} />
             </View>
             <View style={styles.contentSection}>
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator={false}>
                     <CourseInfoSection />
                     <IconSection />
                     <DescriptionSection />

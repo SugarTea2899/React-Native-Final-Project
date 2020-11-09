@@ -3,6 +3,7 @@ import { View, StyleSheet, ScrollView, Text, Image } from 'react-native';
 import CourseItem from './CourseItem/CourseItem';
 
 const course = {
+    id: '1',
     title: 'React',
     author: 'Simon Allardice',
     level: 'Beginer',
@@ -11,7 +12,7 @@ const course = {
     image: require('../../../../../assets/background_1.jpg')
 }
 
-const CourseSection = ({title, style}) => {
+const CourseSection = ({title, style, navigation}) => {
     return (
         <View style={[styles.container, style]}>
             <View style={styles.textGroup}>
@@ -23,9 +24,9 @@ const CourseSection = ({title, style}) => {
                 </Text>
             </View>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                <CourseItem course={course} />
-                <CourseItem course={course} />
-                <CourseItem course={course} />
+                <CourseItem navigation={navigation} course={course} />
+                <CourseItem navigation={navigation} course={course} />
+                <CourseItem navigation={navigation} course={course} />
             </ScrollView>
         </View>
     );

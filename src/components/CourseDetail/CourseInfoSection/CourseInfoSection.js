@@ -30,19 +30,20 @@ const styles = StyleSheet.create({
         marginTop: 8,
         paddingLeft: 15,
         paddingRight: 15,
-        paddingTop: 5,
-        paddingBottom: 5,
+        paddingTop: 3,
+        paddingBottom: 3,
         backgroundColor: 'gray',
         borderRadius: 18,
     },
     skillName: {
-        color: 'white'
+        color: 'white',
+        alignSelf: 'center'
     },
     otherText: {
         color: 'lightgray',
-        fontSize: 13,
+        fontSize: 11,
         marginTop: 11,
-        paddingLeft: 2
+        paddingLeft: 4,
     }
 });
 

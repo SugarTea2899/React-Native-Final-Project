@@ -8,7 +8,7 @@ const path = {
     image: require('../../../../../assets/background_1.jpg')
 }
 
-const PathSection = ({title}) => {
+const PathSection = ({title, navigation}) => {
 
     return (
         <View style={styles.container}>
@@ -21,9 +21,9 @@ const PathSection = ({title}) => {
                 </Text>
             </View>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                <PathItem path={path}/>
-                <PathItem path={path}/>
-                <PathItem path={path}/>
+                <PathItem navigation={navigation} path={path}/>
+                <PathItem navigation={navigation} path={path}/>
+                <PathItem navigation={navigation} path={path}/>
             </ScrollView>
         </View>
     );

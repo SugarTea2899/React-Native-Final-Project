@@ -10,8 +10,8 @@ const HomeScreen = ({navigation}) => {
         <View style={{flex: 1, marginBottom: 20}}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <CourseSection navigation={navigation} style={{marginTop: 20}} title={'History'} />
-                <PathSection title={'Paths'}/>
-                <PathSection title={'Channels'}/>
+                <PathSection navigation={navigation} title={'Paths'}/>
+                <PathSection navigation={navigation} title={'Channels'}/>
                 <CourseSection style={{marginTop: 50}} title={'Bookmark'} />
             </ScrollView>
         </View>

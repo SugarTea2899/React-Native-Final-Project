@@ -5,6 +5,7 @@ import HeaderRight from '../../components/Other/HeaderRight/HeaderRight';
 import HomeScreen from '../../components/Main/HomeScreen/HomeScreen';
 import Profile from '../../components/AccountManagement/Profile/Profile';
 import CourseDetail from '../../components/CourseDetail/CourseDetail'
+import PathDetail from '../../components/PathDetail/PathDetail';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +29,10 @@ const HomeStack = () => {
                 name="CourseDetail"
                 component={CourseDetail}
             />
+            <Stack.Screen 
+                name="PathDetail"
+                component={PathDetail}
+            />            
         </Stack.Navigator>
     );
 }

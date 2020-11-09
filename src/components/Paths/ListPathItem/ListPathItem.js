@@ -2,9 +2,9 @@ import React from 'react';
 import {View, StyleSheet, Image, Text } from 'react-native';
 
 
-const ListPathItem = ({path}) => {
+const ListPathItem = ({path, style}) => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, style]}>
             <Image style={styles.image} source={path.image} />
             <View style={styles.content}>
                 <Text style={styles.title}>{path.title}</Text>

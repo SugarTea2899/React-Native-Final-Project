@@ -4,7 +4,9 @@ import CourseInfoSection from './CourseInfoSection/CourseInfoSection';
 import DescriptionSection from './DescriptionSection/DescriptionSection';
 import IconSection from './IconSection/IconSection';
 
-const CourseDetail = () => {
+const CourseDetail = ({route}) => {
+    const {course} = route.params;
+
     return (
         <View style={styles.container}>
             <View style={styles.videoSection}>

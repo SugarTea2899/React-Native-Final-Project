@@ -3,7 +3,7 @@ import { View, StyleSheet, ScrollView, Text, Image, TouchableOpacity } from 'rea
 
 const CourseItem = ({course, navigation}) => {
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('CourseDetail', {id: course.id})}>
+        <TouchableOpacity onPress={() => navigation.navigate('CourseDetail', {course: course})}>
             <View style={styles.container}>
                 <Image source={course.image} style={styles.image} />
                 <View style={styles.textGroup}>

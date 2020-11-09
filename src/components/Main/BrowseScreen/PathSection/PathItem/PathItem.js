@@ -1,19 +1,23 @@
 import React from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const PathItem = ({path}) => {
+const PathItem = ({path, navigation}) => {
     return (
-        <View style={styles.container}>
-            <Image style={styles.image} source={path.image} />
-            <View style={styles.textGroup}>
-                <Text style={styles.title}>
-                    {path.title}
-                </Text>
-                <Text style={styles.course}>
-                    {`${path.numCourse} courses`}
-                </Text>
-            </View>
-        </View>
+        <TouchableOpacity onPress={() => navigation.navigate('PathDetail', {path: path})}>
+            <View style={styles.container}>
+                <Image style={styles.image} source={path.image} />
+                <View style={styles.textGroup}>
+                    <Text style={styles.title}>
+                        {path.title}
+                    </Text>
+                    <Text style={styles.course}>
+                        {`${path.numCourse} courses`}
+                    </Text>
+                </View>
+            </View>            
+        </TouchableOpacity>
+
     );
 }
 

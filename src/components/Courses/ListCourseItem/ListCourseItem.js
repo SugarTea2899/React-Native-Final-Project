@@ -17,7 +17,7 @@ const ListCourseItem = ({course}) => {
                     {`${course.level}  -  ${course.date}  -  ${course.time}`}
                 </Text>
             </View>
-            <Entypo style={{alignSelf: 'center', marginLeft: 10}} name="dots-three-vertical" size={20} color="white" />
+            <Entypo style={{alignSelf: 'center', marginLeft: 35}} name="dots-three-vertical" size={20} color="white" />
         </View>
     );
 }
@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
     container: {
         height: 120,
         flexDirection: 'row',
-        borderBottomColor: 'lightgray',
-        borderBottomWidth: 0.5
+        borderBottomColor: 'gray',
+        borderBottomWidth: 0.7
     },
     image: {
         height: 80,
@@ -39,11 +39,11 @@ const styles = StyleSheet.create({
     },
     title: {
         color: 'white',
-        fontSize: 20
+        fontSize: 18
     },
     otherText: {
         color: 'lightgray',
-        fontSize: 15,
+        fontSize: 12,
         marginTop: 3
     }
 });

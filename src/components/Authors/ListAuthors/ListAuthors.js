@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         marginRight: 15,
     },
     total: {
-        color: 'lightgray',
+        color: 'gray',
         marginLeft: 5,
         marginTop: 10,
         marginBottom: 10,

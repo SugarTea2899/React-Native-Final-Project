@@ -73,6 +73,7 @@ const courses = [
 const ListCourse = ({style}) => {
     return (
         <View style={[styles.container, style]}>
+            <Text style={styles.total}>11 Results</Text>
             <FlatList
                 data={courses}
                 renderItem={({item}) => <ListCourseItem course={item}/>}
@@ -85,7 +86,16 @@ const ListCourse = ({style}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginLeft: 10
+        marginLeft: 15,
+        marginRight: 15,
+        paddingBottom: 15
+    },
+    total: {
+        color: 'gray',
+        marginLeft: 2,
+        marginTop: 10,
+        marginBottom: 5,
+        fontSize: 14
     }
 });
 

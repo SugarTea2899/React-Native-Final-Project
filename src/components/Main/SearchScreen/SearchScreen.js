@@ -3,6 +3,7 @@ import { View, StyleSheet, TextInput } from 'react-native';
 import ListCourse from '../../Courses/ListCourse';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import ListAuthors from '../../Authors/ListAuthors/ListAuthors';
+import ListPaths from '../../Paths/ListPaths/ListPaths';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -12,7 +13,7 @@ const SearchScreen = () => {
             <Tab.Navigator>
                 <Tab.Screen name="ALL" component={ListCourse} />
                 <Tab.Screen name="COURSES" component={ListCourse} />
-                <Tab.Screen name="PATHS" component={ListCourse} />
+                <Tab.Screen name="PATHS" component={ListPaths} />
                 <Tab.Screen name="AUTHORS" component={ListAuthors} />
             </Tab.Navigator>
         </View>

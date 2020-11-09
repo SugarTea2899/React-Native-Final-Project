@@ -2,13 +2,13 @@ import React from 'react';
 import {View, StyleSheet, Image, Text } from 'react-native';
 
 
-const ListAuthorsItem = ({author}) => {
+const ListPathItem = ({path}) => {
     return (
         <View style={styles.container}>
-            <Image style={styles.image} source={require('../../../../assets/author1.jpg')} />
+            <Image style={styles.image} source={path.image} />
             <View style={styles.content}>
-                <Text style={styles.name}>acb</Text>
-                <Text style={styles.numCourses}>11 Course</Text>
+                <Text style={styles.title}>{path.title}</Text>
+                <Text style={styles.numCourse}>{`${path.numCourse} courses`}</Text>
             </View>
         </View>
     );
@@ -23,25 +23,22 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.8
     },
     image: {
-        width: 50,
         height: 50,
-        alignSelf: 'center',
-        borderRadius: 25,
-        marginLeft: 4
-    },
-    content: {
-        marginLeft: 20,
+        width: 80,
         alignSelf: 'center'
     },
-    name: {
-        color: 'white',
-        fontSize: 17
+    content: {
+        marginLeft: 15,
+        alignSelf: 'center'
     },
-    numCourses: {
+    title: {
+        color: 'white',
+        fontSize: 15
+    },
+    numCourse: {
         color: 'gray',
-        fontSize: 11,
-        marginTop: 2
+        fontSize: 12
     }
 });
 
-export default ListAuthorsItem;
+export default ListPathItem;

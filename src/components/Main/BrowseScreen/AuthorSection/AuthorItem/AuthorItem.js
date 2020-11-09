@@ -2,10 +2,10 @@ import React from 'react';
 import { View, StyleSheet, ScrollView, Text, Image } from 'react-native';
 
 
-const AuthorItem = ({author}) => {
+const AuthorItem = ({author, style, imageStyle}) => {
     return (
-        <View style={styles.container}>
-            <Image source={author.image} style={styles.image} />
+        <View style={[styles.container, style]}>
+            <Image source={author.image} style={[styles.image, imageStyle]} />
             <Text style={styles.text}>{author.name}</Text>
         </View>
     )
@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
     image: {
         width: 100,
         height: 100,
-        borderRadius: 50
+        borderRadius: 50,
+        alignSelf: 'center'
     },
     text:{
         color: 'white',

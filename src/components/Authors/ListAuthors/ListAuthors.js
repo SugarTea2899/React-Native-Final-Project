@@ -40,13 +40,13 @@ const authors = [
     },
 ]
 
-const ListAuthors = ({style}) => {
+const ListAuthors = ({style, navigation}) => {
     return (
         <View style={[styles.container, style]}>
             <Text style={styles.total}>11 Results</Text>
             <FlatList 
                 data={authors}
-                renderItem={({item}) => <ListAuthorsItem authors={item}/>}
+                renderItem={({item}) => <ListAuthorsItem navigation={navigation} author={item}/>}
                 keyExtractor={item => item.id}
             />
         </View>

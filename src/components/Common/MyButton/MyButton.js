@@ -5,7 +5,7 @@ import {View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 const MyButton = ({style, text}) => {
     return (
         <TouchableOpacity style={[style, styles.container]}>
-            <View >
+            <View style={{flex: 1}}>
                 <Text style={styles.text}>
                    {text}
                 </Text>

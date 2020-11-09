@@ -1,16 +1,19 @@
 import React from 'react';
-import {View, StyleSheet, Image, Text } from 'react-native';
+import {View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
 
 
-const ListAuthorsItem = ({author}) => {
+const ListAuthorsItem = ({author, navigation}) => {
     return (
-        <View style={styles.container}>
-            <Image style={styles.image} source={require('../../../../assets/author1.jpg')} />
-            <View style={styles.content}>
-                <Text style={styles.name}>acb</Text>
-                <Text style={styles.numCourses}>11 Course</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Author', {author: author})}>
+            <View style={styles.container}>
+                <Image style={styles.image} source={author.image} />
+                <View style={styles.content}>
+                    <Text style={styles.name}>{author.name}</Text>
+                    <Text style={styles.numCourses}>11 Course</Text>
+                </View>
             </View>
-        </View>
+        </TouchableOpacity>
+
     );
 }
 

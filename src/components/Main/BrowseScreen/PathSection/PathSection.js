@@ -20,7 +20,7 @@ const PathSection = ({title}) => {
                     {'See all >'}
                 </Text>
             </View>
-            <ScrollView horizontal={true}>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 <PathItem path={path}/>
                 <PathItem path={path}/>
                 <PathItem path={path}/>

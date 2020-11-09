@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import SearchScreen from '../../Main/SearchScreen/SearchScreen';
-import SearchBar from '../../Other/SearchBar/SearchBar';
+import SearchScreen from '../../components/Main/SearchScreen/SearchScreen';
+import SearchBar from '../../components/Other/SearchBar/SearchBar';
 
 const Stack = createStackNavigator();
 

@@ -22,7 +22,7 @@ const CourseSection = ({title, style}) => {
                     {'See all >'}
                 </Text>
             </View>
-            <ScrollView horizontal={true}>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 <CourseItem course={course} />
                 <CourseItem course={course} />
                 <CourseItem course={course} />

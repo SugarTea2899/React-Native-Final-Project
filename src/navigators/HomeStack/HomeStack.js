@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from '../../Main/HomeScreen/HomeScreen';
-import HeaderRight from '../../Other/HeaderRight/HeaderRight';
-import Profile from '../../AccountManagement/Profile/Profile';
+import HeaderRight from '../../components/Other/HeaderRight/HeaderRight';
+import HomeScreen from '../../components/Main/HomeScreen/HomeScreen';
+import Profile from '../../components/AccountManagement/Profile/Profile';
 
 const Stack = createStackNavigator();
 

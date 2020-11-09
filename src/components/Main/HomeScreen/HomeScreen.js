@@ -8,7 +8,7 @@ import CourseSection from './CourseSection/CourseSection';
 const HomeScreen = () => {
     return (
         <View style={{flex: 1, marginBottom: 20}}>
-            <ScrollView >
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <CourseSection style={{marginTop: 20}} title={'History'} />
                 <PathSection title={'Paths'}/>
                 <PathSection title={'Channels'}/>

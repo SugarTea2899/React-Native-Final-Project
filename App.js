@@ -2,16 +2,11 @@ import * as React from 'react';
 import {  StatusBar } from 'react-native';
 import { DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from './src/components/Main/HomeScreen/HomeScreen';
-import SearchScreen from './src/components/Main/SearchScreen/SearchScreen';
 import { AntDesign } from '@expo/vector-icons';
 import DownloadScreen from './src/components/Main/DownloadScreen/DownloadScreen';
 import BrowseScreen from './src/components/Main/BrowseScreen/BrowseScreen';
-import CourseDetail from './src/components/CourseDetail/CourseDetail';
-import Login from './src/components/Authentication/Login/Login';
-import Register from './src/components/Authentication/Register/Register';
-import HomeStack from './src/components/Stack/HomeStack/HomeStack';
-import SearchStack from './src/components/Stack/SearchStack/SearchStack';
+import SearchStack from './src/navigators/SearchStack/SearchStack';
+import HomeStack from './src/navigators/HomeStack/HomeStack';
 
 const Tab = createBottomTabNavigator();
 

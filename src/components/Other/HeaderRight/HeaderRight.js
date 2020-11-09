@@ -7,7 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 const HeaderRight = ({navigation}) => {
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Profile', {name: 'Tran Quang Thien'})}>
                 <FontAwesome name="user-circle" size={20} color="lightskyblue" />
             </TouchableOpacity>
             <TouchableOpacity>

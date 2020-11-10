@@ -1,14 +1,14 @@
 import React from 'react';
-import { StyleSheet, TouchableWithoutFeedback, Text, View, ImageBackground } from "react-native";
+import { StyleSheet, TouchableWithoutFeedback, Text, View, ImageBackground, TouchableOpacity } from "react-native";
 
-const ImageButton = ({image, content, textSize, height, style}) => {
+const ImageButton = ({image, content, textSize, height, style, handleClick, value}) => {
 
     return (
-        <TouchableWithoutFeedback onPress={() => console.log('pressed')}>
+        <TouchableOpacity onPress={() => {handleClick(value)}}>
             <ImageBackground source={image} style={[styles.image, {height: height}, style]}>
                 <Text style={[styles.text, {fontSize: textSize}]}>{content}</Text>
             </ImageBackground>
-        </TouchableWithoutFeedback>
+        </TouchableOpacity>
     );
 }
 

@@ -4,9 +4,9 @@ import { DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign } from '@expo/vector-icons';
 import DownloadScreen from './src/components/Main/DownloadScreen/DownloadScreen';
-import BrowseScreen from './src/components/Main/BrowseScreen/BrowseScreen';
 import SearchStack from './src/navigators/SearchStack/SearchStack';
 import HomeStack from './src/navigators/HomeStack/HomeStack';
+import BrowseStack from './src/navigators/BrowseStack/BrowseStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,7 +42,7 @@ export default function App() {
       >
         <Tab.Screen name="Home" component={HomeStack} />
         <Tab.Screen name="Downloads" component={DownloadScreen} />
-        <Tab.Screen name="Browse" component={BrowseScreen} />
+        <Tab.Screen name="Browse" component={BrowseStack} />
         <Tab.Screen name="Search" component={SearchStack} />
       </Tab.Navigator>
     </NavigationContainer>

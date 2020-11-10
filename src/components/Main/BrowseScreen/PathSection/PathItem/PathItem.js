@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const PathItem = ({path, navigation}) => {
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('PathDetail', {path: path})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Path Detail', {path: path})}>
             <View style={styles.container}>
                 <Image style={styles.image} source={path.image} />
                 <View style={styles.textGroup}>

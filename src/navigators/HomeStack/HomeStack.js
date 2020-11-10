@@ -30,7 +30,7 @@ const HomeStack = () => {
                 component={CourseDetail}
             />
             <Stack.Screen 
-                name="PathDetail"
+                name="Path Detail"
                 component={PathDetail}
             />            
         </Stack.Navigator>

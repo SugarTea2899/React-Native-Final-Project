@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
-import { NEW_RELEASE } from '../../../../globals/constants';
+import { CONFERENCES, NEW_RELEASE } from '../../../../globals/constants';
 import ImageButton from '../../../Common/ImageButton/ImageButton';
 
 const ImageButtonSection = ({navigation}) => {
@@ -8,6 +8,9 @@ const ImageButtonSection = ({navigation}) => {
         switch (value){
             case NEW_RELEASE:
                 navigation.navigate('New Release');
+                break;
+            case CONFERENCES:
+                navigation.navigate('Path Sugguest', {image: image2, content: CONFERENCES});
                 break;
             default:
                 return;
@@ -18,11 +21,11 @@ const ImageButtonSection = ({navigation}) => {
     const image2 = require('../../../../../assets/background_2.jpg');
     return (
         <>
-            <ImageButton style={styles.firstButton} height={100} image={image1} content="NEW RELASE" textSize={25} value={NEW_RELEASE} handleClick={handleClick} />
+            <ImageButton style={styles.firstButton} height={100} image={image1} content={NEW_RELEASE} textSize={25} handleClick={handleClick} />
             <ImageButton style={styles.secondButton} height={100} image={image2} content={"RECOMMENDED\nFOR YOU"} textSize={25} />
             <ScrollView horizontal={true}>
                 <View style={styles.columnButton}>
-                    <ImageButton style={styles.secondButton} height={100} image={image1} content="CONFERENCES" textSize={20} />
+                    <ImageButton style={styles.secondButton} height={100} image={image1} handleClick={handleClick} content={CONFERENCES} textSize={20} />
                     <ImageButton style={styles.secondButton} height={100} image={image1} content="CERTIFICATIONS" textSize={20} />
                 </View>
                 <View style={styles.columnButton}>

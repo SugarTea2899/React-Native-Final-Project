@@ -1,2 +1,3 @@
-export const NEW_RELEASE = 1;
-export const RECOMEND_FOR_YOU = 2;
+export const NEW_RELEASE = 'NEW RELEASE';
+export const RECOMEND_FOR_YOU = 'RECOMEND FOR YOU';
+export const CONFERENCES = 'CONFERENCES'

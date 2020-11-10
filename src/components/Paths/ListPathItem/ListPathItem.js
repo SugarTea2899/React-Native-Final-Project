@@ -17,14 +17,14 @@ const ListPathItem = ({path, style}) => {
 
 const styles = StyleSheet.create({
     container: {
-        height: 80,
+        height: 100,
         flexDirection: 'row',
         borderBottomColor: 'gray',
         borderBottomWidth: 0.8
     },
     image: {
-        height: 50,
-        width: 80,
+        height: 80,
+        width: 120,
         alignSelf: 'center'
     },
     content: {
@@ -33,11 +33,11 @@ const styles = StyleSheet.create({
     },
     title: {
         color: 'white',
-        fontSize: 15
+        fontSize: 20
     },
     numCourse: {
         color: 'gray',
-        fontSize: 12
+        fontSize: 14
     }
 });
 

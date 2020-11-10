@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, TouchableWithoutFeedback, Text, View, ImageBackground, TouchableOpacity } from "react-native";
 
-const ImageButton = ({image, content, textSize, height, style, handleClick, value}) => {
+const ImageButton = ({image, content, textSize, height, style, handleClick}) => {
 
     return (
-        <TouchableOpacity onPress={() => {handleClick(value)}}>
+        <TouchableOpacity onPress={() => {handleClick(content)}}>
             <ImageBackground source={image} style={[styles.image, {height: height}, style]}>
                 <Text style={[styles.text, {fontSize: textSize}]}>{content}</Text>
             </ImageBackground>

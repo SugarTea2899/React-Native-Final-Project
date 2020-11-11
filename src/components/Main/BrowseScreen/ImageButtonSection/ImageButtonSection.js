@@ -13,22 +13,22 @@ const ImageButtonSection = ({navigation}) => {
                 navigation.navigate('Course Suggest', {image: image2, content: RECOMEND_FOR_YOU});
                 break;
             case CONFERENCES:
-                navigation.navigate('Path Suggest', {image: image2, content: CONFERENCES_CONTENT, contentImage: CONFERENCES});
+                navigation.navigate('Path Suggest', {image: image1, content: CONFERENCES_CONTENT, contentImage: CONFERENCES});
                 break;
             case CERTIFICATIONS:
-                navigation.navigate('Path Suggest', {image: image2, content: CERTIFICATIONS_CONTENT, contentImage: CERTIFICATIONS});
+                navigation.navigate('Path Suggest', {image: image1, content: CERTIFICATIONS_CONTENT, contentImage: CERTIFICATIONS});
                 break;
             case SOFTWARE_DEVELOPMENT:
-                navigation.navigate('Path Suggest', {image: image2, content: SOFTWARE_DEVELOPMENT_CONTENT, contentImage: SOFTWARE_DEVELOPMENT})
+                navigation.navigate('Path Suggest', {image: image1, content: SOFTWARE_DEVELOPMENT_CONTENT, contentImage: SOFTWARE_DEVELOPMENT})
                 break;
             case IT_OP:
-                navigation.navigate('Path Suggest', {image: image2, content: IT_OP_CONTENT, contentImage: IT_OP});
+                navigation.navigate('Path Suggest', {image: image1, content: IT_OP_CONTENT, contentImage: IT_OP});
                 break;
             case DATA_PROFESSIONAL:
-                navigation.navigate('Path Suggest', {image: image2, content: DATA_PROFESSIONAL_CONTENT, contentImage: DATA_PROFESSIONAL});
+                navigation.navigate('Path Suggest', {image: image1, content: DATA_PROFESSIONAL_CONTENT, contentImage: DATA_PROFESSIONAL});
                 break;
             case SERCURITY:
-                navigation.navigate('Path Sugguest', {image: image2, content: SERCURITY_CONTENT, contentImage: SERCURITY});
+                navigation.navigate('Path Suggest', {image: image1, content: SERCURITY_CONTENT, contentImage: SERCURITY});
                 break;
             default:
                 return;

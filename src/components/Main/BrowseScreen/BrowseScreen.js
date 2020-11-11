@@ -9,7 +9,7 @@ const BrowseScreen = ({navigation}) => {
         <View style={{ flex: 1}}>
             <ScrollView>
                 <ImageButtonSection navigation={navigation}/>
-                <SkillSection />
+                <SkillSection navigation={navigation} />
                 <PathSection title={'Paths'} />
                 <AuthorSection />
             </ScrollView>

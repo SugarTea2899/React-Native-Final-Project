@@ -8,10 +8,10 @@ const path = {
     image: require('../../../../../assets/background_1.jpg')
 }
 
-const PathSection = ({title, navigation}) => {
+const PathSection = ({title, navigation, style}) => {
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, style]}>
             <View style={styles.textGroup}>
                 <Text style={styles.path}>
                     {title}

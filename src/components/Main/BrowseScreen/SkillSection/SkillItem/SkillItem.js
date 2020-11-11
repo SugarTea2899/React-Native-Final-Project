@@ -1,22 +1,24 @@
 import React from 'react';
-import {View, StyleSheet, Text } from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import { ceil } from 'react-native-reanimated';
 
 
-const SkillItem = ({content, ticked}) => {
+const SkillItem = ({content, ticked, navigation}) => {
     return (
-        <View style={styles.skill}>
-            {
-            ticked 
-            && 
-            <View style={styles.iconContainer}> 
-                <FontAwesome name="check-circle" size={20} color="orangered" />
-            </View>
-            }
+        <TouchableOpacity onPress={() => navigation.navigate('Skill Detail', {content: content})}>
+            <View style={styles.skill}>
+                {
+                ticked 
+                && 
+                <View style={styles.iconContainer}> 
+                    <FontAwesome name="check-circle" size={20} color="orangered" />
+                </View>
+                }
 
-            <Text style={styles.skillName}>{content}</Text>
-        </View>
+                <Text style={styles.skillName}>{content}</Text>
+            </View>            
+        </TouchableOpacity>
+
     );
 }
 

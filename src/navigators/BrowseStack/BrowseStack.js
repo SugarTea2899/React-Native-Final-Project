@@ -5,6 +5,7 @@ import BrowseScreen from '../../components/Main/BrowseScreen/BrowseScreen';
 import NewRelease from '../../components/Main/BrowseScreen/NewRelease/NewRelease';
 import PathSuggest from '../../components/Main/BrowseScreen/PathsSuggest/PathsSuggest';
 import PathDetail from '../../components/PathDetail/PathDetail';
+import CoursesSuggest from '../../components/Main/BrowseScreen/CoursesSuggest/CoursesSuggest';
 
 const Stack = createStackNavigator();
 
@@ -16,14 +17,14 @@ const BrowseStack = () => {
                 component={BrowseScreen}
             />
             <Stack.Screen
-                name='New Release'
-                component={NewRelease}
+                name='Course Suggest'
+                component={CoursesSuggest}
                 options={{
                     headerShown: false
                 }}
             />
             <Stack.Screen
-                name='Path Sugguest'
+                name='Path Suggest'
                 component={PathSuggest}
                 options={{
                     headerShown: false

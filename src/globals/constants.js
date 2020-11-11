@@ -1,5 +1,5 @@
 export const NEW_RELEASE = 'NEW RELEASE';
-export const RECOMEND_FOR_YOU = 'RECOMEND FOR YOU';
+export const RECOMEND_FOR_YOU = 'RECOMENDED\nFOR YOU';
 export const CONFERENCES = 'CONFERENCES';
 export const CONFERENCES_CONTENT = 'Conferences';
 export const CERTIFICATIONS = 'CERTIFICATIONS';

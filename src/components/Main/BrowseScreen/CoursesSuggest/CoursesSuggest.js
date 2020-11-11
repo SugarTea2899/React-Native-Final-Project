@@ -1,13 +1,12 @@
 import React from 'react';
-import {View, StyleSheet, ImageBackground, Text, StatusBar } from 'react-native';
-import { NEW_RELEASE } from '../../../../globals/constants';
+import {View, StyleSheet, StatusBar } from 'react-native';
 import ListCourse from '../../../Courses/ListCourse';
 import BrowseHeader from '../BrowseHeader/BrowseHeader';
 
 
-const NewRelease = ({navigation}) => {
-    const image1 = require('../../../../../assets/background_1.jpg');
-    const headerList = <BrowseHeader navigation={navigation} image={image1} height={160} content={NEW_RELEASE} />
+const CoursesSuggest = ({navigation, route}) => {
+    const {image, content} = route.params;
+    const headerList = <BrowseHeader navigation={navigation} image={image} height={160} content={content} />
     return (
         <View style={styles.container}>
             <StatusBar  translucent backgroundColor="transparent"/>
@@ -19,8 +18,8 @@ const NewRelease = ({navigation}) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 1
     }
 });
 
-export default NewRelease;
+export default CoursesSuggest;

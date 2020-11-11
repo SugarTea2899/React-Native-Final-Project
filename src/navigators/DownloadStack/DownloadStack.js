@@ -9,6 +9,7 @@ import Login from '../../components/Authentication/Login/Login';
 import Register from '../../components/Authentication/Register/Register';
 import SkillDetail from '../../components/SkillDetail/SkillDetail';
 import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
+import Setting from '../../components/AccountManagement/Setting/Setting';
 
 const Stack = createStackNavigator();
 
@@ -69,6 +70,10 @@ const DownloadStack = () => {
                         backgroundColor: '#242424'
                     }
                 }}
+            />
+            <Stack.Screen
+                name='Setting'
+                component={Setting}
             />
         </Stack.Navigator>
     );

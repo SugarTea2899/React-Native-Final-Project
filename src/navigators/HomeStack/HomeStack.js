@@ -12,6 +12,7 @@ import ListCourse from '../../components/Courses/ListCourse';
 import ListPaths from '../../components/Paths/ListPaths/ListPaths';
 import SkillDetail from '../../components/SkillDetail/SkillDetail';
 import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
+import Setting from '../../components/AccountManagement/Setting/Setting';
 const Stack = createStackNavigator();
 
 const HomeStack = () => {
@@ -92,6 +93,10 @@ const HomeStack = () => {
                         backgroundColor: '#242424'
                     }
                 }}
+            />
+            <Stack.Screen
+                name='Setting'
+                component={Setting}
             />
         </Stack.Navigator>
     );

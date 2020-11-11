@@ -6,6 +6,7 @@ import SearchBar from '../../components/Other/SearchBar/SearchBar';
 import AuthorDetail from '../../components/AuthorDetail/AuthorDetail';
 import CourseDetail from '../../components/CourseDetail/CourseDetail';
 import PathDetail from '../../components/PathDetail/PathDetail';
+import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
 const Stack = createStackNavigator();
 
 const SearchStack = () => {
@@ -33,7 +34,7 @@ const SearchStack = () => {
                 options={({route}) => ({
                     title: route.params.path.title
                 })}
-            />                       
+            />
         </Stack.Navigator>
     );
 }

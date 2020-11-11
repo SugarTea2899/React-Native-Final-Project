@@ -15,7 +15,9 @@ const Login = ({navigation}) => {
             <ScrollView contentContainerStyle={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <MyInput lable={'USERNAME'} />
                 <MyInput style={{marginTop: 35}} isPassWord={true} lable={'PASSWORD'}/>
-                <Text style={styles.forgotPassword}>Forgot Password?</Text>
+                <TouchableWithoutFeedback onPress={() => {navigation.navigate('ForgotPassword')}}>
+                    <Text style={styles.forgotPassword}>Forgot Password?</Text>
+                </TouchableWithoutFeedback>
                 <MyButton style={styles.button}  text={'LOGIN'} />
                 <TouchableWithoutFeedback onPress={handleRegister}>
                     <Text style={styles.create}>Create Account</Text>

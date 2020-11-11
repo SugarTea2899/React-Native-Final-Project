@@ -11,6 +11,7 @@ import Register from '../../components/Authentication/Register/Register';
 import ListCourse from '../../components/Courses/ListCourse';
 import ListPaths from '../../components/Paths/ListPaths/ListPaths';
 import SkillDetail from '../../components/SkillDetail/SkillDetail';
+import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
 const Stack = createStackNavigator();
 
 const HomeStack = () => {
@@ -81,7 +82,17 @@ const HomeStack = () => {
                 options={({route}) => ({
                     title: route.params.content
                 })}
-            />            
+            />
+            <Stack.Screen
+                name='ForgotPassword'
+                component={ForgotPassword}
+                options={{
+                    title: 'Forgot Password',
+                    headerStyle: {
+                        backgroundColor: '#242424'
+                    }
+                }}
+            />
         </Stack.Navigator>
     );
 }

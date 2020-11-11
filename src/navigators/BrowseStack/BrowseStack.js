@@ -12,6 +12,7 @@ import CourseDetail from '../../components/CourseDetail/CourseDetail';
 import ListCourse from '../../components/Courses/ListCourse';
 import ListPaths from '../../components/Paths/ListPaths/ListPaths';
 import AuthorDetail from '../../components/AuthorDetail/AuthorDetail';
+import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
 const Stack = createStackNavigator();
 
 const BrowseStack = () => {
@@ -82,7 +83,17 @@ const BrowseStack = () => {
             <Stack.Screen
                 name='Author'
                 component={AuthorDetail}
-            />                                                              
+            />
+            <Stack.Screen
+                name="ForgotPassword"
+                component={ForgotPassword}
+                options={{
+                    title: 'Forgot Password',
+                    headerStyle: {
+                        backgroundColor: '#242424'
+                    }
+                }}
+            />
         </Stack.Navigator>
     );
 }

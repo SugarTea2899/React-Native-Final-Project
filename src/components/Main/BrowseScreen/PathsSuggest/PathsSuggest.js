@@ -5,12 +5,12 @@ import PathSection from '../PathSection/PathSection';
 
 
 const PathSuggest = ({navigation, route}) => {
-    const {image, content} = route.params;
+    const {image, contentImage, content} = route.params;
     return (
         <View style={styles.container}>
             <StatusBar  translucent backgroundColor="transparent"/>
-            <BrowseHeader navigation={navigation} image={image} height={250} content={content} />
-            <PathSection navigation={navigation} title={`Paths in ${content[0] + content.slice(1).toLowerCase()}`} />
+            <BrowseHeader navigation={navigation} image={image} height={250} content={contentImage} />
+            <PathSection navigation={navigation} title={`Paths in ${content}`} />
         </View>
     );
 }

@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 30,
         fontWeight: 'bold',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        textAlign: 'center'
     },
     backIcon: {
         marginTop: 20,

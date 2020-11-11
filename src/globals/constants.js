@@ -1,3 +1,14 @@
 export const NEW_RELEASE = 'NEW RELEASE';
 export const RECOMEND_FOR_YOU = 'RECOMEND FOR YOU';
-export const CONFERENCES = 'CONFERENCES'
+export const CONFERENCES = 'CONFERENCES';
+export const CONFERENCES_CONTENT = 'Conferences';
+export const CERTIFICATIONS = 'CERTIFICATIONS';
+export const CERTIFICATIONS_CONTENT = 'Certifications';
+export const SOFTWARE_DEVELOPMENT = '<Software>\nDevelopment';
+export const SOFTWARE_DEVELOPMENT_CONTENT = 'Software Development';
+export const IT_OP = 'IT OPS';
+export const IT_OP_CONTENT = 'It Ops';
+export const DATA_PROFESSIONAL = 'DATA PROFESSIONAL';
+export const DATA_PROFESSIONAL_CONTENT = 'Data Professional';
+export const SERCURITY = 'SERCURITY';
+export const SERCURITY_CONTENT = 'Sercurity';

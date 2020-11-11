@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
-import { CONFERENCES, NEW_RELEASE } from '../../../../globals/constants';
+import { CERTIFICATIONS, CERTIFICATIONS_CONTENT, CONFERENCES, CONFERENCES_CONTENT, DATA_PROFESSIONAL, DATA_PROFESSIONAL_CONTENT, IT_OP, IT_OP_CONTENT, NEW_RELEASE, SERCURITY, SERCURITY_CONTENT, SOFTWARE_DEVELOPMENT, SOFTWARE_DEVELOPMENT_CONTENT } from '../../../../globals/constants';
 import ImageButton from '../../../Common/ImageButton/ImageButton';
 
 const ImageButtonSection = ({navigation}) => {
@@ -10,7 +10,22 @@ const ImageButtonSection = ({navigation}) => {
                 navigation.navigate('New Release');
                 break;
             case CONFERENCES:
-                navigation.navigate('Path Sugguest', {image: image2, content: CONFERENCES});
+                navigation.navigate('Path Sugguest', {image: image2, content: CONFERENCES_CONTENT, contentImage: CONFERENCES});
+                break;
+            case CERTIFICATIONS:
+                navigation.navigate('Path Sugguest', {image: image2, content: CERTIFICATIONS_CONTENT, contentImage: CERTIFICATIONS});
+                break;
+            case SOFTWARE_DEVELOPMENT:
+                navigation.navigate('Path Sugguest', {image: image2, content: SOFTWARE_DEVELOPMENT_CONTENT, contentImage: SOFTWARE_DEVELOPMENT})
+                break;
+            case IT_OP:
+                navigation.navigate('Path Sugguest', {image: image2, content: IT_OP_CONTENT, contentImage: IT_OP});
+                break;
+            case DATA_PROFESSIONAL:
+                navigation.navigate('Path Sugguest', {image: image2, content: DATA_PROFESSIONAL_CONTENT, contentImage: DATA_PROFESSIONAL});
+                break;
+            case SERCURITY:
+                navigation.navigate('Path Sugguest', {image: image2, content: SERCURITY_CONTENT, contentImage: SERCURITY});
                 break;
             default:
                 return;
@@ -26,15 +41,15 @@ const ImageButtonSection = ({navigation}) => {
             <ScrollView horizontal={true}>
                 <View style={styles.columnButton}>
                     <ImageButton style={styles.secondButton} height={100} image={image1} handleClick={handleClick} content={CONFERENCES} textSize={20} />
-                    <ImageButton style={styles.secondButton} height={100} image={image1} content="CERTIFICATIONS" textSize={20} />
+                    <ImageButton style={styles.secondButton} height={100} image={image1} handleClick={handleClick} content={CERTIFICATIONS} textSize={20} />
                 </View>
                 <View style={styles.columnButton}>
-                    <ImageButton style={styles.secondButton} height={100} image={image1} content={"<Software>\nDEVELOPMENT"} textSize={20} />
-                    <ImageButton style={styles.secondButton} height={100} image={image1} content={"IT OPS"} textSize={20} />
+                    <ImageButton style={styles.secondButton} height={100} image={image1} handleClick={handleClick} content={SOFTWARE_DEVELOPMENT} textSize={20} />
+                    <ImageButton style={styles.secondButton} height={100} image={image1} handleClick={handleClick} content={IT_OP} textSize={20} />
                 </View>
                 <View style={styles.columnButton}>
-                    <ImageButton style={styles.secondButton} height={100} image={image1} content="DATA PROFESSIONAL" textSize={20} />
-                    <ImageButton style={styles.secondButton} height={100} image={image1} content="SERCURITY" textSize={20} />
+                    <ImageButton style={styles.secondButton} height={100} image={image1} handleClick={handleClick} content={DATA_PROFESSIONAL} textSize={20} />
+                    <ImageButton style={styles.secondButton} height={100} image={image1} handleClick={handleClick} content={SERCURITY} textSize={20} />
                 </View>
             </ScrollView>            
         </>

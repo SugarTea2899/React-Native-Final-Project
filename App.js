@@ -7,6 +7,7 @@ import DownloadScreen from './src/components/Main/DownloadScreen/DownloadScreen'
 import SearchStack from './src/navigators/SearchStack/SearchStack';
 import HomeStack from './src/navigators/HomeStack/HomeStack';
 import BrowseStack from './src/navigators/BrowseStack/BrowseStack';
+import DownloadStack from './src/navigators/DownloadStack/DownloadStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -41,7 +42,7 @@ export default function App() {
         }}
       >
         <Tab.Screen name="Home" component={HomeStack} />
-        <Tab.Screen name="Downloads" component={DownloadScreen} />
+        <Tab.Screen name="Downloads" component={DownloadStack} />
         <Tab.Screen name="Browse" component={BrowseStack} />
         <Tab.Screen name="Search" component={SearchStack} />
       </Tab.Navigator>

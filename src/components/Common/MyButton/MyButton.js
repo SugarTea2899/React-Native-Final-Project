@@ -2,9 +2,9 @@ import React from 'react';
 import {View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 
-const MyButton = ({style, text}) => {
+const MyButton = ({style, text, handleClick}) => {
     return (
-        <TouchableOpacity style={[style, styles.container]}>
+        <TouchableOpacity onPress={handleClick} style={[style, styles.container]}>
             <View style={{flex: 1}}>
                 <Text style={styles.text}>
                    {text}

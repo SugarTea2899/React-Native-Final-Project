@@ -70,14 +70,14 @@ const courses = [
 ]
 
 
-const ListCourse = ({style, header, hideTotal}) => {
+const ListCourse = ({style, header, hideTotal, navigation}) => {
     return (
         <View style={[styles.container, style]}>
-            {!hideTotal && <Text style={styles.total}>11 Results</Text>}
+            {!hideTotal && <Text style={styles.total}>{`${courses.length} Results`}</Text>}
             
             <FlatList
                 data={courses}
-                renderItem={({item}) => <ListCourseItem course={item}/>}
+                renderItem={({item}) => <ListCourseItem navigation={navigation} course={item}/>}
                 keyExtractor={item => item.id}
                 ListHeaderComponent={header}
             />

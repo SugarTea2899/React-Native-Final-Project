@@ -7,7 +7,7 @@ const Register = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Register</Text>
-            <ScrollView contentContainerStyle={styles.scrollView}>
+            <ScrollView contentContainerStyle={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <MyInput lable={'YOUR NAME'}/>
                 <MyInput style={{marginTop: 30}} lable={'USERNAME'}/>
                 <MyInput style={{marginTop: 30}} lable={'EMAIL'}/>

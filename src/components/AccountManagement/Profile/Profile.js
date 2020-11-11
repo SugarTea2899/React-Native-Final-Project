@@ -3,10 +3,14 @@ import {View, StyleSheet, Text, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import SkillItem from '../../Main/BrowseScreen/SkillSection/SkillItem/SkillItem';
 import InfoItem from './InfoItem/InfoItem';
+import MyButton from '../../Common/MyButton/MyButton';
 
 
-const Profile = ({route}) => {
+const Profile = ({route, navigation}) => {
     const {name} = route.params;
+    const handleLogout = () => {
+        navigation.navigate('Login');
+    }
     return (
         <View style={styles.container}>
             <View style={styles.topSection}>
@@ -16,11 +20,11 @@ const Profile = ({route}) => {
             <View style={styles.skillSection}> 
                 <Text style={styles.interests}>Interests</Text>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                    <SkillItem ticked content={'React Native'}/>
-                    <SkillItem ticked content={'React JS'}/>
-                    <SkillItem ticked content={'JavaScript'}/>
-                    <SkillItem ticked content={'Java'}/>
-                    <SkillItem ticked content={'C++'}/>
+                    <SkillItem navigation={navigation} ticked content={'React Native'}/>
+                    <SkillItem navigation={navigation} ticked content={'React JS'}/>
+                    <SkillItem navigation={navigation} ticked content={'JavaScript'}/>
+                    <SkillItem navigation={navigation} ticked content={'Java'}/>
+                    <SkillItem navigation={navigation} ticked content={'C++'}/>
                 </ScrollView>
             </View>
             <Text style={styles.activity}>Activity insights (last 30 days)</Text>
@@ -29,7 +33,7 @@ const Profile = ({route}) => {
                 <InfoItem style={{marginTop: 20}} title='MOST ACTIVE TIME OF DAY' content='7:00 AM' />
                 <InfoItem style={{marginTop: 20}} title='MOST VIEWED SUBJECT' content='N/A' />
             </View>
-
+            <MyButton handleClick={handleLogout} style={styles.button} text={'LOGOUT'} />
         </View>
     );
 }
@@ -38,7 +42,7 @@ const Profile = ({route}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingLeft: 25,
+        paddingLeft: 15,
         paddingTop: 18
     },
     topSection: {
@@ -62,7 +66,13 @@ const styles = StyleSheet.create({
     },
     infoSection: {
         marginTop: 30
-    }
+    },
+    button: {
+        backgroundColor: 'dodgerblue',
+        flexDirection: 'row',
+        marginTop: 20,
+        marginRight: 15
+    },
 });
 
 export default Profile;

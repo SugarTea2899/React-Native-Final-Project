@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Text } from 'react-native';
+import { View, StyleSheet, ScrollView, Text, TouchableWithoutFeedback } from 'react-native';
 import PathItem from './PathItem/PathItem';
 
 const path = {
@@ -8,7 +8,7 @@ const path = {
     image: require('../../../../../assets/background_1.jpg')
 }
 
-const PathSection = ({title, navigation, style}) => {
+const PathSection = ({title, navigation, style, handleSeeAll}) => {
 
     return (
         <View style={[styles.container, style]}>
@@ -16,9 +16,12 @@ const PathSection = ({title, navigation, style}) => {
                 <Text style={styles.path}>
                     {title}
                 </Text>
-                <Text style={styles.seeALL}>
-                    {'See all >'}
-                </Text>
+                <TouchableWithoutFeedback onPress={handleSeeAll}>
+                    <Text style={styles.seeALL}>
+                        {'See all >'}
+                    </Text>
+                </TouchableWithoutFeedback>
+
             </View>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 <PathItem navigation={navigation} path={path}/>

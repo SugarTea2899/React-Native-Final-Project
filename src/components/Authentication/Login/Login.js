@@ -1,18 +1,26 @@
 import React from 'react';
-import {View, StyleSheet, Text, ScrollView } from 'react-native';
+import {View, StyleSheet, Text, ScrollView, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import MyButton from '../../Common/MyButton/MyButton';
 import MyInput from '../../Common/MyInput/MyInput';
 
 
-const Login = () => {
+const Login = ({navigation}) => {
+    const handleRegister = () => {
+        navigation.navigate('Register');
+    }
+
     return (
         <View style={styles.container}>
-            <ScrollView contentContainerStyle={styles.scrollView}>
+            <StatusBar  translucent backgroundColor="transparent"/>
+            <ScrollView contentContainerStyle={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <MyInput lable={'USERNAME'} />
                 <MyInput style={{marginTop: 35}} isPassWord={true} lable={'PASSWORD'}/>
                 <Text style={styles.forgotPassword}>Forgot Password?</Text>
                 <MyButton style={styles.button}  text={'LOGIN'} />
-                <Text style={styles.create}>Create Account</Text>
+                <TouchableWithoutFeedback onPress={handleRegister}>
+                    <Text style={styles.create}>Create Account</Text>
+                </TouchableWithoutFeedback>
+                
             </ScrollView>
         </View>
     );

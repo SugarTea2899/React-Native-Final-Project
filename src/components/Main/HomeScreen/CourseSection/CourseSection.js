@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Text, Image } from 'react-native';
+import { View, StyleSheet, ScrollView, Text, Image, TouchableWithoutFeedback } from 'react-native';
+
 import CourseItem from './CourseItem/CourseItem';
 
 const course = {
@@ -12,16 +13,19 @@ const course = {
     image: require('../../../../../assets/background_1.jpg')
 }
 
-const CourseSection = ({title, style, navigation}) => {
+const CourseSection = ({title, style, navigation, handleSeeAll}) => {
     return (
         <View style={[styles.container, style]}>
             <View style={styles.textGroup}>
                 <Text style={styles.title}>
                     {title}
                 </Text>
-                <Text style={styles.seeALL}>
-                    {'See all >'}
-                </Text>
+                <TouchableWithoutFeedback onPress={handleSeeAll}>
+                    <Text style={styles.seeALL}>
+                        {'See all >'}
+                    </Text>
+                </TouchableWithoutFeedback>
+
             </View>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 <CourseItem navigation={navigation} course={course} />

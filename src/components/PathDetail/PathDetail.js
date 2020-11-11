@@ -7,13 +7,13 @@ import ListPathItem from '../Paths/ListPathItem/ListPathItem';
 import HeaderPath from './HeaderPath/HeaderPath';
 
 
-const PathDetail = ({route}) => {
+const PathDetail = ({route, navigation}) => {
     const {path} = route.params;
     const header = <HeaderPath path={path} />
     return (
         <View style={styles.container}>
             <View style={styles.listCourse}>
-                <ListCourse style={styles.list} header={header} hideTotal/>
+                <ListCourse navigation={navigation}  style={styles.list} header={header} hideTotal/>
             </View>          
         </View>
     );

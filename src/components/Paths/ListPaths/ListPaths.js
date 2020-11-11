@@ -41,13 +41,13 @@ const paths = [
     },
 ]
 
-const ListPaths = () => {
+const ListPaths = ({navigation}) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.total}>6 Results</Text>
+            <Text style={styles.total}>{`${paths.length} Results`}</Text>
             <FlatList 
                 data={paths}
-                renderItem={({item}) => <ListPathItem path={item}/>}
+                renderItem={({item}) => <ListPathItem navigation={navigation} path={item}/>}
                 keyExtractor={item => item.id}
             />
         </View>

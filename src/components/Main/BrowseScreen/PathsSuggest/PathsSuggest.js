@@ -6,11 +6,14 @@ import PathSection from '../PathSection/PathSection';
 
 const PathSuggest = ({navigation, route}) => {
     const {image, contentImage, content} = route.params;
+    const handleSeeAll = () => {
+        navigation.navigate('List Path', {title: content});
+    }
     return (
         <View style={styles.container}>
             <StatusBar  translucent backgroundColor="transparent"/>
             <BrowseHeader navigation={navigation} image={image} height={250} content={contentImage} />
-            <PathSection navigation={navigation} title={`Paths in ${content}`} />
+            <PathSection handleSeeAll={handleSeeAll} navigation={navigation} title={`Paths in ${content}`} />
         </View>
     );
 }

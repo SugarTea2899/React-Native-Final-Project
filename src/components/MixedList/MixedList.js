@@ -157,16 +157,16 @@ const DATA = [
     }
 ]
 
-const MixedList = () => {
+const MixedList = ({navigation}) => {
 
     const renderItem = ({item, section}) => {
         switch (section.title){
             case 'Courses':
-                return <ListCourseItem course={item}/>
+                return <ListCourseItem navigation={navigation} course={item}/>
             case 'Paths':   
-                return <ListPathItem path={item} />
+                return <ListPathItem navigation={navigation} path={item} />
             case 'Authors':
-                return <ListAuthorsItem author={item} />
+                return <ListAuthorsItem navigation={navigation} author={item} />
         }       
     };
 

@@ -6,7 +6,7 @@ const Header = ({title, total}) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
-            <Text style={styles.total}>{`${total} Results >`}</Text>
+            <Text style={styles.total}>{`${total} Results`}</Text>
         </View>
     );
 }
@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
     total: {
         color: 'gray',
         fontSize: 12,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        paddingRight: 10
     }
 });
 

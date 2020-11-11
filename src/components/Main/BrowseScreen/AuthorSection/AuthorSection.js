@@ -6,17 +6,17 @@ const author ={
     name: 'Simon Allardice',
     image: require('../../../../../assets/author1.jpg')
 }
-const AuthorSection = ({style}) => {
+const AuthorSection = ({style, navigation}) => {
     return (
         <View style={[styles.container, style]}>
             <Text style={styles.text}>Top authors</Text>
             <ScrollView horizontal={true}>
-                <AuthorItem author={author} />
-                <AuthorItem author={author}/>
-                <AuthorItem author={author}/>
-                <AuthorItem author={author}/>
-                <AuthorItem author={author}/>
-                <AuthorItem author={author}/>
+                <AuthorItem navigation={navigation} author={author} />
+                <AuthorItem navigation={navigation} author={author}/>
+                <AuthorItem navigation={navigation} author={author}/>
+                <AuthorItem navigation={navigation} author={author}/>
+                <AuthorItem navigation={navigation} author={author}/>
+                <AuthorItem navigation={navigation} author={author}/>
             </ScrollView>
         </View>
     );

@@ -5,13 +5,16 @@ import PathSection from './PathSection/PathSection';
 import SkillSection from './SkillSection/SkillSection';
 import AuthorSection from './AuthorSection/AuthorSection';
 const BrowseScreen = ({navigation}) => {
+    const handleSeeAllPath = () => {
+        navigation.navigate('List Path', {title: 'Paths'});
+    }
     return (
         <View style={{ flex: 1}}>
             <ScrollView>
                 <ImageButtonSection navigation={navigation}/>
                 <SkillSection navigation={navigation} />
-                <PathSection title={'Paths'} />
-                <AuthorSection />
+                <PathSection navigation={navigation} handleSeeAll={handleSeeAllPath} title={'Paths'} />
+                <AuthorSection navigation={navigation} />
             </ScrollView>
         </View>
     );

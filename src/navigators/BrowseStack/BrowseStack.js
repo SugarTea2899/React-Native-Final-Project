@@ -2,14 +2,16 @@ import React from 'react';
 import {View, StyleSheet } from 'react-native';
 import { createStackNavigator, HeaderTitle } from '@react-navigation/stack';
 import BrowseScreen from '../../components/Main/BrowseScreen/BrowseScreen';
-import NewRelease from '../../components/Main/BrowseScreen/NewRelease/NewRelease';
 import PathSuggest from '../../components/Main/BrowseScreen/PathsSuggest/PathsSuggest';
 import PathDetail from '../../components/PathDetail/PathDetail';
 import CoursesSuggest from '../../components/Main/BrowseScreen/CoursesSuggest/CoursesSuggest';
 import HeaderRight from '../../components/Other/HeaderRight/HeaderRight';
 import Profile from '../../components/AccountManagement/Profile/Profile';
 import SkillDetail from '../../components/SkillDetail/SkillDetail';
-
+import CourseDetail from '../../components/CourseDetail/CourseDetail';
+import ListCourse from '../../components/Courses/ListCourse';
+import ListPaths from '../../components/Paths/ListPaths/ListPaths';
+import AuthorDetail from '../../components/AuthorDetail/AuthorDetail';
 const Stack = createStackNavigator();
 
 const BrowseStack = () => {
@@ -43,8 +45,18 @@ const BrowseStack = () => {
                 }}
             />
             <Stack.Screen 
+                name="CourseDetail"
+                component={CourseDetail}
+                options={({route}) => ({
+                    title: route.params.course.title
+                })}
+            />
+            <Stack.Screen 
                 name="Path Detail"
                 component={PathDetail}
+                options={({route}) => ({
+                    title: route.params.path.title
+                })}
             />
             <Stack.Screen 
                 name='Skill Detail'
@@ -52,7 +64,25 @@ const BrowseStack = () => {
                 options={({route}) => ({
                     title: route.params.content
                 })}
-            />                                                   
+            />
+            <Stack.Screen
+                name="List Course"
+                component={ListCourse}
+                options={({route}) => ({
+                    title: route.params.title
+                })}
+            />
+            <Stack.Screen
+                name="List Path"
+                component={ListPaths}
+                options={({route}) => ({
+                    title: route.params.title
+                })}
+            /> 
+            <Stack.Screen
+                name='Author'
+                component={AuthorDetail}
+            />                                                              
         </Stack.Navigator>
     );
 }

@@ -10,7 +10,7 @@ const CoursesSuggest = ({navigation, route}) => {
     return (
         <View style={styles.container}>
             <StatusBar  translucent backgroundColor="transparent"/>
-            <ListCourse style={{marginLeft: 0, marginRight: 0}}  hideTotal header={headerList}/>
+            <ListCourse navigation={navigation} style={{marginLeft: 0, marginRight: 0}}  hideTotal header={headerList}/>
         </View>
     );
 }

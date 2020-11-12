@@ -86,7 +86,7 @@ const HomeStack = () => {
             />
             <Stack.Screen
                 name='ForgotPassword'
-                component={ForgotPassword}
+                component={ForgotPassword} 
                 options={{
                     title: 'Forgot Password',
                     headerStyle: {

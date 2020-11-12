@@ -10,7 +10,7 @@ const HeaderRight = ({navigation}) => {
             <TouchableOpacity onPress={() => navigation.navigate('Profile', {name: 'Tran Quang Thien'})}>
                 <FontAwesome name="user-circle" size={20} color="lightskyblue" />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Setting')}>
                 <MaterialIcons style={{marginLeft: 20}} name="settings" size={20} color="white" />
             </TouchableOpacity>
         </View>

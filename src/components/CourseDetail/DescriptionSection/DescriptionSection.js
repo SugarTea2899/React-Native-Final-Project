@@ -19,7 +19,9 @@ const DescriptionSection = () => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 30
+        marginTop: 30,
+        paddingLeft: 15,
+        paddingRight: 15,
     },
     button: {
         backgroundColor: '#47484a',

@@ -10,6 +10,7 @@ import Register from '../../components/Authentication/Register/Register';
 import SkillDetail from '../../components/SkillDetail/SkillDetail';
 import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
 import Setting from '../../components/AccountManagement/Setting/Setting';
+import ListPaths from '../../components/Paths/ListPaths/ListPaths';
 
 const Stack = createStackNavigator();
 
@@ -71,6 +72,13 @@ const DownloadStack = () => {
                     }
                 }}
             />
+            <Stack.Screen
+                name="List Path"
+                component={ListPaths}
+                options={({route}) => ({
+                    title: route.params.title
+                })}
+            /> 
             <Stack.Screen
                 name='Setting'
                 component={Setting}

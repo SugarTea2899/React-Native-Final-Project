@@ -1,23 +1,71 @@
 import React from 'react';
-import { View, StyleSheet, Text, Image, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, Image, ScrollView, FlatList } from 'react-native';
 import CourseInfoSection from './CourseInfoSection/CourseInfoSection';
 import DescriptionSection from './DescriptionSection/DescriptionSection';
 import IconSection from './IconSection/IconSection';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import MixedList from '../MixedList/MixedList';
+
+const Tab = createMaterialTopTabNavigator();
 
 const CourseDetail = ({route}) => {
     const {course} = route.params;
+    const header = <React.Fragment>
+                        <CourseInfoSection />
+                        <IconSection />
+                        <DescriptionSection />                 
+                   </React.Fragment>
+    const content = <Tab.Navigator
+                        tabBarOptions={{
+                            style: {
+                                backgroundColor: '#262525',
+                                marginTop: 10
+                            },
+                            activeTintColor: 'dodgerblue',
+                            inactiveTintColor: 'gray',
+                            labelStyle: {
+                                fontWeight: 'bold',
+                                fontSize: 16
+                            }
+                        }}
+                    >
+                        <Tab.Screen name="ALL" component={MixedList} />
+                        <Tab.Screen name="COURSES" component={MixedList} />
+                    </Tab.Navigator>
 
     return (
         <View style={styles.container}>
             <View style={styles.videoSection}>
                 <Image style={styles.image}  source={require('../../../assets/video.png')} />
             </View>
+
             <View style={styles.contentSection}>
-                <ScrollView showsVerticalScrollIndicator={false}>
+                <FlatList 
+                    ListHeaderComponent={header}
+                    data={[1]}
+                    renderItem={({item}) => content}
+                    keyExtractor={(item) => `${item}`}
+                    showsVerticalScrollIndicator={false}
+                />
+                {/* <ScrollView showsVerticalScrollIndicator={false} stickyHeaderIndices={[3]}>
                     <CourseInfoSection />
                     <IconSection />
                     <DescriptionSection />
-                </ScrollView>
+                    <Tab.Navigator
+                        tabBarOptions={{
+                            style: {
+                                backgroundColor: '#262525',
+                            },
+                            activeTintColor: 'dodgerblue',
+                            labelStyle: {
+                                fontWeight: 'bold'
+                            }
+                        }}
+                    >
+                        <Tab.Screen name="ALL" component={MixedList} />
+                        <Tab.Screen name="COURSES" component={MixedList} />
+                    </Tab.Navigator>
+                </ScrollView> */}
             </View>
         </View>
     );
@@ -34,11 +82,8 @@ const styles = StyleSheet.create({
     },
     contentSection: {
         flex: 2,
-        paddingLeft: 15,
-        paddingRight: 15,
         paddingTop: 8,
         backgroundColor: "#262525",
-        paddingBottom: 10
     },
     image:{
         flex: 1,

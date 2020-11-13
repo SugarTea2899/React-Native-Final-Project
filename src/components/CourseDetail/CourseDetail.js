@@ -6,6 +6,7 @@ import IconSection from './IconSection/IconSection';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import MixedList from '../MixedList/MixedList';
 import ContentList from './ContentList/ContentList';
+import Transcript from './Transcript/Transcript';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -31,7 +32,7 @@ const CourseDetail = ({route}) => {
                         }}
                     >
                         <Tab.Screen name="CONTENT" component={ContentList} />
-                        <Tab.Screen name="TRANSCRIPT" component={ContentList} />
+                        <Tab.Screen name="TRANSCRIPT" component={Transcript} />
                     </Tab.Navigator>
 
     return (

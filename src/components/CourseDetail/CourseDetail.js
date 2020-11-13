@@ -5,6 +5,7 @@ import DescriptionSection from './DescriptionSection/DescriptionSection';
 import IconSection from './IconSection/IconSection';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import MixedList from '../MixedList/MixedList';
+import ContentList from './ContentList/ContentList';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -29,8 +30,8 @@ const CourseDetail = ({route}) => {
                             }
                         }}
                     >
-                        <Tab.Screen name="ALL" component={MixedList} />
-                        <Tab.Screen name="COURSES" component={MixedList} />
+                        <Tab.Screen name="CONTENT" component={ContentList} />
+                        <Tab.Screen name="TRANSCRIPT" component={ContentList} />
                     </Tab.Navigator>
 
     return (
@@ -46,26 +47,8 @@ const CourseDetail = ({route}) => {
                     renderItem={({item}) => content}
                     keyExtractor={(item) => `${item}`}
                     showsVerticalScrollIndicator={false}
+                    style={{flex: 1}}
                 />
-                {/* <ScrollView showsVerticalScrollIndicator={false} stickyHeaderIndices={[3]}>
-                    <CourseInfoSection />
-                    <IconSection />
-                    <DescriptionSection />
-                    <Tab.Navigator
-                        tabBarOptions={{
-                            style: {
-                                backgroundColor: '#262525',
-                            },
-                            activeTintColor: 'dodgerblue',
-                            labelStyle: {
-                                fontWeight: 'bold'
-                            }
-                        }}
-                    >
-                        <Tab.Screen name="ALL" component={MixedList} />
-                        <Tab.Screen name="COURSES" component={MixedList} />
-                    </Tab.Navigator>
-                </ScrollView> */}
             </View>
         </View>
     );
@@ -82,7 +65,6 @@ const styles = StyleSheet.create({
     },
     contentSection: {
         flex: 2,
-        paddingTop: 8,
         backgroundColor: "#262525",
     },
     image:{

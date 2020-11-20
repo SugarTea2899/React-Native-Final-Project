@@ -1,10 +1,11 @@
 import React from 'react';
 import {View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
+import { AUTHOR } from '../../../globals/keyScreen';
 
 
 const ListAuthorsItem = ({author, navigation}) => {
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('Author', {author: author})}>
+        <TouchableOpacity onPress={() => navigation.navigate(AUTHOR, {author: author})}>
             <View style={styles.container}>
                 <Image style={styles.image} source={author.image} />
                 <View style={styles.content}>

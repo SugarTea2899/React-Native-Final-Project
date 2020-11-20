@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, ScrollView, StyleSheet } from 'react-native';
+import { LIST_COURSE, LIST_PATH } from '../../../globals/keyScreen';
 import PathSection from '../BrowseScreen/PathSection/PathSection';
 import CourseSection from './CourseSection/CourseSection';
 
@@ -7,16 +8,16 @@ import CourseSection from './CourseSection/CourseSection';
 
 const HomeScreen = ({navigation}) => {
     const handleHistory = () => {
-        navigation.navigate('List Course', {title: 'History'});
+        navigation.navigate(LIST_COURSE, {title: 'History'});
     }
     const handleBookmark = () => {
-        navigation.navigate('List Course', {title: 'Bookmark'})
+        navigation.navigate(LIST_COURSE, {title: 'Bookmark'})
     }
     const handlePath = () => {
-        navigation.navigate('List Path', {title: 'Paths'});
+        navigation.navigate(LIST_PATH, {title: 'Paths'});
     }
     const handleChannel = () => {
-        navigation.navigate('List Path', {title: 'Channels'})
+        navigation.navigate(LIST_PATH, {title: 'Channels'})
     }
     return (
         <View style={{flex: 1, marginBottom: 20}}>

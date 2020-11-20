@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import { SKILL_DETAIL } from '../../../../../globals/keyScreen';
 
 
 const SkillItem = ({content, ticked, navigation}) => {
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('Skill Detail', {content: content})}>
+        <TouchableOpacity onPress={() => navigation.navigate(SKILL_DETAIL, {content: content})}>
             <View style={styles.skill}>
                 {
                 ticked 

@@ -1,12 +1,13 @@
 import React from 'react';
 import {View, StyleSheet, Text, ScrollView, StatusBar, TouchableWithoutFeedback } from 'react-native';
+import { FORGOT_PASSWORD, REGISTER } from '../../../globals/keyScreen';
 import MyButton from '../../Common/MyButton/MyButton';
 import MyInput from '../../Common/MyInput/MyInput';
 
 
 const Login = ({navigation}) => {
     const handleRegister = () => {
-        navigation.navigate('Register');
+        navigation.navigate(REGISTER);
     }
 
     return (
@@ -15,7 +16,7 @@ const Login = ({navigation}) => {
             <ScrollView contentContainerStyle={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <MyInput lable={'USERNAME'} />
                 <MyInput style={{marginTop: 35}} isPassWord={true} lable={'PASSWORD'}/>
-                <TouchableWithoutFeedback onPress={() => {navigation.navigate('ForgotPassword')}}>
+                <TouchableWithoutFeedback onPress={() => {navigation.navigate(FORGOT_PASSWORD)}}>
                     <Text style={styles.forgotPassword}>Forgot Password?</Text>
                 </TouchableWithoutFeedback>
                 <MyButton style={styles.button}  text={'LOGIN'} />

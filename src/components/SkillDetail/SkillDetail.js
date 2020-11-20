@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, ScrollView } from 'react-native';
+import { LIST_COURSE, LIST_PATH } from '../../globals/keyScreen';
 import AuthorSection from '../Main/BrowseScreen/AuthorSection/AuthorSection';
 import PathSection from '../Main/BrowseScreen/PathSection/PathSection';
 import CourseSection from '../Main/HomeScreen/CourseSection/CourseSection';
@@ -7,13 +8,13 @@ import CourseSection from '../Main/HomeScreen/CourseSection/CourseSection';
 const SkillDetail = ({route, navigation}) => {
     const {content} = route.params;
     const handleSeeAllPath = () => {
-        navigation.navigate('List Path', {title: `Paths in ${content}`});
+        navigation.navigate(LIST_PATH, {title: `Paths in ${content}`});
     }
     const handleSeeNew = () => {
-        navigation.navigate('List Course', {title: `New in ${content}`});
+        navigation.navigate(LIST_COURSE, {title: `New in ${content}`});
     }
     const handleSeeTrending = () => {
-        navigation.navigate('List Course', {title: `Trending in ${content}`});
+        navigation.navigate(LIST_COURSE, {title: `Trending in ${content}`});
     }
     return (
         <View style={styles.container}>

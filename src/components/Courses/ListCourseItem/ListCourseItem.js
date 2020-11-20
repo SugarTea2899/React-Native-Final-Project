@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, Text, Image, TouchableOpacity } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
+import { COURSE_DETAIL } from '../../../globals/keyScreen';
 
 const ListCourseItem = ({course, navigation}) => {
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('CourseDetail', {course: course})}>
+        <TouchableOpacity onPress={() => navigation.navigate(COURSE_DETAIL, {course: course})}>
             <View style={styles.container}>
                 <Image style={styles.image}  source={course.image} />
                 <View style={styles.textGroup}>

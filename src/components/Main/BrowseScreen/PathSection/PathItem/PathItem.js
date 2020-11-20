@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { PATH_DETAIL } from '../../../../../globals/keyScreen';
 
 const PathItem = ({path, navigation}) => {
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('Path Detail', {path: path})}>
+        <TouchableOpacity onPress={() => navigation.navigate(PATH_DETAIL, {path: path})}>
             <View style={styles.container}>
                 <Image style={styles.image} source={path.image} />
                 <View style={styles.textGroup}>

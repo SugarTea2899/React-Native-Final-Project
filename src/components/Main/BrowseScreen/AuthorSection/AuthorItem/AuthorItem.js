@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, Text, Image, TouchableOpacity } from 'react-native';
+import { AUTHOR } from '../../../../../globals/keyScreen';
 
 
 const AuthorItem = ({author, style, imageStyle, navigation}) => {
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('Author', {author: author})}>
+        <TouchableOpacity onPress={() => navigation.navigate(AUTHOR, {author: author})}>
             <View style={[styles.container, style]}>
                 <Image source={author.image} style={[styles.image, imageStyle]} />
                 <Text style={styles.text}>{author.name}</Text>

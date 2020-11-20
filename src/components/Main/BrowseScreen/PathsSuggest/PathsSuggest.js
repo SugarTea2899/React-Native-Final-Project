@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, StatusBar } from 'react-native';
+import { LIST_PATH } from '../../../../globals/keyScreen';
 import BrowseHeader from '../BrowseHeader/BrowseHeader';
 import PathSection from '../PathSection/PathSection';
 
@@ -7,7 +8,7 @@ import PathSection from '../PathSection/PathSection';
 const PathSuggest = ({navigation, route}) => {
     const {image, contentImage, content} = route.params;
     const handleSeeAll = () => {
-        navigation.navigate('List Path', {title: content});
+        navigation.navigate(LIST_PATH, {title: content});
     }
     return (
         <View style={styles.container}>

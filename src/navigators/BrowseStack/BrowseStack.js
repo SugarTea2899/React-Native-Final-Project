@@ -12,15 +12,18 @@ import CourseDetail from '../../components/CourseDetail/CourseDetail';
 import ListCourse from '../../components/Courses/ListCourse';
 import ListPaths from '../../components/Paths/ListPaths/ListPaths';
 import AuthorDetail from '../../components/AuthorDetail/AuthorDetail';
+import Login from '../../components/Authentication/Login/Login';
 import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
 import Setting from '../../components/AccountManagement/Setting/Setting';
+import { BROWSE, PATH_SUGGEST, PROFILE, COURSE_DETAIL, PATH_DETAIL, SKILL_DETAIL, LIST_COURSE, LIST_PATH, AUTHOR, FORGOT_PASSWORD, SETTING, COURSE_SUGGEST, LOGIN, REGISTER } from '../../globals/keyScreen';
+import Register from '../../components/Authentication/Register/Register';
 const Stack = createStackNavigator();
 
 const BrowseStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name='Browse'
+                name={BROWSE}
                 component={BrowseScreen}
                 options={ ({navigation}) => ({
                     headerRight: () => (
@@ -29,64 +32,64 @@ const BrowseStack = () => {
                 })}
             />
             <Stack.Screen
-                name="Profile"
+                name={PROFILE}
                 component={Profile}
             />            
             <Stack.Screen
-                name='Course Suggest'
+                name={COURSE_SUGGEST}
                 component={CoursesSuggest}
                 options={{
                     headerShown: false
                 }}
             />
             <Stack.Screen
-                name='Path Suggest'
+                name={PATH_SUGGEST}
                 component={PathSuggest}
                 options={{
                     headerShown: false
                 }}
             />
             <Stack.Screen 
-                name="CourseDetail"
+                name={COURSE_DETAIL}
                 component={CourseDetail}
                 options={({route}) => ({
                     title: route.params.course.title
                 })}
             />
             <Stack.Screen 
-                name="Path Detail"
+                name={PATH_DETAIL}
                 component={PathDetail}
                 options={({route}) => ({
                     title: route.params.path.title
                 })}
             />
             <Stack.Screen 
-                name='Skill Detail'
+                name={SKILL_DETAIL}
                 component={SkillDetail}
                 options={({route}) => ({
                     title: route.params.content
                 })}
             />
             <Stack.Screen
-                name="List Course"
+                name={LIST_COURSE}
                 component={ListCourse}
                 options={({route}) => ({
                     title: route.params.title
                 })}
             />
             <Stack.Screen
-                name="List Path"
+                name={LIST_PATH}
                 component={ListPaths}
                 options={({route}) => ({
                     title: route.params.title
                 })}
             /> 
             <Stack.Screen
-                name='Author'
+                name={AUTHOR}
                 component={AuthorDetail}
             />
             <Stack.Screen
-                name="ForgotPassword"
+                name={FORGOT_PASSWORD}
                 component={ForgotPassword}
                 options={{
                     title: 'Forgot Password',
@@ -96,9 +99,27 @@ const BrowseStack = () => {
                 }}
             />
             <Stack.Screen
-                name='Setting'
+                name={SETTING}
                 component={Setting}
             />
+            <Stack.Screen 
+                name={LOGIN}
+                component={Login}
+                options={{
+                    headerStyle: {
+                        backgroundColor: '#242424'
+                    }
+                }}
+            />
+            <Stack.Screen
+                name={REGISTER}
+                component={Register}
+                options={{
+                    headerStyle: {
+                        backgroundColor: '#242424'
+                    }
+                }}
+            />            
         </Stack.Navigator>
     );
 }

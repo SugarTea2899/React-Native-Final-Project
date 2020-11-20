@@ -7,29 +7,30 @@ import AuthorDetail from '../../components/AuthorDetail/AuthorDetail';
 import CourseDetail from '../../components/CourseDetail/CourseDetail';
 import PathDetail from '../../components/PathDetail/PathDetail';
 import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
+import { AUTHOR, COURSE_DETAIL, PATH_DETAIL, SEARCH } from '../../globals/keyScreen';
 const Stack = createStackNavigator();
 
 const SearchStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name='Search'
+                name={SEARCH}
                 component={SearchScreen}
                 options={{headerTitle: props => <SearchBar />}} 
             />
             <Stack.Screen
-                name='Author'
+                name={AUTHOR}
                 component={AuthorDetail}
             /> 
             <Stack.Screen 
-                name="CourseDetail"
+                name={COURSE_DETAIL}
                 component={CourseDetail}
                 options={({route}) => ({
                     title: route.params.course.title
                 })}
             />
             <Stack.Screen 
-                name="Path Detail"
+                name={PATH_DETAIL}
                 component={PathDetail}
                 options={({route}) => ({
                     title: route.params.path.title

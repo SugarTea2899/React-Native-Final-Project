@@ -13,13 +13,14 @@ import ListPaths from '../../components/Paths/ListPaths/ListPaths';
 import SkillDetail from '../../components/SkillDetail/SkillDetail';
 import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
 import Setting from '../../components/AccountManagement/Setting/Setting';
+import { COURSE_DETAIL, FORGOT_PASSWORD, HOME, LIST_COURSE, LIST_PATH, LOGIN, PATH_DETAIL, PROFILE, REGISTER, SETTING, SKILL_DETAIL } from '../../globals/keyScreen';
 const Stack = createStackNavigator();
 
 const HomeStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name="Home"
+                name={HOME}
                 component={HomeScreen}
                 options={ ({navigation}) => ({
                     headerRight: () => (
@@ -28,25 +29,25 @@ const HomeStack = () => {
                 })}
             />
             <Stack.Screen
-                name="Profile"
+                name={PROFILE}
                 component={Profile}
             />
             <Stack.Screen 
-                name="CourseDetail"
+                name={COURSE_DETAIL}
                 component={CourseDetail}
                 options={({route}) => ({
                     title: route.params.course.title
                 })}
             />
             <Stack.Screen 
-                name="Path Detail"
+                name={PATH_DETAIL}
                 component={PathDetail}
                 options={({route}) => ({
                     title: route.params.path.title
                 })}
             />
             <Stack.Screen 
-                name="Login"
+                name={LOGIN}
                 component={Login}
                 options={{
                     headerStyle: {
@@ -55,7 +56,7 @@ const HomeStack = () => {
                 }}
             />
             <Stack.Screen
-                name="Register"
+                name={REGISTER}
                 component={Register}
                 options={{
                     headerStyle: {
@@ -64,28 +65,28 @@ const HomeStack = () => {
                 }}
             />
             <Stack.Screen
-                name="List Course"
+                name={LIST_COURSE}
                 component={ListCourse}
                 options={({route}) => ({
                     title: route.params.title
                 })}
             />
             <Stack.Screen
-                name="List Path"
+                name={LIST_PATH}
                 component={ListPaths}
                 options={({route}) => ({
                     title: route.params.title
                 })}
             />
             <Stack.Screen 
-                name='Skill Detail'
+                name={SKILL_DETAIL}
                 component={SkillDetail}
                 options={({route}) => ({
                     title: route.params.content
                 })}
             />
             <Stack.Screen
-                name='ForgotPassword'
+                name={FORGOT_PASSWORD}
                 component={ForgotPassword} 
                 options={{
                     title: 'Forgot Password',
@@ -95,7 +96,7 @@ const HomeStack = () => {
                 }}
             />
             <Stack.Screen
-                name='Setting'
+                name={SETTING}
                 component={Setting}
             />
         </Stack.Navigator>

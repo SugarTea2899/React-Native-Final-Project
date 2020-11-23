@@ -19,7 +19,7 @@ const ListCourseItem = ({course, navigation}) => {
                         {`${course.level}  -  ${course.date}  -  ${course.time}`}
                     </Text>
                 </View>
-                <Entypo style={{alignSelf: 'center', marginLeft: 35}} name="dots-three-vertical" size={20} color="white" />
+                <Entypo style={{alignSelf: 'center', flex: 1, textAlign: 'right'}} name="dots-three-vertical" size={20} color="white" />
             </View>
         </TouchableOpacity>
 
@@ -31,24 +31,29 @@ const styles = StyleSheet.create({
         height: 120,
         flexDirection: 'row',
         borderBottomColor: 'gray',
-        borderBottomWidth: 0.7
+        borderBottomWidth: 0.7,
+        flex: 1
     },
     image: {
         height: 80,
-        width: 130,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        flex: 3,
+        resizeMode: 'stretch',
     },
     textGroup: {
-        padding: 18
+        paddingTop: 18,
+        paddingLeft: 12,
+        flex: 4
     },
     title: {
         color: 'white',
-        fontSize: 18
+        fontSize: 16,
+        lineHeight: 22
     },
     otherText: {
         color: 'lightgray',
-        fontSize: 12,
-        marginTop: 3
+        fontSize: 11,
+        marginTop: 2
     }
 });
 

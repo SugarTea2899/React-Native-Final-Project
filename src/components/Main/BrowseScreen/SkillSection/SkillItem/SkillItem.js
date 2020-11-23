@@ -9,11 +9,11 @@ const SkillItem = ({content, ticked, navigation}) => {
         <TouchableOpacity onPress={() => navigation.navigate(SKILL_DETAIL, {content: content})}>
             <View style={styles.skill}>
                 {
-                ticked 
-                && 
-                <View style={styles.iconContainer}> 
-                    <FontAwesome name="check-circle" size={20} color="orangered" />
-                </View>
+                    ticked 
+                    && 
+                    <View style={styles.iconContainer}> 
+                        <FontAwesome name="check-circle" size={20} color="orangered" />
+                    </View>
                 }
 
                 <Text style={styles.skillName}>{content}</Text>

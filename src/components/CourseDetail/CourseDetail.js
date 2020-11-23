@@ -13,7 +13,7 @@ const Tab = createMaterialTopTabNavigator();
 const CourseDetail = ({route}) => {
     const {course} = route.params;
     const header = <React.Fragment>
-                        <CourseInfoSection />
+                        <CourseInfoSection course={course} />
                         <IconSection />
                         <DescriptionSection />                 
                    </React.Fragment>
@@ -38,7 +38,7 @@ const CourseDetail = ({route}) => {
     return (
         <View style={styles.container}>
             <View style={styles.videoSection}>
-                <Image style={styles.image}  source={require('../../../assets/video.png')} />
+                <Image style={styles.image}  source={course.image} />
             </View>
 
             <View style={styles.contentSection}>
@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
     },
     image:{
         flex: 1,
-        height: 'auto'
+        height: 'auto',
+        resizeMode: 'stretch',
     }
 });
 

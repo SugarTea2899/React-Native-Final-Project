@@ -7,7 +7,7 @@ const IconSection = () => {
         <View style={styles.container}>
             <IconButton name="bookmark" content="Bookmark"/>
             <IconButton name="plus" content="Add to Channel"/>
-            <IconButton name="download" content="download"/>
+            <IconButton name="download" content="Download"/>
         </View>
     );
 }
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',
-        paddingTop: 25,
+        paddingTop: 28,
         paddingLeft: 15,
         paddingRight: 15,
     }

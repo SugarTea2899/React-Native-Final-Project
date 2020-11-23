@@ -1,13 +1,32 @@
 import React from 'react';
-import {View, StyleSheet, Text } from 'react-native';
+import {View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
+import { AUTHOR_TAB, COURSE_TAB, PATH_TAB } from '../../../globals/keyScreen';
 
 
-const Header = ({title, total}) => {
+const Header = ({title, total, navigation}) => {
+    const handleSwitchTab = () => {
+        switch (title) {
+            case 'Courses':
+                navigation.navigate(COURSE_TAB);
+                break;
+            case 'Paths':
+                navigation.navigate(PATH_TAB);
+                break;
+            case 'Authors':
+                navigation.navigate(AUTHOR_TAB);
+                break;
+            default:
+                break;
+        }
+    }
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.total}>{`${total} Results`}</Text>
-        </View>
+        <TouchableWithoutFeedback onPress={handleSwitchTab}>
+            <View style={styles.container}>
+                <Text style={styles.title}>{title}</Text>
+                <Text style={styles.total}>{`${total} Results >`}</Text>
+            </View>
+        </TouchableWithoutFeedback>
+
     );
 }
 

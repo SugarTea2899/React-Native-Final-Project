@@ -1,17 +1,17 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-const CourseInfoSection = () => {
+const CourseInfoSection = ({course}) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>React Native For Beginer</Text>
+            <Text style={styles.title}>{course.title}</Text>
             <View style={{flex: 1, flexDirection: 'row'}}>
                 <View style={styles.skill}>
-                    <Text style={styles.skillName}>Scott Lee</Text>
+                <Text style={styles.skillName}>{course.author}</Text>
                 </View>
             </View>
             <Text style={styles.otherText}>
-                    {'Beginner   -   Oct 2020   -   2h 8m'}
+                    {`${course.level}  -   ${course.date}   -   ${course.time}`}
             </Text>
         </View>
     );
@@ -25,11 +25,12 @@ const styles = StyleSheet.create({
     },
     title: {
         color: 'white',
-        fontSize: 30,
+        lineHeight: 30,
+        fontSize: 22,
         paddingLeft: 1
     },
     skill: {
-        marginTop: 8,
+        marginTop: 12,
         paddingLeft: 15,
         paddingRight: 15,
         paddingTop: 3,
@@ -39,12 +40,14 @@ const styles = StyleSheet.create({
     },
     skillName: {
         color: 'white',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        fontSize: 12,
+        fontWeight: 'bold'
     },
     otherText: {
         color: 'lightgray',
         fontSize: 11,
-        marginTop: 11,
+        marginTop: 12,
         paddingLeft: 4,
     }
 });

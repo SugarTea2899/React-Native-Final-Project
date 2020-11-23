@@ -6,66 +6,93 @@ import ListCourseItem from './ListCourseItem/ListCourseItem';
 const courses = [
     {
         id: '1',
-        title: 'React1',
+        title: 'React For Beginer',
         author: 'Simon Allardice',
         level: 'Beginer',
         date: 'Oct 2020',
         time: '2h 8m',
-        image: require('../../../assets/background_1.jpg')
+        image: require('../../../assets/courses/course_01.png')
     },
     {
         id: '2',
-        title: 'React2',
+        title: 'React Hook',
         author: 'Simon Allardice',
         level: 'Beginer',
         date: 'Oct 2020',
         time: '2h 8m',
-        image: require('../../../assets/background_1.jpg')
+        image: require('../../../assets/courses/course_05.png')
     },
     {
         id: '3',
-        title: 'React3',
+        title: 'Building Application With React and Redux',
         author: 'Simon Allardice',
-        level: 'Beginer',
+        level: 'Intermediate',
         date: 'Oct 2020',
-        time: '2h 8m',
-        image: require('../../../assets/background_1.jpg')
+        time: '10h 8m',
+        image: require('../../../assets/courses/course_04.png')
     },
     {
         id: '4',
-        title: 'React4',
+        title: 'Building Application With React and Flux',
         author: 'Simon Allardice',
-        level: 'Beginer',
+        level: 'Intermediate',
         date: 'Oct 2020',
-        time: '2h 8m',
-        image: require('../../../assets/background_1.jpg')
+        time: '8h 8m',
+        image: require('../../../assets/courses/course_07.png')
     },
     {
         id: '5',
-        title: 'React5',
+        title: 'React Native For Beginer',
         author: 'Simon Allardice',
         level: 'Beginer',
         date: 'Oct 2020',
-        time: '2h 8m',
-        image: require('../../../assets/background_1.jpg')
+        time: '17h 8m',
+        image: require('../../../assets/courses/course_06.jpg')
     },
     {
         id: '6',
-        title: 'React6',
+        title: 'React with Material UI',
         author: 'Simon Allardice',
         level: 'Beginer',
-        date: 'Oct 2020',
-        time: '2h 8m',
-        image: require('../../../assets/background_1.jpg')
+        date: 'Nov 2020',
+        time: '2h 10m',
+        image: require('../../../assets/courses/course_02.jpg')
     },
     {
         id: '7',
-        title: 'React7',
+        title: 'Building React Native Applications Using Expo',
         author: 'Simon Allardice',
         level: 'Beginer',
         date: 'Oct 2020',
-        time: '2h 8m',
-        image: require('../../../assets/background_1.jpg')
+        time: '1h 8m',
+        image: require('../../../assets/courses/course_03.png')
+    },
+    {
+        id: '8',
+        title: 'Managing React State',
+        author: 'Simon Allardice',
+        level: 'Beginer',
+        date: 'Oct 2020',
+        time: '1h 8m',
+        image: require('../../../assets/courses/course_08.png')
+    },
+    {
+        id: '9',
+        title: 'Realtime with React',
+        author: 'Simon Allardice',
+        level: 'Intermediate',
+        date: 'Oct 2020',
+        time: '1h 8m',
+        image: require('../../../assets/courses/course_01.png')
+    },
+    {
+        id: '10',
+        title: 'Ant Design',
+        author: 'Simon Allardice',
+        level: 'Intermediate',
+        date: 'Oct 2020',
+        time: '1h 8m',
+        image: require('../../../assets/courses/course_09.jpeg')
     }
 ]
 

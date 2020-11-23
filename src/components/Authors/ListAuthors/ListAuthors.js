@@ -6,44 +6,69 @@ const authors = [
     {
         id: '1',
         name: 'Simon Allardice',
-        image: require('../../../../assets/author1.jpg')        
+        image: require('../../../../assets/authors/author_01.jpg'),
+        numCourses: 14        
     },
     {
         id: '2',
-        name: 'Simon Allardice',
-        image: require('../../../../assets/author1.jpg')        
+        name: 'Samer Buna',
+        image: require('../../../../assets/authors/author_02.jpeg'),
+        numCourses: 7            
     },
     {
         id: '3',
-        name: 'Simon Allardice',
-        image: require('../../../../assets/author1.jpg')        
+        name: 'Cory House',
+        image: require('../../../../assets/authors/author_03.jpg'),
+        numCourses: 5            
     },
     {
         id: '4',
-        name: 'Simon Allardice',
-        image: require('../../../../assets/author1.jpg')        
+        name: 'Peter Kellner',
+        image: require('../../../../assets/authors/author_04.jpg'),
+        numCourses: 4            
     },
     {
         id: '5',
-        name: 'Simon Allardice',
-        image: require('../../../../assets/author1.jpg')        
+        name: 'Roland Guijt',
+        image: require('../../../../assets/authors/author_05.jpg'),
+        numCourses: 2            
     },
     {
         id: '6',
-        name: 'Simon Allardice',
-        image: require('../../../../assets/author1.jpg')        
+        name: 'Chris Minnick',
+        image: require('../../../../assets/authors/author_06.png'),
+        numCourses: 8            
     },
     {
         id: '7',
-        name: 'Simon Allardice',
-        image: require('../../../../assets/author1.jpg')        
+        name: 'Adhithi Ravichandran',
+        image: require('../../../../assets/authors/author_07.jpg'),
+        numCourses: 11            
+    },
+    {
+        id: '8',
+        name: 'Hendrik Swanepoel',
+        image: require('../../../../assets/authors/author_08.jpg'),
+        numCourses: 10            
+    },
+    {
+        id: '9',
+        name: 'Liam McLennan',
+        image: require('../../../../assets/authors/author_09.jpg'),
+        numCourses: 14            
+    },
+    {
+        id: '10',
+        name: 'Jake Trent',
+        image: require('../../../../assets/authors/author_10.jpg'),
+        numCourses: 9            
     },
 ]
 
 const ListAuthors = ({style, navigation}) => {
     return (
         <View style={[styles.container, style]}>
-            <Text style={styles.total}>11 Results</Text>
+            <Text style={styles.total}>{`${authors.length} Results`}</Text>
             <FlatList 
                 data={authors}
                 renderItem={({item}) => <ListAuthorsItem navigation={navigation} author={item}/>}

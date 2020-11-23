@@ -15,3 +15,6 @@ export const HOME = 'Home';
 export const REGISTER = 'Register';
 export const DOWNLOAD = 'Download';
 export const SEARCH = 'Search';
+export const COURSE_TAB = 'COURSES';
+export const PATH_TAB = 'PATHS';
+export const AUTHOR_TAB = 'AUTHORS';

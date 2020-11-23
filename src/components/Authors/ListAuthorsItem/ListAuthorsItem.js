@@ -10,7 +10,7 @@ const ListAuthorsItem = ({author, navigation}) => {
                 <Image style={styles.image} source={author.image} />
                 <View style={styles.content}>
                     <Text style={styles.name}>{author.name}</Text>
-                    <Text style={styles.numCourses}>11 Course</Text>
+                    <Text style={styles.numCourses}>{`${author.numCourses} Courses`}</Text>
                 </View>
             </View>
         </TouchableOpacity>

@@ -19,19 +19,20 @@ const styles = StyleSheet.create({
     container: {
         width: 100,
         height: 140,
-        marginRight: 25
+        marginRight: 17
     },
     image: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
+        width: 80,
+        height: 80,
+        borderRadius: 40,
         alignSelf: 'center'
     },
     text:{
+        marginTop: 5,
         color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
-        fontSize: 15
+        fontSize: 14
     }
 });
 

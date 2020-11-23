@@ -9,8 +9,11 @@ const CourseItem = ({course, navigation}) => {
                 <Image source={course.image} style={styles.image} />
                 <View style={styles.textGroup}>
                     <Text style={styles.title}>{course.title}</Text>
-                    <Text style={styles.otherText}>{course.author}</Text>
-                    <Text style={styles.otherText}>{`${course.level}  -  ${course.date}  -  ${course.time}`}</Text>
+                    <View style={{marginTop: 5}}>
+                        <Text style={styles.otherText}>{course.author}</Text>
+                        <Text style={styles.otherText}>{`${course.level}  -  ${course.date}  -  ${course.time}`}</Text>
+                    </View>
+
                 </View>
             </View>            
         </TouchableOpacity>
@@ -19,27 +22,31 @@ const CourseItem = ({course, navigation}) => {
 
 const styles = StyleSheet.create({
     container: {
-        height: 200,
+        height: 220,
         width: 230,
         backgroundColor: '#151c2e',
-        marginRight: 20
+        marginRight: 20,
+        borderRadius: 3
     },
     image: {
-        height: 100,
-        width: 'auto'
+        height: 110,
+        width: 'auto',
+        resizeMode: 'stretch',
     },
     textGroup: {
-        paddingLeft: 15,
-        paddingTop: 8
+        paddingLeft: 10,
+        paddingTop: 8,
+        paddingRight: 10
     },
     title: {
         color: 'white',
-        fontSize: 17
+        lineHeight: 22,
+        fontSize: 16
     },
     otherText: {
         color: 'lightgray',
-        fontSize: 12,
-        marginTop: 5
+        fontSize: 11,
+        marginTop: 2
     }
 });
 

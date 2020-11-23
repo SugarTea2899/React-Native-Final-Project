@@ -24,26 +24,29 @@ const PathItem = ({path, navigation}) => {
 
 const styles = StyleSheet.create({
     container: {
-        height: 200,
+        height: 210,
         width: 230,
         backgroundColor: '#151c2e',
-        marginRight: 20
+        marginRight: 20,
+        borderBottomLeftRadius: 3,
+        borderBottomRightRadius: 3
     },
     image: {
-        height: 100,
+        height: 110,
         width: 'auto'
     },
     textGroup: {
-        padding: 15
+        paddingTop: 10,
+        paddingLeft: 10
     },
     title: {
         color: 'white',
-        fontSize: 18
+        fontSize: 17
     },
     course: {
         color: 'lightgray',
         marginTop: 4,
-        fontSize: 12
+        fontSize: 10
     }
 });
 

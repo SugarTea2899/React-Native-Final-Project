@@ -13,7 +13,6 @@ const CourseItem = ({course, navigation}) => {
                         <Text style={styles.otherText}>{course.author}</Text>
                         <Text style={styles.otherText}>{`${course.level}  -  ${course.date}  -  ${course.time}`}</Text>
                     </View>
-
                 </View>
             </View>            
         </TouchableOpacity>

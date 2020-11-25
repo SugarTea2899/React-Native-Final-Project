@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
     },
     image: {
         height: 110,
-        width: 'auto'
+        width: 'auto',
+        resizeMode: 'stretch',
     },
     textGroup: {
         paddingTop: 10,

@@ -5,39 +5,63 @@ import ListPathItem from '../ListPathItem/ListPathItem';
 const paths = [
     {
         id: '1',
-        title: 'Big Data LDN 2020',
+        title: 'Building Web Applications with React',
         numCourse: 44,
-        image: require('../../../../assets/background_1.jpg')        
+        image: require('../../../../assets/courses/course_01.png')        
     },
     {
         id: '2',
-        title: 'Big Data LDN 2020',
-        numCourse: 44,
-        image: require('../../../../assets/background_1.jpg')        
+        title: 'Microsoft Azure Adminstrator',
+        numCourse: 21,
+        image: require('../../../../assets/paths/path_01.png')        
     },
     {
         id: '3',
-        title: 'Big Data LDN 2020',
-        numCourse: 44,
-        image: require('../../../../assets/background_1.jpg')        
+        title: 'Working with REST API in JavaScript',
+        numCourse: 6,
+        image: require('../../../../assets/paths/path_02.jpg')        
     },
     {
         id: '4',
-        title: 'Big Data LDN 2020',
-        numCourse: 44,
-        image: require('../../../../assets/background_1.jpg')        
+        title: 'AWS Certified Solutions',
+        numCourse: 8,
+        image: require('../../../../assets/paths/path_03.png')        
     },
     {
         id: '5',
-        title: 'Big Data LDN 2020',
-        numCourse: 44,
-        image: require('../../../../assets/background_1.jpg')        
+        title: 'Core Python',
+        numCourse: 15,
+        image: require('../../../../assets/paths/path_04.png')        
     },
     {
         id: '6',
-        title: 'Big Data LDN 2020',
-        numCourse: 44,
-        image: require('../../../../assets/background_1.jpg')        
+        title: 'Design Pattern in Java',
+        numCourse: 5,
+        image: require('../../../../assets/paths/path_05.jpeg')        
+    },
+    {
+        id: '7',
+        title: 'Java Unit Testing',
+        numCourse: 5,
+        image: require('../../../../assets/paths/path_05.jpeg')        
+    },
+    {
+        id: '8',
+        title: 'Introduction to Professional Scrum',
+        numCourse: 5,
+        image: require('../../../../assets/paths/path_06.jpg')        
+    },
+    {
+        id: '9',
+        title: 'Java Spring Framework',
+        numCourse: 7,
+        image: require('../../../../assets/paths/path_07.png')        
+    },
+    {
+        id: '10',
+        title: 'Developing Applications with Google Could',
+        numCourse: 2,
+        image: require('../../../../assets/paths/path_08.jpg')        
     },
 ]
 

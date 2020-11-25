@@ -96,15 +96,6 @@ const courses = [
     }
 ]
 
-const course = {
-    id: '1',
-    title: 'React',
-    author: 'Simon Allardice',
-    level: 'Beginer',
-    date: 'Oct 2020',
-    time: '2h 8m',
-    image: require('../../../../../assets/background_1.jpg')
-}
 
 const CourseSection = ({title, style, navigation, handleSeeAll}) => {
     return (
@@ -123,7 +114,7 @@ const CourseSection = ({title, style, navigation, handleSeeAll}) => {
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 {
                     courses.map((item, index) => {
-                        return index < 4 ? <CourseItem navigation={navigation} course={item} /> : <Text style={styles.emptyText}> </Text>
+                        return index < 4 ? <CourseItem key={item.id} navigation={navigation} course={item} /> : <Text key={item.id} style={styles.emptyText}> </Text>
                     })
                 }
             </ScrollView>

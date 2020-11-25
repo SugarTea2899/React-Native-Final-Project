@@ -27,21 +27,23 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.8
     },
     image: {
+        flex: 1,
         height: 80,
-        width: 120,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        resizeMode: 'stretch',
     },
     content: {
+        flex: 2,
         marginLeft: 15,
         alignSelf: 'center'
     },
     title: {
         color: 'white',
-        fontSize: 20
+        fontSize: 18
     },
     numCourse: {
         color: 'gray',
-        fontSize: 14
+        fontSize: 13
     }
 });
 

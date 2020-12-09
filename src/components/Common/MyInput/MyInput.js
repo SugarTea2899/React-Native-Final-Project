@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, ScrollView, StyleSheet, TextInput, Text } from 'react-native';
 
-const MyInput = ({style, lable, isPassWord = false}) => {
+const MyInput = ({style, lable, isPassWord = false, isNumber = false, text = '', setText}) => {
     return (
         <View style={[styles.container, style]}>
             <Text style={styles.text}>
                 {lable}
             </Text>
-            <TextInput secureTextEntry={isPassWord} style={styles.textInput} />
+            <TextInput value={text} onChangeText={(text) => setText(text)} keyboardType={isNumber ? 'numeric' : 'default'} secureTextEntry={isPassWord} style={styles.textInput} />
         </View>
     );
 }

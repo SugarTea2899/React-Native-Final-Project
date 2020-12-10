@@ -1,18 +1,46 @@
 import React, { useState } from 'react';
-import {View, StyleSheet, ScrollView, Text } from 'react-native';
+import {View, StyleSheet, ScrollView, Text, Alert } from 'react-native';
 import { fetchWithoutAu } from '../../../api/fetchData';
 import { API_URL } from '../../../globals/constants';
+import { LOGIN } from '../../../globals/keyScreen';
+import AsyncAlert from '../../Common/AsyncAlert/AsyncAlert';
 import MyButton from '../../Common/MyButton/MyButton';
 import MyInput from '../../Common/MyInput/MyInput';
 
-const Register = () => {
+const Register = ({navigation}) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
 
+    const validEmail = () => {
+        const pattern =/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return pattern.test(email);
+    }
+    const validPassword = () => {
+        return password.length >= 6 && password === rePassword;
+    }
+    const validPhone = () => {
+        return phone.length >= 6;
+    }
+    
     const handleLogin = () => {
+        if (!validEmail(email)){
+            Alert.alert('Erro', 'Email is invalid');
+            return;
+        }
+
+        if (!validPassword(password)){
+            Alert.alert('Erro', 'Password must have at least 6 characters and match with RE-PASSWORD');
+            return;
+        }
+
+        if (!validPhone(phone)){
+            Alert.alert('Erro', 'Phone number is invalid');
+            return;
+        }
+
         const data = {
             username: username,
             email: email,
@@ -21,11 +49,12 @@ const Register = () => {
         }
         fetchWithoutAu(API_URL + "user/register", 'POST', data)
             .then(
-                (data) => {
-                    console.log(data);
+                async (data) => {
+                    await AsyncAlert('Success', 'Sign up successfully\nYou will redirect to login.');
+                    navigation.navigate(LOGIN);
                 },
                 (erro) => {
-                    console.log(erro.message);
+                    Alert.alert('Erro', erro.message);
                 }
             )
     }

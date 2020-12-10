@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {View, ScrollView, StyleSheet } from 'react-native';
+import { UserContext } from '../../../contexts/UserContext';
 import { LIST_COURSE, LIST_PATH } from '../../../globals/keyScreen';
 import PathSection from '../BrowseScreen/PathSection/PathSection';
 import CourseSection from './CourseSection/CourseSection';
@@ -19,6 +20,7 @@ const HomeScreen = ({navigation}) => {
     const handleChannel = () => {
         navigation.navigate(LIST_PATH, {title: 'Channels'})
     }
+
     return (
         <View style={{flex: 1, marginBottom: 20}}>
             <ScrollView showsVerticalScrollIndicator={false}>

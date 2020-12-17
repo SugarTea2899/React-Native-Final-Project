@@ -5,12 +5,12 @@ import BrowseHeader from '../BrowseHeader/BrowseHeader';
 
 
 const CoursesSuggest = ({navigation, route}) => {
-    const {image, content} = route.params;
+    const {image, content, courses} = route.params;
     const headerList = <BrowseHeader navigation={navigation} image={image} height={160} content={content} />
     return (
         <View style={styles.container}>
             <StatusBar  translucent backgroundColor="transparent"/>
-            <ListCourse navigation={navigation} style={{marginLeft: 0, marginRight: 0}}  hideTotal header={headerList}/>
+            <ListCourse courses={courses} navigation={navigation} style={{marginLeft: 0, marginRight: 0}}  hideTotal header={headerList}/>
         </View>
     );
 }

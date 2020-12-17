@@ -49,7 +49,6 @@ const Login = ({navigation}) => {
                 <TouchableWithoutFeedback onPress={handleRegister}>
                     <Text style={styles.create}>Create Account</Text>
                 </TouchableWithoutFeedback>
-                
             </ScrollView>
         </View>
     );

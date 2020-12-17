@@ -1,14 +1,16 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
-import { CERTIFICATIONS, CERTIFICATIONS_CONTENT, CONFERENCES, CONFERENCES_CONTENT, DATA_PROFESSIONAL, DATA_PROFESSIONAL_CONTENT, IT_OP, IT_OP_CONTENT, NEW_RELEASE, RECOMEND_FOR_YOU, SERCURITY, SERCURITY_CONTENT, SOFTWARE_DEVELOPMENT, SOFTWARE_DEVELOPMENT_CONTENT } from '../../../../globals/constants';
+import { fetchWithoutAu } from '../../../../api/fetchData';
+import { API_URL, CERTIFICATIONS, CERTIFICATIONS_CONTENT, CONFERENCES, CONFERENCES_CONTENT, DATA_PROFESSIONAL, DATA_PROFESSIONAL_CONTENT, IT_OP, IT_OP_CONTENT, NEW_RELEASE, RECOMEND_FOR_YOU, SERCURITY, SERCURITY_CONTENT, SOFTWARE_DEVELOPMENT, SOFTWARE_DEVELOPMENT_CONTENT } from '../../../../globals/constants';
 import { COURSE_SUGGEST, PATH_SUGGEST } from '../../../../globals/keyScreen';
 import ImageButton from '../../../Common/ImageButton/ImageButton';
 
 const ImageButtonSection = ({navigation}) => {
+
     const handleClick = (value) => {
         switch (value){
             case NEW_RELEASE:
-                navigation.navigate(COURSE_SUGGEST, {image: image1, content: NEW_RELEASE});
+                getNewReleaseCourse();
                 break;
             case RECOMEND_FOR_YOU:
                 navigation.navigate(COURSE_SUGGEST, {image: image2, content: RECOMEND_FOR_YOU});
@@ -36,6 +38,18 @@ const ImageButtonSection = ({navigation}) => {
         }
     }
 
+    const getNewReleaseCourse = () => {
+        fetchWithoutAu(API_URL + 'course/top-new', 'POST', {limit: '20', page: '1'})
+            .then(
+                (data) => {
+                    navigation.navigate(COURSE_SUGGEST, {image: image1, content: NEW_RELEASE, courses: data.payload});
+                },
+                (error) => {
+                    console.log(error.message);
+                }
+            )
+    }
+    
     const image1 = require('../../../../../assets/background_1.jpg');
     const image2 = require('../../../../../assets/background_2.jpg');
     return (

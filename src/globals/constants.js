@@ -12,4 +12,6 @@ export const DATA_PROFESSIONAL = 'DATA PROFESSIONAL';
 export const DATA_PROFESSIONAL_CONTENT = 'Data Professional';
 export const SERCURITY = 'SERCURITY';
 export const SERCURITY_CONTENT = 'Sercurity';
-export const API_URL = 'http://api.dev.letstudy.org/'
+export const API_URL = 'http://api.dev.letstudy.org/';
+export const TOP_SELL = 'TOP SELL';
+export const TOP_RATE = 'TOP RATE';

@@ -4,51 +4,61 @@ import CourseInfoSection from './CourseInfoSection/CourseInfoSection';
 import DescriptionSection from './DescriptionSection/DescriptionSection';
 import IconSection from './IconSection/IconSection';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import MixedList from '../MixedList/MixedList';
 import ContentList from './ContentList/ContentList';
 import Transcript from './Transcript/Transcript';
+import { Video } from 'expo-av';
 
 const Tab = createMaterialTopTabNavigator();
 
-const CourseDetail = ({route}) => {
-    const {course} = route.params;
+const CourseDetail = ({ route }) => {
+    const { course } = route.params;
     const header = <React.Fragment>
-                        <CourseInfoSection course={course} />
-                        <IconSection />
-                        <DescriptionSection />                 
-                   </React.Fragment>
+        <CourseInfoSection course={course} />
+        <IconSection />
+        <DescriptionSection content={course.description} />
+    </React.Fragment>
     const content = <Tab.Navigator
-                        tabBarOptions={{
-                            style: {
-                                backgroundColor: '#262525',
-                                marginTop: 10
-                            },
-                            activeTintColor: 'dodgerblue',
-                            inactiveTintColor: 'gray',
-                            labelStyle: {
-                                fontWeight: 'bold',
-                                fontSize: 16
-                            }
-                        }}
-                    >
-                        <Tab.Screen name="CONTENT" component={ContentList} />
-                        <Tab.Screen name="TRANSCRIPT" component={Transcript} />
-                    </Tab.Navigator>
+        tabBarOptions={{
+            style: {
+                backgroundColor: '#262525',
+                marginTop: 10
+            },
+            activeTintColor: 'dodgerblue',
+            inactiveTintColor: 'gray',
+            labelStyle: {
+                fontWeight: 'bold',
+                fontSize: 16
+            }
+        }}
+    >
+        <Tab.Screen name="CONTENT" component={ContentList} />
+        <Tab.Screen name="TRANSCRIPT" component={Transcript} />
+    </Tab.Navigator>
 
     return (
         <View style={styles.container}>
             <View style={styles.videoSection}>
-                <Image style={styles.image}  source={course.image} />
+                <Video
+                    source={{ uri: course.promoVidUrl === null ? '' : course.promoVidUrl.replace('https', 'http')}}
+                    rate={1.0}
+                    volume={1.0}
+                    isMuted={false}
+                    resizeMode="contain"
+                    shouldPlay={false}
+                    isLooping
+                    useNativeControls
+                    style={styles.video}
+                />
             </View>
 
             <View style={styles.contentSection}>
-                <FlatList 
+                <FlatList
                     ListHeaderComponent={header}
                     data={[1]}
-                    renderItem={({item}) => content}
+                    renderItem={({ item }) => content}
                     keyExtractor={(item) => `${item}`}
                     showsVerticalScrollIndicator={false}
-                    style={{flex: 1}}
+                    style={{ flex: 1 }}
                 />
             </View>
         </View>
@@ -68,7 +78,7 @@ const styles = StyleSheet.create({
         flex: 2,
         backgroundColor: "#262525",
     },
-    image:{
+    video: {
         flex: 1,
         height: 'auto',
         resizeMode: 'stretch',

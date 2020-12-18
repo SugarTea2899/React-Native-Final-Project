@@ -2,10 +2,10 @@ import React from 'react';
 import { View, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
 import TextArea from '../../Common/TextArea/TextArea';
 
-const DescriptionSection = () => {
+const DescriptionSection = ({content}) => {
     return (
         <View style={styles.container}>
-            <TextArea />
+            <TextArea content={content} />
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.buttonText}>Take a learning check</Text>
             </TouchableOpacity>

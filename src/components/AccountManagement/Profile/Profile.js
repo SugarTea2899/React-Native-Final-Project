@@ -4,7 +4,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import SkillItem from '../../Main/BrowseScreen/SkillSection/SkillItem/SkillItem';
 import InfoItem from './InfoItem/InfoItem';
 import MyButton from '../../Common/MyButton/MyButton';
-import { LOGIN } from '../../../globals/keyScreen';
+import { LOGIN } from '../../../globals/KeyScreen';
 
 
 const Profile = ({route, navigation}) => {

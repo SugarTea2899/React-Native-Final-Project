@@ -7,82 +7,139 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import ContentList from './ContentList/ContentList';
 import Transcript from './Transcript/Transcript';
 import { Video } from 'expo-av';
+import EmptyContent from './EmptyContent/EmptyContent';
+import { useReducer } from 'react';
+import CourseReducer from '../../reducers/CourseReducer';
+import { CourseContext } from '../../contexts/CourseContext';
+import { useEffect } from 'react';
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext';
+import { useState } from 'react';
+import { fetchWithAu } from '../../api/fetchData';
+import { API_URL } from '../../globals/constants';
+import { initContentList, updateRegister } from '../../actions/CourseActions';
 
 const Tab = createMaterialTopTabNavigator();
 
+const initialState = {
+  contentList: [],
+  register: false
+}
 const CourseDetail = ({ route }) => {
-    const { course } = route.params;
-    const header = <React.Fragment>
-        <CourseInfoSection course={course} />
-        <IconSection />
-        <DescriptionSection content={course.description} />
-    </React.Fragment>
-    const content = <Tab.Navigator
-        tabBarOptions={{
-            style: {
-                backgroundColor: '#262525',
-                marginTop: 10
-            },
-            activeTintColor: 'dodgerblue',
-            inactiveTintColor: 'gray',
-            labelStyle: {
-                fontWeight: 'bold',
-                fontSize: 16
-            }
-        }}
-    >
-        <Tab.Screen name="CONTENT" component={ContentList} />
-        <Tab.Screen name="TRANSCRIPT" component={Transcript} />
-    </Tab.Navigator>
+  const { course } = route.params;
+  const [state, dispatch] = useReducer(CourseReducer, initialState)
+  const { token } = useContext(UserContext);
 
-    return (
-        <View style={styles.container}>
-            <View style={styles.videoSection}>
-                <Video
-                    source={{ uri: course.promoVidUrl === null ? '' : course.promoVidUrl.replace('https', 'http')}}
-                    rate={1.0}
-                    volume={1.0}
-                    isMuted={false}
-                    resizeMode="contain"
-                    shouldPlay={false}
-                    isLooping
-                    useNativeControls
-                    style={styles.video}
-                />
-            </View>
+  useEffect(() => {
+    if (token !== null) {
+      fetchWithAu(API_URL + `user/check-own-course/${course.id}`, 'GET', token)
+        .then(
+          (data) => {
+            dispatch(updateRegister(data.payload.isUserOwnCourse));
+          },
+          (erro) => {
+            console.log(erro.message);
+          }
+        )
+    }
+  }, []);
 
-            <View style={styles.contentSection}>
-                <FlatList
-                    ListHeaderComponent={header}
-                    data={[1]}
-                    renderItem={({ item }) => content}
-                    keyExtractor={(item) => `${item}`}
-                    showsVerticalScrollIndicator={false}
-                    style={{ flex: 1 }}
-                />
-            </View>
+  useEffect(() => {
+    if (state.register) {
+      fetchWithAu(API_URL + `course/detail-with-lesson/${course.id}`, 'GET', token)
+        .then(
+          (data) => {
+            const section = data.payload.section;
+            const formatSection = section.map((item) => {
+              const formatItem = { ...item, data: item.lesson.slice() }
+              delete formatItem.lesson;
+              return formatItem; 
+            });
+            dispatch(initContentList(formatSection));
+          },
+          (erro) => {
+            Alert.alert('Error', erro.message);
+          }
+        )
+    }
+  }, [state.register])
+
+  const header = <React.Fragment>
+    <CourseInfoSection course={course} />
+    <IconSection courseId={course.id} />
+    <DescriptionSection content={course.description} />
+  </React.Fragment>
+
+  const content = (<Tab.Navigator
+    tabBarOptions={{
+      style: {
+        backgroundColor: '#262525',
+        marginTop: 10
+      },
+      activeTintColor: 'dodgerblue',
+      inactiveTintColor: 'gray',
+      labelStyle: {
+        fontWeight: 'bold',
+        fontSize: 16
+      }
+    }}
+  >
+    {state.register ? <Tab.Screen name="CONTENT" children={() => <ContentList data={state.contentList} />} /> : <Tab.Screen name="CONTENT" component={EmptyContent} />}
+    
+    <Tab.Screen name="TRANSCRIPT" component={Transcript} />
+  </Tab.Navigator>)
+
+  return (
+    <CourseContext.Provider value={{ dispatch: dispatch }} >
+      <View style={styles.container}>
+        <View style={styles.videoSection}>
+          <Video
+            source={{ uri: course.promoVidUrl === null ? '' : course.promoVidUrl.replace('https', 'http') }}
+            rate={1.0}
+            volume={1.0}
+            isMuted={false}
+            resizeMode="contain"
+            shouldPlay={false}
+            isLooping
+            useNativeControls
+            style={styles.video}
+          />
         </View>
-    );
+
+        <View style={styles.contentSection}>
+          <FlatList
+            ListHeaderComponent={header}
+            data={[1]}
+            renderItem={({ item }) => content}
+            keyExtractor={(item) => `${item}`}
+            showsVerticalScrollIndicator={false}
+            style={{ flex: 1 }}
+          />
+        </View>
+      </View>
+    </CourseContext.Provider>
+
+  );
 }
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    videoSection: {
-        flex: 1,
-        flexDirection: 'row'
-    },
-    contentSection: {
-        flex: 2,
-        backgroundColor: "#262525",
-    },
-    video: {
-        flex: 1,
-        height: 'auto',
-        resizeMode: 'stretch',
-    }
+  container: {
+    flex: 1
+  },
+  videoSection: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  contentSection: {
+    flex: 2,
+    backgroundColor: "#262525",
+  },
+  video: {
+    flex: 1,
+    height: 'auto',
+    resizeMode: 'stretch',
+  }
 });
 
 export default CourseDetail;

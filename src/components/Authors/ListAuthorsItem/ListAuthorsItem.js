@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
-import { AUTHOR } from '../../../globals/keyScreen';
+import { AUTHOR } from '../../../globals/KeyScreen';
 
 
 const ListAuthorsItem = ({author, navigation}) => {

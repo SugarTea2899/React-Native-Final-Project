@@ -4,7 +4,7 @@ import ImageButtonSection from './ImageButtonSection/ImageButtonSection';
 import PathSection from './PathSection/PathSection';
 import SkillSection from './SkillSection/SkillSection';
 import AuthorSection from './AuthorSection/AuthorSection';
-import { LIST_PATH } from '../../../globals/keyScreen';
+import { LIST_PATH } from '../../../globals/KeyScreen';
 const BrowseScreen = ({navigation}) => {
     const handleSeeAllPath = () => {
         navigation.navigate(LIST_PATH, {title: 'Paths'});

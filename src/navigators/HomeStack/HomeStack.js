@@ -13,7 +13,7 @@ import ListPaths from '../../components/Paths/ListPaths/ListPaths';
 import SkillDetail from '../../components/SkillDetail/SkillDetail';
 import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
 import Setting from '../../components/AccountManagement/Setting/Setting';
-import { COURSE_DETAIL, FORGOT_PASSWORD, HOME, LIST_COURSE, LIST_PATH, LOGIN, PATH_DETAIL, PROFILE, REGISTER, SETTING, SKILL_DETAIL } from '../../globals/keyScreen';
+import { COURSE_DETAIL, FORGOT_PASSWORD, HOME, LIST_COURSE, LIST_PATH, LOGIN, PATH_DETAIL, PROFILE, REGISTER, SETTING, SKILL_DETAIL } from '../../globals/KeyScreen';
 const Stack = createStackNavigator();
 
 const HomeStack = () => {

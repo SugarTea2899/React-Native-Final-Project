@@ -15,3 +15,5 @@ export const SERCURITY_CONTENT = 'Sercurity';
 export const API_URL = 'http://api.dev.letstudy.org/';
 export const TOP_SELL = 'TOP SELL';
 export const TOP_RATE = 'TOP RATE';
+export const TOKEN_NAME = 'online-learning-token';
+export const USER_INFO = 'user-info'

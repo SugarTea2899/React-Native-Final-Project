@@ -7,7 +7,7 @@ import AuthorDetail from '../../components/AuthorDetail/AuthorDetail';
 import CourseDetail from '../../components/CourseDetail/CourseDetail';
 import PathDetail from '../../components/PathDetail/PathDetail';
 import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
-import { AUTHOR, COURSE_DETAIL, PATH_DETAIL, SEARCH } from '../../globals/keyScreen';
+import { AUTHOR, COURSE_DETAIL, PATH_DETAIL, SEARCH } from '../../globals/KeyScreen';
 const Stack = createStackNavigator();
 
 const SearchStack = () => {

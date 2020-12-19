@@ -1,13 +1,16 @@
 import React from 'react';
-import {View, StyleSheet, Text } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { View, StyleSheet, Text, TouchableHighlight } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
-const IconButton = ({name, content}) => {
+const IconButton = ({ name, content, onClick }) => {
     return (
         <View style={styles.content}>
-            <View style={styles.iconContainer}>
-                <Feather name={name} size={25} color="white" />
-            </View> 
+            <TouchableHighlight onPress={onClick}>
+                <View style={styles.iconContainer}>
+                    <AntDesign name={name} size={25} color="white" />
+                </View>
+            </TouchableHighlight>
+
             <Text style={styles.text}>{content}</Text>
         </View>
     );
@@ -15,7 +18,7 @@ const IconButton = ({name, content}) => {
 
 
 const styles = StyleSheet.create({
-    content:{
+    content: {
         alignItems: 'center'
     },
     iconContainer: {

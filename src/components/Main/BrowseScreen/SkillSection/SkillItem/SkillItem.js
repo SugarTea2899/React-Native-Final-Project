@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import { SKILL_DETAIL } from '../../../../../globals/keyScreen';
+import { SKILL_DETAIL } from '../../../../../globals/KeyScreen';
 
 
 const SkillItem = ({content, ticked, navigation}) => {

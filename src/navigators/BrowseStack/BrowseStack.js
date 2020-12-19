@@ -15,7 +15,7 @@ import AuthorDetail from '../../components/AuthorDetail/AuthorDetail';
 import Login from '../../components/Authentication/Login/Login';
 import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
 import Setting from '../../components/AccountManagement/Setting/Setting';
-import { BROWSE, PATH_SUGGEST, PROFILE, COURSE_DETAIL, PATH_DETAIL, SKILL_DETAIL, LIST_COURSE, LIST_PATH, AUTHOR, FORGOT_PASSWORD, SETTING, COURSE_SUGGEST, LOGIN, REGISTER } from '../../globals/keyScreen';
+import { BROWSE, PATH_SUGGEST, PROFILE, COURSE_DETAIL, PATH_DETAIL, SKILL_DETAIL, LIST_COURSE, LIST_PATH, AUTHOR, FORGOT_PASSWORD, SETTING, COURSE_SUGGEST, LOGIN, REGISTER } from '../../globals/KeyScreen';
 import Register from '../../components/Authentication/Register/Register';
 const Stack = createStackNavigator();
 

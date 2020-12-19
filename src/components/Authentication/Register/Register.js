@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {View, StyleSheet, ScrollView, Text, Alert } from 'react-native';
 import { fetchWithoutAu } from '../../../api/fetchData';
 import { API_URL } from '../../../globals/constants';
-import { LOGIN } from '../../../globals/keyScreen';
+import { LOGIN } from '../../../globals/KeyScreen';
 import AsyncAlert from '../../Common/AsyncAlert/AsyncAlert';
 import MyButton from '../../Common/MyButton/MyButton';
 import MyInput from '../../Common/MyInput/MyInput';

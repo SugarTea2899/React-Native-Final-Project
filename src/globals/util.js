@@ -19,3 +19,12 @@ export const getAverageStar = (course) => {
     res = Math.round(res);
     return res % 6;
 }
+
+export const convertHour = (hour) => {
+    let min = Math.floor(hour * 3600 / 60);
+    let sec = Math.round((hour * 3600) % 60);
+    
+    if (min < 10) min = '0' + min;
+    if (sec < 10) sec = '0' + sec;
+    return `${min}:${sec}`;
+}

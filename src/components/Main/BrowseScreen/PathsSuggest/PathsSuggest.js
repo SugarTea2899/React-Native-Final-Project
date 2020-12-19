@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, StatusBar } from 'react-native';
-import { LIST_PATH } from '../../../../globals/keyScreen';
+import { LIST_PATH } from '../../../../globals/KeyScreen';
 import BrowseHeader from '../BrowseHeader/BrowseHeader';
 import PathSection from '../PathSection/PathSection';
 

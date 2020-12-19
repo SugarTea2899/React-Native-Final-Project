@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
-import { PATH_DETAIL } from '../../../globals/keyScreen';
+import { PATH_DETAIL } from '../../../globals/KeyScreen';
 
 
 const ListPathItem = ({path, style, navigation}) => {

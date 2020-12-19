@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { PATH_DETAIL } from '../../../../../globals/keyScreen';
+import { PATH_DETAIL } from '../../../../../globals/KeyScreen';
 
 const PathItem = ({path, navigation}) => {
     return (

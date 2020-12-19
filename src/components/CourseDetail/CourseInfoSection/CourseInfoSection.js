@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import { formatMoney } from '../../../globals/util';
 
 const CourseInfoSection = ({ course }) => {
   return (
@@ -9,6 +10,7 @@ const CourseInfoSection = ({ course }) => {
         <View style={styles.skill}>
           <Text style={styles.skillName}>{course['instructor.user.name']}</Text>
         </View>
+        <Text style={styles.price}>{` -  ${formatMoney(course.price)}`}</Text>
       </View>
       <Text style={styles.otherText}>
         {`${new Date(course.createdAt).toLocaleDateString()}  -  ${course.totalHours} hours`}
@@ -50,6 +52,12 @@ const styles = StyleSheet.create({
     fontSize: 11,
     marginTop: 12,
     paddingLeft: 4,
+  },
+  price: {
+    color: 'white',
+    marginTop: 12,
+    fontWeight: 'bold',
+    marginLeft: 5
   }
 });
 

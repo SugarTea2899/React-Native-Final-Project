@@ -2,8 +2,9 @@ import React, { useContext, useState } from 'react';
 import {View, StyleSheet, Text, ScrollView, StatusBar, TouchableWithoutFeedback, Alert } from 'react-native';
 import { fetchWithoutAu } from '../../../api/fetchData';
 import { UserContext } from '../../../contexts/UserContext';
-import { API_URL } from '../../../globals/constants';
-import { FORGOT_PASSWORD, HOME, REGISTER } from '../../../globals/keyScreen';
+import { API_URL, TOKEN_NAME, USER_INFO } from '../../../globals/constants';
+import * as SecureStore from 'expo-secure-store';
+import { FORGOT_PASSWORD, HOME, REGISTER } from '../../../globals/KeyScreen';
 import MyButton from '../../Common/MyButton/MyButton';
 import MyInput from '../../Common/MyInput/MyInput';
 
@@ -25,8 +26,9 @@ const Login = ({navigation}) => {
         }
         fetchWithoutAu(API_URL + "user/login", 'POST', data)
             .then(
-                (data) => {
-                    setContent(data.token, data.userInfo);
+                async (data) => {
+                    setContent(data.token);
+                    await SecureStore.setItemAsync(TOKEN_NAME, data.token);
                     navigation.navigate(HOME);
                 },
                 (erro) => {

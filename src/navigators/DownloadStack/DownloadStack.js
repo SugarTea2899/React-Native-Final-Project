@@ -11,7 +11,7 @@ import SkillDetail from '../../components/SkillDetail/SkillDetail';
 import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
 import Setting from '../../components/AccountManagement/Setting/Setting';
 import ListPaths from '../../components/Paths/ListPaths/ListPaths';
-import { COURSE_DETAIL, DOWNLOAD, FORGOT_PASSWORD, LIST_PATH, LOGIN, PROFILE, REGISTER, SETTING, SKILL_DETAIL } from '../../globals/keyScreen';
+import { COURSE_DETAIL, DOWNLOAD, FORGOT_PASSWORD, LIST_PATH, LOGIN, PROFILE, REGISTER, SETTING, SKILL_DETAIL } from '../../globals/KeyScreen';
 
 const Stack = createStackNavigator();
 

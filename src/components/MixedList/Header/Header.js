@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
-import { AUTHOR_TAB, COURSE_TAB, PATH_TAB } from '../../../globals/keyScreen';
+import { AUTHOR_TAB, COURSE_TAB, PATH_TAB } from '../../../globals/KeyScreen';
 
 
 const Header = ({title, total, navigation}) => {

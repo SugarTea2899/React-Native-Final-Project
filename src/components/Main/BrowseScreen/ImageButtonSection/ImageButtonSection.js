@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import { fetchWithoutAu } from '../../../../api/fetchData';
 import { API_URL, CERTIFICATIONS, CERTIFICATIONS_CONTENT, CONFERENCES, CONFERENCES_CONTENT, DATA_PROFESSIONAL, DATA_PROFESSIONAL_CONTENT, IT_OP, IT_OP_CONTENT, NEW_RELEASE, RECOMEND_FOR_YOU, SERCURITY, SERCURITY_CONTENT, SOFTWARE_DEVELOPMENT, SOFTWARE_DEVELOPMENT_CONTENT, TOP_RATE, TOP_SELL } from '../../../../globals/constants';
-import { COURSE_SUGGEST, PATH_SUGGEST } from '../../../../globals/keyScreen';
+import { COURSE_SUGGEST, PATH_SUGGEST } from '../../../../globals/KeyScreen';
 import ImageButton from '../../../Common/ImageButton/ImageButton';
 
 const ImageButtonSection = ({ navigation }) => {

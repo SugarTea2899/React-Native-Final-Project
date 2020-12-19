@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
-import { COURSE_DETAIL } from '../../../globals/keyScreen';
+import { COURSE_DETAIL } from '../../../globals/KeyScreen';
 import { formatMoney, getAverageStar } from '../../../globals/util';
 import Stars from '../../Common/Stars/Stars';
 

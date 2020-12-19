@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, Text, Image, TouchableOpacity } from 'react-native';
-import { COURSE_DETAIL } from '../../../../../globals/keyScreen';
+import { COURSE_DETAIL } from '../../../../../globals/KeyScreen';
 
 const CourseItem = ({course, navigation}) => {
     return (

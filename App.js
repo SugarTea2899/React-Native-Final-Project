@@ -3,23 +3,33 @@ import {  StatusBar } from 'react-native';
 import { DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign } from '@expo/vector-icons';
-import DownloadScreen from './src/components/Main/DownloadScreen/DownloadScreen';
+import * as SecureStore from 'expo-secure-store';
 import SearchStack from './src/navigators/SearchStack/SearchStack';
 import HomeStack from './src/navigators/HomeStack/HomeStack';
 import BrowseStack from './src/navigators/BrowseStack/BrowseStack';
 import DownloadStack from './src/navigators/DownloadStack/DownloadStack';
 import { UserContext } from './src/contexts/UserContext';
+import { TOKEN_NAME, USER_INFO } from './src/globals/constants';
+import { useEffect } from 'react';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [user, setUser] = useState({token: '', info: null});
-  const handleSetUser = (token, info) => {
-    setUser({token: token, info: info})
+  const [user, setUser] = useState({token: null});
+  const handleSetUser = (token) => {
+    setUser({token: token})
   }
 
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = await SecureStore.getItemAsync(TOKEN_NAME);
+      if (token !== null)
+        handleSetUser(token);
+    }
+    checkToken();
+  }, [])
   return (
-    <UserContext.Provider value={{token: user.token, info: user.info, setContent: handleSetUser}} >
+    <UserContext.Provider value={{token: user.token, setContent: handleSetUser}} >
       <NavigationContainer theme={DarkTheme}>
         <StatusBar backgroundColor={'#121212'} />     
         <Tab.Navigator

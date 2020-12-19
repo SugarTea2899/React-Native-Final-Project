@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, ScrollView } from 'react-native';
-import { LIST_COURSE, LIST_PATH } from '../../globals/keyScreen';
+import { LIST_COURSE, LIST_PATH } from '../../globals/KeyScreen';
 import AuthorSection from '../Main/BrowseScreen/AuthorSection/AuthorSection';
 import PathSection from '../Main/BrowseScreen/PathSection/PathSection';
 import CourseSection from '../Main/HomeScreen/CourseSection/CourseSection';

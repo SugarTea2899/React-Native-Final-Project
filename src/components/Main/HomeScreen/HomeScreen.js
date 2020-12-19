@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import {View, ScrollView, StyleSheet } from 'react-native';
 import { UserContext } from '../../../contexts/UserContext';
-import { LIST_COURSE, LIST_PATH } from '../../../globals/keyScreen';
+import { LIST_COURSE, LIST_PATH } from '../../../globals/KeyScreen';
 import PathSection from '../BrowseScreen/PathSection/PathSection';
 import CourseSection from './CourseSection/CourseSection';
 

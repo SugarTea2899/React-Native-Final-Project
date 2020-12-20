@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HeaderRight from '../../components/Other/HeaderRight/HeaderRight';
 import HomeScreen from '../../components/Main/HomeScreen/HomeScreen';
@@ -13,7 +13,8 @@ import ListPaths from '../../components/Paths/ListPaths/ListPaths';
 import SkillDetail from '../../components/SkillDetail/SkillDetail';
 import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
 import Setting from '../../components/AccountManagement/Setting/Setting';
-import { COURSE_DETAIL, FORGOT_PASSWORD, HOME, LIST_COURSE, LIST_PATH, LOGIN, PATH_DETAIL, PROFILE, REGISTER, SETTING, SKILL_DETAIL } from '../../globals/KeyScreen';
+import { COURSE_DETAIL, EDIT_INFO_SCREEN, FORGOT_PASSWORD, HOME, LIST_COURSE, LIST_PATH, LOGIN, PATH_DETAIL, PROFILE, REGISTER, SETTING, SKILL_DETAIL } from '../../globals/KeyScreen';
+import UpdateForm from '../../components/AccountManagement/UpdateForm/UpdateForm';
 const Stack = createStackNavigator();
 
 const HomeStack = () => {
@@ -22,9 +23,9 @@ const HomeStack = () => {
             <Stack.Screen
                 name={HOME}
                 component={HomeScreen}
-                options={ ({navigation}) => ({
+                options={({ navigation }) => ({
                     headerRight: () => (
-                        <HeaderRight navigation={navigation}/>
+                        <HeaderRight navigation={navigation} />
                     ),
                 })}
             />
@@ -32,21 +33,21 @@ const HomeStack = () => {
                 name={PROFILE}
                 component={Profile}
             />
-            <Stack.Screen 
+            <Stack.Screen
                 name={COURSE_DETAIL}
                 component={CourseDetail}
-                options={({route}) => ({
+                options={({ route }) => ({
                     title: route.params.course.title
                 })}
             />
-            <Stack.Screen 
+            <Stack.Screen
                 name={PATH_DETAIL}
                 component={PathDetail}
-                options={({route}) => ({
+                options={({ route }) => ({
                     title: route.params.path.title
                 })}
             />
-            <Stack.Screen 
+            <Stack.Screen
                 name={LOGIN}
                 component={Login}
                 options={{
@@ -67,27 +68,27 @@ const HomeStack = () => {
             <Stack.Screen
                 name={LIST_COURSE}
                 component={ListCourse}
-                options={({route}) => ({
+                options={({ route }) => ({
                     title: route.params.title
                 })}
             />
             <Stack.Screen
                 name={LIST_PATH}
                 component={ListPaths}
-                options={({route}) => ({
+                options={({ route }) => ({
                     title: route.params.title
                 })}
             />
-            <Stack.Screen 
+            <Stack.Screen
                 name={SKILL_DETAIL}
                 component={SkillDetail}
-                options={({route}) => ({
+                options={({ route }) => ({
                     title: route.params.content
                 })}
             />
             <Stack.Screen
                 name={FORGOT_PASSWORD}
-                component={ForgotPassword} 
+                component={ForgotPassword}
                 options={{
                     title: 'Forgot Password',
                     headerStyle: {
@@ -98,6 +99,10 @@ const HomeStack = () => {
             <Stack.Screen
                 name={SETTING}
                 component={Setting}
+            />
+            <Stack.Screen
+                name={EDIT_INFO_SCREEN}
+                component={UpdateForm}
             />
         </Stack.Navigator>
     );

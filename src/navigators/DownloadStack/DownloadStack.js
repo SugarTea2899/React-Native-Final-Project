@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import DownloadScreen from '../../components/Main/DownloadScreen/DownloadScreen'
 import HeaderRight from '../../components/Other/HeaderRight/HeaderRight';
@@ -11,7 +11,8 @@ import SkillDetail from '../../components/SkillDetail/SkillDetail';
 import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
 import Setting from '../../components/AccountManagement/Setting/Setting';
 import ListPaths from '../../components/Paths/ListPaths/ListPaths';
-import { COURSE_DETAIL, DOWNLOAD, FORGOT_PASSWORD, LIST_PATH, LOGIN, PROFILE, REGISTER, SETTING, SKILL_DETAIL } from '../../globals/KeyScreen';
+import { COURSE_DETAIL, DOWNLOAD, EDIT_INFO_SCREEN, FORGOT_PASSWORD, LIST_PATH, LOGIN, PROFILE, REGISTER, SETTING, SKILL_DETAIL } from '../../globals/KeyScreen';
+import UpdateForm from '../../components/AccountManagement/UpdateForm/UpdateForm';
 
 const Stack = createStackNavigator();
 
@@ -21,24 +22,24 @@ const DownloadStack = () => {
             <Stack.Screen
                 name={DOWNLOAD}
                 component={DownloadScreen}
-                options={ ({navigation}) => ({
+                options={({ navigation }) => ({
                     headerRight: () => (
-                        <HeaderRight navigation={navigation}/>
+                        <HeaderRight navigation={navigation} />
                     ),
                 })}
-            />    
+            />
             <Stack.Screen
                 name={PROFILE}
                 component={Profile}
             />
-            <Stack.Screen 
+            <Stack.Screen
                 name={COURSE_DETAIL}
                 component={CourseDetail}
-                options={({route}) => ({
+                options={({ route }) => ({
                     title: route.params.course.title
                 })}
             />
-            <Stack.Screen 
+            <Stack.Screen
                 name={LOGIN}
                 component={Login}
                 options={{
@@ -56,13 +57,13 @@ const DownloadStack = () => {
                     }
                 }}
             />
-            <Stack.Screen 
+            <Stack.Screen
                 name={SKILL_DETAIL}
                 component={SkillDetail}
-                options={({route}) => ({
+                options={({ route }) => ({
                     title: route.params.content
                 })}
-            />     
+            />
             <Stack.Screen
                 name={FORGOT_PASSWORD}
                 component={ForgotPassword}
@@ -76,13 +77,17 @@ const DownloadStack = () => {
             <Stack.Screen
                 name={LIST_PATH}
                 component={ListPaths}
-                options={({route}) => ({
+                options={({ route }) => ({
                     title: route.params.title
                 })}
-            /> 
+            />
             <Stack.Screen
                 name={SETTING}
                 component={Setting}
+            />
+            <Stack.Screen
+                name={EDIT_INFO_SCREEN}
+                component={UpdateForm}
             />
         </Stack.Navigator>
     );

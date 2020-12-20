@@ -28,3 +28,9 @@ export const convertHour = (hour) => {
     if (sec < 10) sec = '0' + sec;
     return `${min}:${sec}`;
 }
+
+export const convertToDateTime = (dateStr) => {
+    const a = new Date(dateStr);
+
+    return `${a.toLocaleTimeString()}, ${a.toLocaleDateString()}`;
+}

@@ -1,4 +1,4 @@
-import { INIT_USER_CATEGORIES, INIT_USER_INFO } from "../globals/ActionTypes/UserInfoActionType";
+import { INIT_USER_CATEGORIES, INIT_USER_INFO, RELOAD_PROFILE_SCREEN } from "../globals/ActionTypes/UserInfoActionType";
 
 export function initUserInfo (userInfo) {
     return {
@@ -11,5 +11,12 @@ export function initUserCategories (categories) {
     return {
         type: INIT_USER_CATEGORIES,
         value: categories
+    }
+}
+
+export function reloadProfileScreen() {
+    return {
+        type: RELOAD_PROFILE_SCREEN,
+        value: Math.random()
     }
 }

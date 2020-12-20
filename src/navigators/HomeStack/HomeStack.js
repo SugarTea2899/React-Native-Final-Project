@@ -13,8 +13,9 @@ import ListPaths from '../../components/Paths/ListPaths/ListPaths';
 import SkillDetail from '../../components/SkillDetail/SkillDetail';
 import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
 import Setting from '../../components/AccountManagement/Setting/Setting';
-import { COURSE_DETAIL, EDIT_INFO_SCREEN, FORGOT_PASSWORD, HOME, LIST_COURSE, LIST_PATH, LOGIN, PATH_DETAIL, PROFILE, REGISTER, SETTING, SKILL_DETAIL } from '../../globals/KeyScreen';
+import { CHANGE_PASSWORD, COURSE_DETAIL, EDIT_INFO_SCREEN, FORGOT_PASSWORD, HOME, LIST_COURSE, LIST_PATH, LOGIN, PATH_DETAIL, PROFILE, REGISTER, SETTING, SKILL_DETAIL } from '../../globals/KeyScreen';
 import UpdateForm from '../../components/AccountManagement/UpdateForm/UpdateForm';
+import ChangePasswordForm from '../../components/AccountManagement/ChangePasswordForm/ChangePasswordForm';
 const Stack = createStackNavigator();
 
 const HomeStack = () => {
@@ -103,6 +104,10 @@ const HomeStack = () => {
             <Stack.Screen
                 name={EDIT_INFO_SCREEN}
                 component={UpdateForm}
+            />
+            <Stack.Screen
+                name={CHANGE_PASSWORD}
+                component={ChangePasswordForm}
             />
         </Stack.Navigator>
     );

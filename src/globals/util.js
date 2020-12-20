@@ -30,6 +30,7 @@ export const convertHour = (hour) => {
 }
 
 export const convertToDateTime = (dateStr) => {
+    if (dateStr === 'N/A') return 'N/A';
     const a = new Date(dateStr);
 
     return `${a.toLocaleTimeString()}, ${a.toLocaleDateString()}`;

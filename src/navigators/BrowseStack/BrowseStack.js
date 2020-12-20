@@ -15,9 +15,10 @@ import AuthorDetail from '../../components/AuthorDetail/AuthorDetail';
 import Login from '../../components/Authentication/Login/Login';
 import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
 import Setting from '../../components/AccountManagement/Setting/Setting';
-import { BROWSE, PATH_SUGGEST, PROFILE, COURSE_DETAIL, PATH_DETAIL, SKILL_DETAIL, LIST_COURSE, LIST_PATH, AUTHOR, FORGOT_PASSWORD, SETTING, COURSE_SUGGEST, LOGIN, REGISTER, EDIT_INFO_SCREEN } from '../../globals/KeyScreen';
+import { BROWSE, PATH_SUGGEST, PROFILE, COURSE_DETAIL, PATH_DETAIL, SKILL_DETAIL, LIST_COURSE, LIST_PATH, AUTHOR, FORGOT_PASSWORD, SETTING, COURSE_SUGGEST, LOGIN, REGISTER, EDIT_INFO_SCREEN, CHANGE_PASSWORD } from '../../globals/KeyScreen';
 import Register from '../../components/Authentication/Register/Register';
 import UpdateForm from '../../components/AccountManagement/UpdateForm/UpdateForm';
+import ChangePasswordForm from '../../components/AccountManagement/ChangePasswordForm/ChangePasswordForm';
 const Stack = createStackNavigator();
 
 const BrowseStack = () => {
@@ -124,6 +125,10 @@ const BrowseStack = () => {
             <Stack.Screen
                 name={EDIT_INFO_SCREEN}
                 component={UpdateForm}
+            />
+            <Stack.Screen
+                name={CHANGE_PASSWORD}
+                component={ChangePasswordForm}
             />
         </Stack.Navigator>
     );

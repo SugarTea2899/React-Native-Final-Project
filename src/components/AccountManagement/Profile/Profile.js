@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Text, ScrollView, Image } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, Image, Alert, YellowBox, LogBox } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import SkillItem from '../../Main/BrowseScreen/SkillSection/SkillItem/SkillItem';
 import InfoItem from './InfoItem/InfoItem';
 import MyButton from '../../Common/MyButton/MyButton';
-import { EDIT_INFO_SCREEN, LOGIN } from '../../../globals/KeyScreen';
+import { CHANGE_PASSWORD, EDIT_INFO_SCREEN, HOME, LOGIN } from '../../../globals/KeyScreen';
 import { useReducer } from 'react';
 import UserInfoReducer from '../../../reducers/UserInfoReducer';
 import { UserInfoContext } from '../../../contexts/UserInfoContext';
@@ -12,9 +12,10 @@ import { useEffect } from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../../../contexts/UserContext';
 import { fetchWithAu, fetchWithoutAu } from '../../../api/fetchData';
-import { API_URL } from '../../../globals/constants';
+import { API_URL, TOKEN_NAME } from '../../../globals/constants';
 import { initUserCategories, initUserInfo } from '../../../actions/UserInfoActions';
 import { convertToDateTime } from '../../../globals/util';
+import * as SecureStore from 'expo-secure-store';
 
 const initalState = {
   userInfo: {
@@ -23,19 +24,42 @@ const initalState = {
     email: 'N/A',
     phone: 'N/A',
     createdAt: 'N/A',
-    updatedAt: 'N/A'
+    updatedAt: 'N/A',
+    avatar: 'http://lh3.googleusercontent.com/proxy/UHY_fKWgsC8byTsnG0A5C1SI3Vnb2IihMIlG-ss9bbfKPp-95Alj6_A-bva88bAsqEVhFfewxaHCgTqnP3kTA2TUs9bdHEBswytvaLZQxhYhdkS9ewjIpcJE874HnPGracIdaMt6ccCwR1zx'
   },
-  userCategories: []
+  userCategories: [],
+  reload: Math.random()
 }
 
 const Profile = ({ route, navigation }) => {
   const [state, dispatch] = useReducer(UserInfoReducer, initalState);
-  const {token} = useContext(UserContext);
-  const handleLogout = () => {
+  const {token, setContent} = useContext(UserContext);
+
+  const handleLogin = () => {
     navigation.navigate(LOGIN);
   }
+  const handleLogout = () => {
+    Alert.alert(
+      'Confirm',
+      'Are you sure you want to logout?',
+      [
+        {
+          text: 'YES',
+          onPress: async () => {
+            setContent(null);
+            await SecureStore.deleteItemAsync(TOKEN_NAME);
+            navigation.navigate(HOME);
+          }
+        },
+        {
+          text: 'NO',
+          onPress: () => {}
+        }
+      ]
+    )
+  }
   const handleEditInfo = () => {
-    navigation.navigate(EDIT_INFO_SCREEN);
+    navigation.navigate(EDIT_INFO_SCREEN, {userInfo: state.userInfo, dispatch: dispatch});
   }
 
   useEffect(() => {
@@ -50,7 +74,7 @@ const Profile = ({ route, navigation }) => {
           }
         )
     }
-  }, []);
+  }, [state.reload]);
 
   useEffect(() => {
     if (state.userInfo.favoriteCategories.length > 0){
@@ -87,7 +111,12 @@ const Profile = ({ route, navigation }) => {
             <InfoItem style={{ marginTop: 20 }} title='Updated At' content={convertToDateTime(state.userInfo.updatedAt)} />
           </View>
           {token !== null &&  <MyButton handleClick={handleEditInfo} style={styles.button} text={'UPDATE INFORMATION'} />}
-          <MyButton handleClick={handleLogout} style={styles.button} text={'LOGOUT'} />
+          {token !== null &&  <MyButton handleClick={() => navigation.navigate(CHANGE_PASSWORD)} style={styles.button} text={'CHANGE PASSWORD'} />}
+          {token !== null ?
+            <MyButton handleClick={handleLogout} style={styles.button} text={'LOGOUT'} />
+            :
+            <MyButton handleClick={handleLogin} style={styles.button} text={'LOG IN'} />
+          }
         </View>
       </ScrollView>
     </UserInfoContext.Provider>
@@ -135,9 +164,10 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 40,
     borderColor: 'white',
-    borderStyle: 'solid',
     borderWidth: 2
   }
 });
+
+
 
 export default Profile;

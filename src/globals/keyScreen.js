@@ -18,4 +18,5 @@ export const SEARCH = 'Search';
 export const COURSE_TAB = 'COURSES';
 export const PATH_TAB = 'PATHS';
 export const AUTHOR_TAB = 'AUTHORS';
-export const EDIT_INFO_SCREEN = 'Update Profile'
+export const EDIT_INFO_SCREEN = 'Update Profile';
+export const CHANGE_PASSWORD = 'Change Password';

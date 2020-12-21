@@ -19,6 +19,7 @@ import * as SecureStore from 'expo-secure-store';
 
 const initalState = {
   userInfo: {
+    id: null,
     name: 'N/A',
     favoriteCategories: [],
     email: 'N/A',
@@ -91,7 +92,7 @@ const Profile = ({ route, navigation }) => {
     }
   }, [state.userInfo])
   return (
-    <UserInfoContext.Provider value={{ dispatch: dispatch }} >
+    <UserInfoContext.Provider value={{ dispatch: dispatch, state: state }} >
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.topSection}>
@@ -111,7 +112,7 @@ const Profile = ({ route, navigation }) => {
             <InfoItem style={{ marginTop: 20 }} title='Updated At' content={convertToDateTime(state.userInfo.updatedAt)} />
           </View>
           {token !== null &&  <MyButton handleClick={handleEditInfo} style={styles.button} text={'UPDATE INFORMATION'} />}
-          {token !== null &&  <MyButton handleClick={() => navigation.navigate(CHANGE_PASSWORD)} style={styles.button} text={'CHANGE PASSWORD'} />}
+          {token !== null &&  <MyButton handleClick={() => navigation.navigate(CHANGE_PASSWORD, {state: state})} style={styles.button} text={'CHANGE PASSWORD'} />}
           {token !== null ?
             <MyButton handleClick={handleLogout} style={styles.button} text={'LOGOUT'} />
             :

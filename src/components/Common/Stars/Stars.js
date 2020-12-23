@@ -3,7 +3,7 @@ import {View, StyleSheet, Text } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
 
-const Stars = ({maxStar, curStar, starSize, style, ratedNumber}) => {
+const Stars = ({maxStar, curStar, starSize, style, ratedNumbe}) => {
     const remainStar = maxStar - curStar;
     const genCurStar = () => {
         const res = [];
@@ -24,7 +24,7 @@ const Stars = ({maxStar, curStar, starSize, style, ratedNumber}) => {
         <View style={[styles.container, style]} >
             {genCurStar()}
             {genRemainStar()}
-            <Text style={styles.text} >{`(${ratedNumber})`}</Text>
+            {ratedNumbe !== undefined && <Text style={styles.text} >{`(${ratedNumber})`}</Text>}
         </View>
     );
 }

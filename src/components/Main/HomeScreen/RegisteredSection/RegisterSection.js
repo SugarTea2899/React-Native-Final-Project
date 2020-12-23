@@ -1,12 +1,10 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, Text, Image, TouchableWithoutFeedback } from 'react-native';
-import { convertCourse } from '../../../../globals/util';
-
-import CourseItem from './CourseItem/CourseItem';
+import RegisterdCourse from './RegisteredCourse';
 
 
 
-const CourseSection = ({title, style, navigation, courses}) => {
+const RegisterSection = ({title, style, navigation, courses}) => {
     return (
         <View style={[styles.container, style]}>
             <View style={styles.textGroup}>
@@ -16,7 +14,7 @@ const CourseSection = ({title, style, navigation, courses}) => {
             </View>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 {
-                   courses &&  courses.map((item, index) => <CourseItem key={item.id} navigation={navigation} course={item} />)
+                   courses &&  courses.map((item, index) => <RegisterdCourse key={item.id} navigation={navigation} course={item} />)
                 }
             </ScrollView>
         </View>
@@ -49,4 +47,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CourseSection;
+export default RegisterSection;

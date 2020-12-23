@@ -8,7 +8,7 @@ const CourseItem = ({ course, navigation }) => {
   return (
     <TouchableOpacity onPress={() => navigation.navigate(COURSE_DETAIL, { course: course })}>
       <View style={styles.container}>
-        <Image source={{uri: course.courseImage}} style={styles.image} />
+        <Image source={{ uri: course.courseImage }} style={styles.image} />
         <View style={styles.textGroup}>
           <Text style={styles.title}>{course.courseTitle}</Text>
           <View style={{ marginTop: 4 }}>
@@ -16,8 +16,8 @@ const CourseItem = ({ course, navigation }) => {
             <Text style={styles.price}>
               {`${formatMoney(course.coursePrice)} - (${course.courseSoldNumber})`}
             </Text>
-            <View style={{height: 100}}>
-              <Stars style={{ marginTop: 3, marginLeft: 1 }} maxStar={5} curStar={Math.round(course.courseAveragePoint)} starSize={12} ratedNumber={4} />
+            <View style={{ height: 100 }}>
+              <Stars style={{ marginTop: 3, marginLeft: 1 }} maxStar={5} curStar={Math.round(course.courseAveragePoint) > 5 ? 5 : Math.round(course.courseAveragePoint)} starSize={12} />
             </View>
 
           </View>

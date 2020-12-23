@@ -35,3 +35,15 @@ export const convertToDateTime = (dateStr) => {
 
     return `${a.toLocaleTimeString()}, ${a.toLocaleDateString()}`;
 }
+
+export const convertCourse = (course) => {
+    return {
+        id: course.id,
+        courseImage: course.imageUrl,
+        courseTitle: course.title,
+        instructorName: course.instructorName,
+        coursePrice: course.price,
+        courseSoldNumber: course.soldNumber,
+        courseAveragePoint: course.averagePoint
+    }
+}

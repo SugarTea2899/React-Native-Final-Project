@@ -42,7 +42,10 @@ const ImageButtonSection = ({ navigation }) => {
         fetchWithoutAu(API_URL + 'course/top-new', 'POST', { limit: '20', page: '1' })
             .then(
                 (data) => {
-                    navigation.navigate(COURSE_SUGGEST, { image: image1, content: NEW_RELEASE, courses: data.payload });
+                    const newCoures = data.payload.map(item => {
+                        return {...item, instructorName: item['instructor.user.name']}
+                    })
+                    navigation.navigate(COURSE_SUGGEST, { image: image1, content: NEW_RELEASE, courses: newCoures });
                 },
                 (error) => {
                     console.log(error.message);
@@ -54,7 +57,10 @@ const ImageButtonSection = ({ navigation }) => {
         fetchWithoutAu(API_URL + 'course/top-sell', 'POST', { limit: '20', page: '1' })
             .then(
                 (data) => {
-                    navigation.navigate(COURSE_SUGGEST, { image: image2, content: TOP_SELL, courses: data.payload });
+                    const newCoures = data.payload.map(item => {
+                        return {...item, instructorName: item['instructor.user.name']}
+                    })
+                    navigation.navigate(COURSE_SUGGEST, { image: image2, content: TOP_SELL, courses: newCoures});
                 },
                 (error) => {
                     console.log(error.message);
@@ -66,7 +72,10 @@ const ImageButtonSection = ({ navigation }) => {
         fetchWithoutAu(API_URL + 'course/top-rate', 'POST', { limit: '20', page: '1' })
             .then(
                 (data) => {
-                    navigation.navigate(COURSE_SUGGEST, { image: image2, content: TOP_SELL, courses: data.payload });
+                    const newCoures = data.payload.map(item => {
+                        return {...item, instructorName: item['instructor.user.name']}
+                    })
+                    navigation.navigate(COURSE_SUGGEST, { image: image2, content: TOP_SELL, courses: newCoures });
                 },
                 (error) => {
                     console.log(error.message);

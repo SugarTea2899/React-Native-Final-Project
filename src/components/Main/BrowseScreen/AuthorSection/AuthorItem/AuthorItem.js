@@ -3,15 +3,12 @@ import { View, StyleSheet, ScrollView, Text, Image, TouchableOpacity } from 'rea
 import { AUTHOR } from '../../../../../globals/KeyScreen';
 
 
-const AuthorItem = ({author, style, imageStyle, navigation}) => {
+const AuthorItem = ({ author, style, imageStyle, navigation }) => {
     return (
-        <TouchableOpacity onPress={() => navigation.navigate(AUTHOR, {author: author})}>
-            <View style={[styles.container, style]}>
-                <Image source={author.image} style={[styles.image, imageStyle]} />
-                <Text style={styles.text}>{author.name}</Text>
-            </View>            
-        </TouchableOpacity>
-
+        <View style={[styles.container, style]}>
+            <Image source={{uri: author.avatar}} style={[styles.image, imageStyle]} />
+            <Text style={styles.text}>{author.name}</Text>
+        </View>
     )
 }
 
@@ -27,12 +24,12 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         alignSelf: 'center'
     },
-    text:{
+    text: {
         marginTop: 5,
         color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
-        fontSize: 14
+        fontSize: 17
     }
 });
 

@@ -1,15 +1,18 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { AUTHOR } from '../../../globals/KeyScreen';
 import { formatMoney } from '../../../globals/util';
 
-const CourseInfoSection = ({ course }) => {
+const CourseInfoSection = ({ course, navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{course.title}</Text>
       <View style={{ flex: 1, flexDirection: 'row' }}>
-        <View style={styles.skill}>
-          <Text style={styles.skillName}>{course['instructor.user.name']}</Text>
-        </View>
+        <TouchableOpacity onPress={() => {navigation.navigate(AUTHOR, {authorId: course.instructorId})}}>
+          <View style={styles.skill}>
+            <Text style={styles.skillName}>{course.instructor.name}</Text>
+          </View>
+        </TouchableOpacity>
         <Text style={styles.price}>{` -  ${formatMoney(course.price)}`}</Text>
       </View>
       <Text style={styles.otherText}>

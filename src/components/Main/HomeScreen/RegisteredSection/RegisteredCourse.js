@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
+import { COURSE_DETAIL } from '../../../../globals/KeyScreen';
 import { convertToDateTime } from '../../../../globals/util';
 
 
 const RegisterdCourse = ({ course, navigation }) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate(COURSE_DETAIL, { course: course })}>
       <View style={styles.container}>
         <Image style={styles.image} source={{ uri: course.courseImage }} />
         <View style={styles.textGroup}>

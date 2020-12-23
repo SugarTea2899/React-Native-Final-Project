@@ -50,7 +50,6 @@ const HomeScreen = ({ navigation }) => {
         fetchWithAu(API_URL + 'user/get-process-courses', 'GET', token)
           .then(
             (data) => {
-              console.log(data.payload);
               setCoursesRegitered(data.payload);
             },
             (erro) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Text, ScrollView } from 'react-native';
 
 
-const TextArea = ({style, content = ''}) => {
+const TextArea = ({style, content}) => {
     return (
         <View style={[styles.container, style]}>
             <ScrollView nestedScrollEnabled={true} style={styles.scrollView} showsVerticalScrollIndicator={false}>

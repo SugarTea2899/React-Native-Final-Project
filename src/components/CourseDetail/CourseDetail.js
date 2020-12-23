@@ -15,20 +15,49 @@ import { useEffect } from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import { useState } from 'react';
-import { fetchWithAu } from '../../api/fetchData';
+import { fetchWithAu, fetchWithoutAu } from '../../api/fetchData';
 import { API_URL } from '../../globals/constants';
-import { initContentList, updateRegister } from '../../actions/CourseActions';
+import { initContentList, initCourseInfo, updateRegister } from '../../actions/CourseActions';
 
 const Tab = createMaterialTopTabNavigator();
 
 const initialState = {
   contentList: [],
-  register: false
+  register: false,
+  course: {
+    title: '',
+    price: 0,
+    description: '',
+    totalHours: 0,
+    promoVidUrl: '',
+    instructor: {
+      name: ''
+    }
+  }
 }
-const CourseDetail = ({ route }) => {
+
+const CourseDetail = ({ route, navigation }) => {
   const { course } = route.params;
   const [state, dispatch] = useReducer(CourseReducer, initialState)
   const { token } = useContext(UserContext);
+  useEffect(() => {
+    fetchWithoutAu(API_URL + `course/get-course-detail/${course.id}/null`)
+      .then(
+        (data) => {
+          const section = data.payload.section;
+          const formatSection = section.map((item) => {
+            const formatItem = { ...item, data: item.lesson.slice() }
+            delete formatItem.lesson;
+            return formatItem;
+          });
+          dispatch(initContentList(formatSection));
+          dispatch(initCourseInfo(data.payload));
+        },
+        (erro) => {
+          console.log(erro.message);
+        }
+      )
+  }, [])
 
   useEffect(() => {
     if (token !== null) {
@@ -44,30 +73,11 @@ const CourseDetail = ({ route }) => {
     }
   }, []);
 
-  useEffect(() => {
-    if (state.register) {
-      fetchWithAu(API_URL + `course/detail-with-lesson/${course.id}`, 'GET', token)
-        .then(
-          (data) => {
-            const section = data.payload.section;
-            const formatSection = section.map((item) => {
-              const formatItem = { ...item, data: item.lesson.slice() }
-              delete formatItem.lesson;
-              return formatItem; 
-            });
-            dispatch(initContentList(formatSection));
-          },
-          (erro) => {
-            Alert.alert('Error', erro.message);
-          }
-        )
-    }
-  }, [state.register])
 
   const header = <React.Fragment>
-    <CourseInfoSection course={course} />
+    <CourseInfoSection navigation={navigation} course={state.course} />
     <IconSection courseId={course.id} />
-    <DescriptionSection content={course.description} />
+    <DescriptionSection content={state.course.description} />
   </React.Fragment>
 
   const content = (<Tab.Navigator
@@ -84,8 +94,7 @@ const CourseDetail = ({ route }) => {
       }
     }}
   >
-    {state.register ? <Tab.Screen name="CONTENT" children={() => <ContentList data={state.contentList} />} /> : <Tab.Screen name="CONTENT" component={EmptyContent} />}
-    
+    <Tab.Screen name="CONTENT" children={() => <ContentList data={state.contentList} />} />
     <Tab.Screen name="TRANSCRIPT" component={Transcript} />
   </Tab.Navigator>)
 
@@ -94,7 +103,7 @@ const CourseDetail = ({ route }) => {
       <View style={styles.container}>
         <View style={styles.videoSection}>
           <Video
-            source={{ uri: course.promoVidUrl === null ? '' : course.promoVidUrl.replace('https', 'http') }}
+            source={{ uri: state.course.promoVidUrl === null ? '' : state.course.promoVidUrl.replace('https', 'http') }}
             rate={1.0}
             volume={1.0}
             isMuted={false}

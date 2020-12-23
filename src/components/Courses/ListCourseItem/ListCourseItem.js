@@ -15,7 +15,7 @@ const ListCourseItem = ({ course, navigation }) => {
             {course.title}
           </Text>
           <Text style={styles.otherText}>
-            {course['instructor.user.name']}
+            {course.instructorName}
           </Text>
           <Text style={styles.otherText}>
             {`${new Date(course.createdAt).toLocaleDateString()}  -  ${course.totalHours} hours`}

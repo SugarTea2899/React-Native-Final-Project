@@ -4,10 +4,10 @@ import { FontAwesome } from '@expo/vector-icons';
 import { SKILL_DETAIL } from '../../../../../globals/KeyScreen';
 
 
-const SkillItem = ({content, ticked, navigation}) => {
+const SkillItem = ({content, ticked, navigation, style}) => {
     return (
         <TouchableOpacity onPress={() => navigation.navigate(SKILL_DETAIL, {content: content})}>
-            <View style={styles.skill}>
+            <View style={[styles.skill, style]}>
                 {
                     ticked 
                     && 

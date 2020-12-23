@@ -1,26 +1,30 @@
 import React from 'react';
-import {View, StyleSheet, Text } from 'react-native';
-import MyButton from '../../Common/MyButton/MyButton';
-import TextArea from '../../Common/TextArea/TextArea';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import AuthorItem from '../../Main/BrowseScreen/AuthorSection/AuthorItem/AuthorItem';
 import { AntDesign } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
+import SkillItem from '../../Main/BrowseScreen/SkillSection/SkillItem/SkillItem';
 
-const AuthorHeader = ({author}) => {
+const AuthorHeader = ({ author }) => {
     return (
         <View style={styles.container}>
             <AuthorItem style={styles.authorItem} imageStyle={styles.imageStyle} author={author} />
-            <Text style={styles.position} >Pluralsight Author</Text>
-            <MyButton style={styles.button} text='FOLLOW' />
-            <TextArea style={styles.textArea} />
             <View style={styles.linkContainer}>
-                <AntDesign name="link" size={20} color="white" />
-                <Text style={styles.link}>{'https://simon.com'}</Text>
+                <Entypo name="email" size={20} color="white" />
+                <Text style={styles.link}>{author.email}</Text>
             </View>
-            <View style={styles.groupIcon}>
-                <AntDesign name="wifi" size={24} color="white" />
-                <AntDesign name="twitter" style={{marginLeft: 30}} size={24} color="white" />
-                <AntDesign name="linkedin-square" style={{marginLeft: 30}} size={24} color="white" />
+            <View style={styles.linkContainer}>
+                <Feather name="phone" size={20} color="white" />
+                <Text style={styles.link}>{author.phone}</Text>
             </View>
+            <Text style={styles.skill}>Skills</Text>
+            <ScrollView style={{alignSelf: 'flex-start'}} horizontal={true} showsHorizontalScrollIndicator={false}>
+                <View style={styles.skillSection}>
+                    {author.skills.map((item, index) => <SkillItem key={index} ticked content={item} />)}
+                </View>
+            </ScrollView>
+
             <Text style={styles.course}>Courses</Text>
         </View>
     );
@@ -54,29 +58,35 @@ const styles = StyleSheet.create({
         marginTop: 16,
     },
     textArea: {
-        height: 90,
-        marginTop: 20
+        marginTop: 20,
+        flexDirection: 'row'
     },
     linkContainer: {
         flexDirection: 'row',
         alignSelf: 'flex-start',
         marginTop: 20
     },
-    link:{
+    link: {
         alignSelf: 'center',
         color: 'white',
         fontSize: 15,
         marginLeft: 14
     },
-    groupIcon: {
+    skillSection: {
         flexDirection: 'row',
         alignSelf: 'flex-start',
-        marginTop: 25,
+        marginTop: 5,
     },
     course: {
         color: 'white',
         alignSelf: 'flex-start',
         marginTop: 40,
+        fontSize: 17
+    },
+    skill: {
+        color: 'white',
+        alignSelf: 'flex-start',
+        marginTop: 30,
         fontSize: 17
     }
 });

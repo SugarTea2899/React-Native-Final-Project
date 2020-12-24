@@ -18,7 +18,7 @@ const ListCourseItem = ({ course, navigation }) => {
             {course.instructorName}
           </Text>
           <Text style={styles.otherText}>
-            {`${new Date(course.createdAt).toLocaleDateString()}  -  ${course.totalHours} hours`}
+            {`${new Date(course.updatedAt).toLocaleDateString()}  -  ${course.totalHours.toFixed(2)} hours`}
           </Text>
           <Text style={styles.price}>
             {` ${formatMoney(course.price)} - (${course.soldNumber})`}

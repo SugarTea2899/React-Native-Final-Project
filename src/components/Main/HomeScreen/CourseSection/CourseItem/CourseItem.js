@@ -10,7 +10,7 @@ const CourseItem = ({ course, navigation }) => {
       <View style={styles.container}>
         <Image source={{ uri: course.courseImage }} style={styles.image} />
         <View style={styles.textGroup}>
-          <Text style={styles.title}>{course.courseTitle}</Text>
+          <Text numberOfLines={2} style={styles.title}>{course.courseTitle}</Text>
           <View style={{ marginTop: 4 }}>
             <Text style={styles.otherText}>{`${course.instructorName}`}</Text>
             <Text style={styles.price}>
@@ -30,7 +30,7 @@ const CourseItem = ({ course, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     height: 250,
-    width: 230,
+    width: 200,
     backgroundColor: '#151c2e',
     marginRight: 20,
     borderRadius: 3

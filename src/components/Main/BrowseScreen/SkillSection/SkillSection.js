@@ -2,16 +2,12 @@ import React from 'react';
 import { View, ScrollView, StyleSheet, Text } from 'react-native';
 import SkillItem from './SkillItem/SkillItem';
 
-const SkillSection = ({navigation}) => {
+const SkillSection = ({navigation, categories}) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Popular Skills</Text>
+            <Text style={styles.text}>Categories</Text>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                <SkillItem navigation={navigation} ticked content={'React Native'}/>
-                <SkillItem navigation={navigation} ticked content={'React JS'}/>
-                <SkillItem navigation={navigation} ticked content={'JavaScript'}/>
-                <SkillItem navigation={navigation} content={'Java'}/>
-                <SkillItem navigation={navigation} content={'C++'}/>
+                {categories && categories.map((item, index) => <SkillItem id={item.id} key={index} navigation={navigation} content={item.name}/> )}
             </ScrollView>
         </View>
     );

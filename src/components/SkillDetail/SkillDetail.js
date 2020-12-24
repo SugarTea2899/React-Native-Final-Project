@@ -1,51 +1,77 @@
 import React from 'react';
-import {View, StyleSheet, ScrollView } from 'react-native';
+import { useContext } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { fetchWithoutAu } from '../../api/fetchData';
+import { UserContext } from '../../contexts/UserContext';
+import { API_URL } from '../../globals/constants';
 import { LIST_COURSE, LIST_PATH } from '../../globals/KeyScreen';
+import ListCourse from '../Courses/ListCourse';
 import AuthorSection from '../Main/BrowseScreen/AuthorSection/AuthorSection';
 import PathSection from '../Main/BrowseScreen/PathSection/PathSection';
 import CourseSection from '../Main/HomeScreen/CourseSection/CourseSection';
 
-const SkillDetail = ({route, navigation}) => {
-    const {content} = route.params;
-    const handleSeeAllPath = () => {
-        navigation.navigate(LIST_PATH, {title: `Paths in ${content}`});
-    }
-    const handleSeeNew = () => {
-        navigation.navigate(LIST_COURSE, {title: `New in ${content}`});
-    }
-    const handleSeeTrending = () => {
-        navigation.navigate(LIST_COURSE, {title: `Trending in ${content}`});
-    }
-    return (
-        <View style={styles.container}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <PathSection handleSeeAll={handleSeeAllPath} style={styles.path} navigation={navigation} title={`Paths in ${content}`}/>
-                <CourseSection handleSeeAll={handleSeeNew} style={styles.course} navigation={navigation} title={`New in ${content}`} />
-                <CourseSection handleSeeAll={handleSeeTrending} style={styles.course} navigation={navigation} title={`Trending in ${content}`} />
-                <AuthorSection navigation={navigation}  style={styles.author} />
-            </ScrollView>
+const SkillDetail = ({ route, navigation }) => {
+  const { id } = route.params;
+  const { token, setLoading } = useContext(UserContext);
+  const [courses, setCourses] = useState([]);
 
-        </View>
-    );
+
+  useEffect(() => {
+    const getData = () => {
+      setLoading(true);
+      const data = {
+        keyword: "",
+        opt: {
+          category: [
+            id
+          ]
+        },
+        limit: 20,
+        offset: 1
+      }
+      fetchWithoutAu(API_URL + 'course/search', 'POST', data)
+        .then(
+          (data) => {
+            const newCoures = data.payload.rows.map(item => {
+              return {...item, instructorName: item.name}
+            })
+            setLoading(false);
+            setCourses(newCoures);
+          },
+          (error) => {
+            setLoading(false);
+            console.log(error.message);
+          }
+        )
+    }
+    getData();
+  }, [])
+  return (
+    <View style={styles.container}>
+      <ListCourse navigation={navigation}  courses={courses} />
+    </View>
+  );
 }
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    path: {
-        marginTop: 20,
-        marginLeft: 10,
-    },
-    course: {
-        marginTop: 40,
-        marginLeft: 10,
-    },
-    author: {
-        marginBottom: 20,
-        marginLeft: 10,
-    }
+  container: {
+    flex: 1,
+  },
+  path: {
+    marginTop: 20,
+    marginLeft: 10,
+  },
+  course: {
+    marginTop: 40,
+    marginLeft: 10,
+  },
+  author: {
+    marginBottom: 20,
+    marginLeft: 10,
+  }
 });
 
 export default SkillDetail;

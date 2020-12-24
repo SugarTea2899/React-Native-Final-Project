@@ -9,7 +9,6 @@ const ListCourse = ({style, header, hideTotal, navigation, courses = []}) => {
     return (
         <View style={[styles.container, style]}>
             {!hideTotal && <Text style={styles.total}>{`${courses.length} Results`}</Text>}
-            
             <FlatList
                 data={courses}
                 renderItem={({item}) => <ListCourseItem navigation={navigation} course={item}/>}
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
         color: 'gray',
         marginLeft: 2,
         marginTop: 10,
-        marginBottom: 5,
+        marginBottom: 1,
         fontSize: 14
     }
 });

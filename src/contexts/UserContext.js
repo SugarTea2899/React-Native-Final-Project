@@ -2,5 +2,6 @@ import { createContext } from "react";
 
 export const UserContext = createContext({
     token: null,
-    setContent: (token) => {}
+    setContent: (token) => {},
+    setLoading: (loading) => {},
 });

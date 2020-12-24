@@ -13,10 +13,11 @@ import decode from 'jwt-decode';
 import { convertCourse } from '../../../globals/util';
 import RegisterdCourse from './RegisteredSection/RegisteredCourse';
 import RegisterSection from './RegisteredSection/RegisterSection';
+import Loader from '../../Common/Loader/Loader';
 
 
 const HomeScreen = ({ navigation }) => {
-  const { token } = useContext(UserContext);
+  const { token, setLoading } = useContext(UserContext);
   const [favoriteCourses, setFavoriteCourses] = useState([]);
   const [coursesByCategories, setCourseByCategories] = useState([])
   const [coursesRegistered, setCoursesRegitered] = useState([]);
@@ -26,12 +27,14 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     if (token !== null && isFocused) {
       const info = decode(token);
+      setLoading(true);
       fetchWithAu(API_URL + 'user/get-favorite-courses', 'GET', token)
         .then(
           (data) => {
             setFavoriteCourses(data.payload);
           },
           (erro) => {
+            setLoading(false);
             console.log(erro.message);
           }
         )
@@ -43,36 +46,43 @@ const HomeScreen = ({ navigation }) => {
             setCourseByCategories(newCoures)
           },
           (erro) => {
+            setLoading(false);
             console.log(erro.message);
           }
         )
 
-        fetchWithAu(API_URL + 'user/get-process-courses', 'GET', token)
-          .then(
-            (data) => {
-              setCoursesRegitered(data.payload);
-            },
-            (erro) => {
-              console.log(erro.message);
-            }
-          )
+      fetchWithAu(API_URL + 'user/get-process-courses', 'GET', token)
+        .then(
+          (data) => {
+            setLoading(false);
+            setCoursesRegitered(data.payload);
+          },
+          (erro) => {
+            setLoading(false);
+            console.log(erro.message);
+          }
+        )
     }
   }, [token, isFocused])
 
   return (
-    <View style={{ flex: 1, paddingBottom: 20, justifyContent: token === null ? 'center' : 'flex-start' }}>
-      {
-        token === null
-          ?
-          <Text style={styles.text}>You must login to see this page.</Text>
-          :
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <CourseSection courses={favoriteCourses} navigation={navigation} style={{ marginTop: 30 }} title={'Favorite Courses'} />
-            <CourseSection courses={coursesByCategories} navigation={navigation} style={{ marginTop: 40 }} title={'Courses In Your Categories'} />
-            <RegisterSection courses={coursesRegistered} navigation={navigation} style={{ marginTop: 40 }} title={'Courses Learning'} />
-          </ScrollView>
-      }
-    </View>
+    <>
+      <View style={{ flex: 1, paddingBottom: 20, justifyContent: token === null ? 'center' : 'flex-start' }}>
+        {
+          token === null
+            ?
+            <Text style={styles.text}>You must login to see this page.</Text>
+            :
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <CourseSection courses={favoriteCourses} navigation={navigation} style={{ marginTop: 30 }} title={'Favorite Courses'} />
+              <CourseSection courses={coursesByCategories} navigation={navigation} style={{ marginTop: 40 }} title={'Courses In Your Categories'} />
+              <RegisterSection courses={coursesRegistered} navigation={navigation} style={{ marginTop: 40 }} title={'Courses Learning'} />
+            </ScrollView>
+        }
+
+      </View>
+    </>
+
   );
 }
 

@@ -12,6 +12,8 @@ import { UserContext } from './src/contexts/UserContext';
 import { API_URL, TOKEN_NAME, USER_INFO } from './src/globals/constants';
 import { useEffect } from 'react';
 import { fetchWithAu } from './src/api/fetchData';
+import Loader from './src/components/Common/Loader/Loader';
+import { useCallback } from 'react';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,8 +23,14 @@ LogBox.ignoreLogs([
 
 export default function App() {
   const [user, setUser] = useState({ token: null });
+  const [loading, setLoading] = useState(false);
+
   const handleSetUser = (token) => {
     setUser({ token: token })
+  }
+
+  const handleSetLoading = (loading) => {
+    setLoading(loading);
   }
 
   useEffect(() => {
@@ -46,7 +54,7 @@ export default function App() {
     checkToken();
   }, [])
   return (
-    <UserContext.Provider value={{ token: user.token, setContent: handleSetUser }} >
+    <UserContext.Provider value={{ token: user.token, setContent: handleSetUser, setLoading: handleSetLoading }} >
       <NavigationContainer theme={DarkTheme}>
         <StatusBar backgroundColor={'#121212'} />
         <Tab.Navigator
@@ -80,6 +88,7 @@ export default function App() {
           <Tab.Screen name="Browse" component={BrowseStack} />
           <Tab.Screen name="Search" component={SearchStack} />
         </Tab.Navigator>
+        <Loader loading={loading} />
       </NavigationContainer>
     </UserContext.Provider>
 

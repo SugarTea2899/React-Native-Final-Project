@@ -10,7 +10,7 @@ const RegisterdCourse = ({ course, navigation }) => {
       <View style={styles.container}>
         <Image style={styles.image} source={{ uri: course.courseImage }} />
         <View style={styles.textGroup}>
-          <Text style={styles.title}>{course.courseTitle}</Text>
+          <Text numberOfLines={2} style={styles.title}>{course.courseTitle}</Text>
           <Text style={styles.otherText} >{course.instructorName}</Text>
           <Text style={styles.highlightText} >{`Latest: ${convertToDateTime(course.latestLearnTime)}`}</Text>
           <Text style={styles.highlightText} >{`Process: ${course.process}/${course.total}`}</Text>
@@ -24,7 +24,7 @@ const RegisterdCourse = ({ course, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     height: 235,
-    width: 230,
+    width: 200,
     backgroundColor: '#151c2e',
     borderRadius: 3,
     marginRight: 20,

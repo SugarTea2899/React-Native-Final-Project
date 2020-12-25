@@ -7,10 +7,8 @@ import { fetchWithoutAu } from '../../api/fetchData';
 import { UserContext } from '../../contexts/UserContext';
 import { API_URL } from '../../globals/constants';
 import { LIST_COURSE, LIST_PATH } from '../../globals/KeyScreen';
+import MyButton from '../Common/MyButton/MyButton';
 import ListCourse from '../Courses/ListCourse';
-import AuthorSection from '../Main/BrowseScreen/AuthorSection/AuthorSection';
-import PathSection from '../Main/BrowseScreen/PathSection/PathSection';
-import CourseSection from '../Main/HomeScreen/CourseSection/CourseSection';
 
 const SkillDetail = ({ route, navigation }) => {
   const { id } = route.params;
@@ -50,6 +48,10 @@ const SkillDetail = ({ route, navigation }) => {
   }, [])
   return (
     <View style={styles.container}>
+      <MyButton 
+        style={styles.button}
+        text={'Follow'}
+      />
       <ListCourse navigation={navigation}  courses={courses} />
     </View>
   );
@@ -59,6 +61,7 @@ const SkillDetail = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column'
   },
   path: {
     marginTop: 20,
@@ -71,7 +74,14 @@ const styles = StyleSheet.create({
   author: {
     marginBottom: 20,
     marginLeft: 10,
-  }
+  },
+  button: {
+    height: 38,
+    backgroundColor: 'dodgerblue',
+    marginTop: 10,
+    marginLeft: 12,
+    marginRight: 12
+},
 });
 
 export default SkillDetail;

@@ -5,13 +5,15 @@ import ListCourseItem from './ListCourseItem/ListCourseItem';
 
 
 
-const ListCourse = ({style, header, hideTotal, navigation, courses = []}) => {
+const ListCourse = ({style, header, hideTotal, navigation, courses = [], route}) => {
+    let finalCourse = courses.slice();
+    if (route.params.courses !== undefined) finalCourse = route.params.courses.slice();
     return (
         <View style={[styles.container, style]}>
-            {!hideTotal && <Text style={styles.total}>{`${courses.length} Results`}</Text>}
+            {!hideTotal && <Text style={styles.total}>{`${finalCourse.length} Results`}</Text>}
             <FlatList
-                data={courses}
-                renderItem={({item}) => <ListCourseItem navigation={navigation} course={item}/>}
+                data={finalCourse}
+                renderItem={({item}) => <ListCourseItem key={item.id} navigation={navigation} course={item}/>}
                 keyExtractor={item => item.id}
                 ListHeaderComponent={header}
             />

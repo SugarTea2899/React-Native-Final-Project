@@ -74,8 +74,8 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.text}>You must login to see this page.</Text>
             :
             <ScrollView showsVerticalScrollIndicator={false}>
-              <CourseSection courses={favoriteCourses} navigation={navigation} style={{ marginTop: 30 }} title={'Favorite Courses'} />
-              <CourseSection courses={coursesByCategories} navigation={navigation} style={{ marginTop: 40 }} title={'Courses In Your Categories'} />
+              <CourseSection  courses={favoriteCourses} navigation={navigation} style={{ marginTop: 30 }} title={'Favorite Courses'} />
+              <CourseSection  courses={coursesByCategories} navigation={navigation} style={{ marginTop: 40 }} title={'Courses In Your Categories'} />
               <RegisterSection courses={coursesRegistered} navigation={navigation} style={{ marginTop: 40 }} title={'Courses Learning'} />
             </ScrollView>
         }

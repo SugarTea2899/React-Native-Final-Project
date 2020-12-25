@@ -17,7 +17,7 @@ export const formatMoney = (price) => {
 export const getAverageStar = (course) => {
     let res = (course.formalityPoint + course.contentPoint + course.presentationPoint) / 3;
     res = Math.round(res);
-    return res % 6;
+    return res > 5 ? 5 : res;
 }
 
 export const convertHour = (hour) => {
@@ -45,5 +45,16 @@ export const convertCourse = (course) => {
         coursePrice: course.price,
         courseSoldNumber: course.soldNumber,
         courseAveragePoint: course.averagePoint
+    }
+}
+
+export const convertCourseV2 = (course) => {
+    return {
+        imageUrl: course.courseImage,
+        title: course.courseTitle,
+        instructorName: course.instructorName,
+        price: course.coursePrice,
+        soldNumber: course.courseSoldNumber, 
+        averagePoint: course.courseAveragePoint
     }
 }

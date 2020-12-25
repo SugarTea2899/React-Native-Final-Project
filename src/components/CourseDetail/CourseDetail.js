@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { fetchWithAu, fetchWithoutAu } from '../../api/fetchData';
 import { API_URL } from '../../globals/constants';
 import { initContentList, initCourseInfo, updateRegister } from '../../actions/CourseActions';
+import ReviewCourse from './ReviewCourse/ReviewCourse';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -32,7 +33,11 @@ const initialState = {
     promoVidUrl: '',
     instructor: {
       name: ''
-    }
+    },
+    formalityPoint: 0,
+    contentPoint: 0,
+    presentationPoint: 0,
+    averagePoint: 0,
   }
 }
 
@@ -94,12 +99,12 @@ const CourseDetail = ({ route, navigation }) => {
       inactiveTintColor: 'gray',
       labelStyle: {
         fontWeight: 'bold',
-        fontSize: 16
+        fontSize: 15
       }
     }}
   >
     <Tab.Screen name="CONTENT" children={() => <ContentList data={state.contentList} />} />
-    <Tab.Screen name="TRANSCRIPT" component={Transcript} />
+    <Tab.Screen name="REVIEW" children={() => <ReviewCourse course={state.course} />} />
   </Tab.Navigator>)
 
   return (

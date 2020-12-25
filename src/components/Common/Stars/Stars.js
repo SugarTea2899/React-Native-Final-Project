@@ -33,7 +33,6 @@ const Stars = ({maxStar, curStar, starSize, style, ratedNumber}) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        flex: 1,
     },
     text: {
         color: 'gray',

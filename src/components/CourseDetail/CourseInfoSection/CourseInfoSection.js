@@ -2,18 +2,26 @@ import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { AUTHOR } from '../../../globals/KeyScreen';
 import { formatMoney } from '../../../globals/util';
+import Stars from '../../Common/Stars/Stars';
 
 const CourseInfoSection = ({ course, navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{course.title}</Text>
       <View style={{ flex: 1, flexDirection: 'row' }}>
-        <TouchableOpacity onPress={() => {navigation.navigate(AUTHOR, {authorId: course.instructorId})}}>
+        <TouchableOpacity onPress={() => { navigation.navigate(AUTHOR, { authorId: course.instructorId }) }}>
           <View style={styles.skill}>
             <Text style={styles.skillName}>{course.instructor.name}</Text>
           </View>
         </TouchableOpacity>
         <Text style={styles.price}>{` -  ${formatMoney(course.price)}`}</Text>
+        <Stars
+          style={styles.stars}
+          maxStar={5}
+          curStar={course.averagePoint > 5 ? 5 : Math.round(course.averagePoint)}
+          ratedNumber={course.ratedNumber}
+          starSize={12}
+        />
       </View>
       <Text style={styles.otherText}>
         {`${new Date(course.createdAt).toLocaleDateString()}  -  ${course.totalHours} hours`}
@@ -61,6 +69,10 @@ const styles = StyleSheet.create({
     marginTop: 12,
     fontWeight: 'bold',
     marginLeft: 5
+  },
+  stars: {
+    marginTop: 10.5,
+    marginLeft: 10
   }
 });
 

@@ -7,7 +7,7 @@ const IconButton = ({ name, content, onClick }) => {
         <View style={styles.content}>
             <TouchableHighlight onPress={onClick}>
                 <View style={styles.iconContainer}>
-                    <AntDesign name={name} size={25} color="white" />
+                    <AntDesign name={name} size={20} color="white" />
                 </View>
             </TouchableHighlight>
 

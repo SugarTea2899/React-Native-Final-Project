@@ -55,7 +55,12 @@ const BrowseScreen = ({navigation}) => {
             <ScrollView>
                 <ImageButtonSection navigation={navigation}/>
                 <SkillSection navigation={navigation} categories={categories} />
-                <CourseSection style={{marginTop: 30}} title='Recommend For You' navigation={navigation} courses={recommendCourses} />
+                {
+                    token !== null
+                    &&
+                    <CourseSection style={{marginTop: 30}} title='Recommend For You' navigation={navigation} courses={recommendCourses} />
+                }
+
             </ScrollView>
         </View>
     );

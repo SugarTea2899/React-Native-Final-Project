@@ -21,7 +21,7 @@ const AuthorHeader = ({ author }) => {
             <Text style={styles.skill}>Skills</Text>
             <ScrollView style={{alignSelf: 'flex-start'}} horizontal={true} showsHorizontalScrollIndicator={false}>
                 <View style={styles.skillSection}>
-                    {author.skills.map((item, index) => <SkillItem key={index} ticked content={item} />)}
+                    {author.skills.map((item, index) => <SkillItem key={index} disble ticked content={item} />)}
                 </View>
             </ScrollView>
 

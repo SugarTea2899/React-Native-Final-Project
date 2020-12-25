@@ -105,7 +105,7 @@ const Profile = ({ route, navigation }) => {
           <View style={styles.skillSection}>
             <Text style={styles.interests}>Interests</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              {state.userCategories.map((item, index) => <SkillItem key={index} navigation={navigation} ticked content={item.name} />)}
+              {state.userCategories.map((item, index) => <SkillItem id={item.id} key={index} navigation={navigation} ticked content={item.name} />)}
             </ScrollView>
           </View>
           <View style={styles.infoSection}>

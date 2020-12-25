@@ -37,7 +37,7 @@ const DownloadStack = () => {
                 name={COURSE_DETAIL}
                 component={CourseDetail}
                 options={({ route }) => ({
-                    title: route.params.course.title
+                    title: route.params.course.title || route.params.course.courseTitle
                 })}
             />
             <Stack.Screen

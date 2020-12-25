@@ -34,7 +34,7 @@ const initalState = {
 
 const Profile = ({ route, navigation }) => {
   const [state, dispatch] = useReducer(UserInfoReducer, initalState);
-  const {token, setContent} = useContext(UserContext);
+  const {token, setContent, setLoading} = useContext(UserContext);
 
   const handleLogin = () => {
     navigation.navigate(LOGIN);
@@ -65,13 +65,16 @@ const Profile = ({ route, navigation }) => {
 
   useEffect(() => {
     if (token !== null) {
+      setLoading(true);
       fetchWithAu(API_URL + 'user/me', 'GET', token)
         .then(
           (data) => {
             dispatch(initUserInfo(data.payload));
+            setLoading(false);
           },
           (error) => {
             console.log(error.message);
+            setLoading(false);
           }
         )
     }

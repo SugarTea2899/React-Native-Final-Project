@@ -7,7 +7,7 @@ import ListCourseItem from './ListCourseItem/ListCourseItem';
 
 const ListCourse = ({style, header, hideTotal, navigation, courses = [], route}) => {
     let finalCourse = courses.slice();
-    if (route.params.courses !== undefined) finalCourse = route.params.courses.slice();
+    if (route && route.params && route.params.courses !== undefined) finalCourse = route.params.courses.slice();
     return (
         <View style={[styles.container, style]}>
             {!hideTotal && <Text style={styles.total}>{`${finalCourse.length} Results`}</Text>}

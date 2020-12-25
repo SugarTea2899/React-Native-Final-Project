@@ -5,12 +5,12 @@ import { AUTHOR } from '../../../globals/KeyScreen';
 
 const ListAuthorsItem = ({author, navigation}) => {
     return (
-        <TouchableOpacity onPress={() => navigation.navigate(AUTHOR, {author: author})}>
+        <TouchableOpacity onPress={() => navigation.navigate(AUTHOR, {authorId: author.id})}>
             <View style={styles.container}>
-                <Image style={styles.image} source={author.image} />
+                <Image style={styles.image} source={{uri: author.avatar}} />
                 <View style={styles.content}>
                     <Text style={styles.name}>{author.name}</Text>
-                    <Text style={styles.numCourses}>{`${author.numCourses} Courses`}</Text>
+                    <Text style={styles.numCourses}>{`${author.numcourses} Courses`}</Text>
                 </View>
             </View>
         </TouchableOpacity>

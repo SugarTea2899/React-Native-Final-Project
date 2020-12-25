@@ -1,49 +1,59 @@
 import React from 'react';
+import { useContext } from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import { fetchWithoutAu } from '../../../../api/fetchData';
+import { UserContext } from '../../../../contexts/UserContext';
 import { API_URL, CERTIFICATIONS, CERTIFICATIONS_CONTENT, CONFERENCES, CONFERENCES_CONTENT, DATA_PROFESSIONAL, DATA_PROFESSIONAL_CONTENT, IT_OP, IT_OP_CONTENT, NEW_RELEASE, RECOMEND_FOR_YOU, SERCURITY, SERCURITY_CONTENT, SOFTWARE_DEVELOPMENT, SOFTWARE_DEVELOPMENT_CONTENT, TOP_RATE, TOP_SELL } from '../../../../globals/constants';
 import { COURSE_SUGGEST, PATH_SUGGEST } from '../../../../globals/KeyScreen';
 import ImageButton from '../../../Common/ImageButton/ImageButton';
 
 const ImageButtonSection = ({ navigation }) => {
-
+    const {setLoading} = useContext(UserContext);
     const getNewReleaseCourses = () => {
+        setLoading(true);
         fetchWithoutAu(API_URL + 'course/top-new', 'POST', { limit: '20', page: '1' })
             .then(
                 (data) => {
                     const newCoures = data.payload.map(item => {
                         return {...item, instructorName: item['instructor.user.name']}
                     })
+                    setLoading(false);
                     navigation.navigate(COURSE_SUGGEST, { image: image1, content: NEW_RELEASE, courses: newCoures });
                 },
                 (error) => {
+                    setLoading(false);
                     console.log(error.message);
                 }
             )
     }
 
     const getTopSellCourses = () => {
+        setLoading(true);
         fetchWithoutAu(API_URL + 'course/top-sell', 'POST', { limit: '20', page: '1' })
             .then(
                 (data) => {
                     const newCoures = data.payload.map(item => {
                         return {...item, instructorName: item['instructor.user.name']}
                     })
+                    setLoading(false);
                     navigation.navigate(COURSE_SUGGEST, { image: image2, content: TOP_SELL, courses: newCoures});
                 },
                 (error) => {
+                    setLoading(false);
                     console.log(error.message);
                 }
             )
     }
 
     const getTopRateCourse = () => {
+        setLoading(true);
         fetchWithoutAu(API_URL + 'course/top-rate', 'POST', { limit: '20', page: '1' })
             .then(
                 (data) => {
                     const newCoures = data.payload.map(item => {
                         return {...item, instructorName: item['instructor.user.name']}
                     })
+                    setLoading(false);
                     navigation.navigate(COURSE_SUGGEST, { image: image2, content: TOP_SELL, courses: newCoures });
                 },
                 (error) => {

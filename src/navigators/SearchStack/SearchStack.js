@@ -16,7 +16,7 @@ const SearchStack = () => {
             <Stack.Screen
                 name={SEARCH}
                 component={SearchScreen}
-                options={{headerTitle: props => <SearchBar />}} 
+                options={{headerShown: false}} 
             />
             <Stack.Screen
                 name={AUTHOR}

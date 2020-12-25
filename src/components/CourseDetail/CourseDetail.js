@@ -39,8 +39,10 @@ const initialState = {
 const CourseDetail = ({ route, navigation }) => {
   const { course } = route.params;
   const [state, dispatch] = useReducer(CourseReducer, initialState)
-  const { token } = useContext(UserContext);
+  const { token, setLoading } = useContext(UserContext);
+
   useEffect(() => {
+    setLoading(true);
     fetchWithoutAu(API_URL + `course/get-course-detail/${course.id}/null`)
       .then(
         (data) => {
@@ -52,9 +54,11 @@ const CourseDetail = ({ route, navigation }) => {
           });
           dispatch(initContentList(formatSection));
           dispatch(initCourseInfo(data.payload));
+          setLoading(false);
         },
         (erro) => {
           console.log(erro.message);
+          setLoading(false);
         }
       )
   }, [])

@@ -10,7 +10,7 @@ import { UserContext } from '../../../contexts/UserContext';
 import { API_URL } from '../../../globals/constants';
 
 import IconButton from '../../Common/IconButton/IconButton';
-const IconSection = ({ courseId }) => {
+const IconSection = ({ courseId, register }) => {
   const [like, setLike] = useState(false);
   const { token } = useContext(UserContext);
   const {dispatch} = useContext(CourseContext);
@@ -49,6 +49,11 @@ const IconSection = ({ courseId }) => {
   const handleRegisterCourse = () => {
     if (token === null) {
       Alert.alert('Error', 'You must login to do this action')
+      return;
+    }
+
+    if (register) {
+      Alert.alert('Error', 'You have already registerd this course');
       return;
     }
 

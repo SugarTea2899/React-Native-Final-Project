@@ -17,8 +17,9 @@ import { UserContext } from '../../contexts/UserContext';
 import { useState } from 'react';
 import { fetchWithAu, fetchWithoutAu } from '../../api/fetchData';
 import { API_URL } from '../../globals/constants';
-import { initContentList, initCourseInfo, updateRegister } from '../../actions/CourseActions';
+import { initContentList, initCourseInfo, reload, updateRegister } from '../../actions/CourseActions';
 import ReviewCourse from './ReviewCourse/ReviewCourse';
+import ReviewModal from './ReviewCourse/ReviewModal/ReviewModal';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -38,7 +39,9 @@ const initialState = {
     contentPoint: 0,
     presentationPoint: 0,
     averagePoint: 0,
-  }
+  },
+  openReviewCourse: false,
+  reload: Math.random()
 }
 
 const CourseDetail = ({ route, navigation }) => {
@@ -66,7 +69,7 @@ const CourseDetail = ({ route, navigation }) => {
           setLoading(false);
         }
       )
-  }, [])
+  }, [state.reload])
 
   useEffect(() => {
     if (token !== null) {
@@ -85,7 +88,7 @@ const CourseDetail = ({ route, navigation }) => {
 
   const header = <React.Fragment>
     <CourseInfoSection navigation={navigation} course={state.course} />
-    <IconSection courseId={course.id} />
+    <IconSection courseId={course.id} register={state.register} />
     <DescriptionSection content={state.course.description} />
   </React.Fragment>
 
@@ -104,7 +107,7 @@ const CourseDetail = ({ route, navigation }) => {
     }}
   >
     <Tab.Screen name="CONTENT" children={() => <ContentList data={state.contentList} />} />
-    <Tab.Screen name="REVIEW" children={() => <ReviewCourse course={state.course} />} />
+    <Tab.Screen name="REVIEW" children={() => <ReviewCourse course={state.course} register={state.register} />} />
   </Tab.Navigator>)
 
   return (
@@ -135,6 +138,7 @@ const CourseDetail = ({ route, navigation }) => {
           />
         </View>
       </View>
+      <ReviewModal open={state.openReviewCourse} courseId={state.course.id} />
     </CourseContext.Provider>
 
   );

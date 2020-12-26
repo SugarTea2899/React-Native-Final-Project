@@ -1,28 +1,41 @@
 import React from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
 import { AUTHOR } from '../../../../globals/KeyScreen';
+import { convertToDateTime } from '../../../../globals/util';
 import Stars from '../../../Common/Stars/Stars';
 
 
-const Review = () => {
+const Review = ({ review, style }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <View style={styles.imageContainer} >
-        <Image style={styles.image} source={{uri: 'https://i.pinimg.com/originals/72/eb/b6/72ebb6e15a76ac319e7275d8cb2d6626.jpg'}} />
+        <Image style={styles.image} source={{ uri: review.user.avatar }} />
       </View>
       <View style={styles.contentContainer} >
         <Text style={styles.text} >
-          username
+          {review.user.name}
         </Text>
-        <Stars maxStar={5} curStar={2} starSize={10} />
-        <Stars maxStar={5} curStar={2} starSize={10} />
-        <Stars maxStar={5} curStar={2} starSize={10} />
+        <Stars
+          maxStar={5}
+          curStar={review.formalityPoint > 5 ? 5 : Math.round(review.formalityPoint)}
+          starSize={10}
+        />
+        <Stars
+          maxStar={5}
+          curStar={review.contentPoint > 5 ? 5 : Math.round(review.contentPoint)}
+          starSize={10}
+        />
+        <Stars
+          maxStar={5}
+          curStar={review.presentationPoint > 5 ? 5 : Math.round(review.presentationPoint)}
+          starSize={10}
+        />
         <View style={styles.contentWraper}>
           <Text style={styles.content}>
-            khoa hoc oke
+            {review.content}
           </Text>
           <Text style={styles.date}>
-            12/12/2020, 10:00
+            {review.createdAt && convertToDateTime(review.createdAt)}
           </Text>
         </View>
 

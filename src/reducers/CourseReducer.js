@@ -1,4 +1,4 @@
-import { INIT_CONTENT_LIST, INIT_COURSE_INFO, UPDATE_REGISTER } from "../globals/ActionTypes/CourseType";
+import { INIT_CONTENT_LIST, INIT_COURSE_INFO, OPEN_REVIEW_COURSE, RELOAD, UPDATE_REGISTER } from "../globals/ActionTypes/CourseType";
 
 const CourseReducer = (state, action) => {
     switch (action.type) {
@@ -8,6 +8,10 @@ const CourseReducer = (state, action) => {
             return { ...state, register: action.value }
         case INIT_COURSE_INFO:
             return {...state, course: action.value}
+        case OPEN_REVIEW_COURSE:
+            return {...state, openReviewCourse: action.value}
+        case RELOAD:
+            return {...state, reload: action.value}
         default:
             return state;
     }

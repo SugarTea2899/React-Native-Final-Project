@@ -3,12 +3,12 @@ import {View, StyleSheet, Text } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
 
-const Stars = ({maxStar, curStar, starSize, style, ratedNumber}) => {
+const Stars = ({maxStar, curStar, starSize, style, ratedNumber, handleClick = (i) => {}}) => {
     const remainStar = maxStar - curStar;
     const genCurStar = () => {
         const res = [];
         for (let i = 1; i <= curStar; i++){
-            res.push(<Entypo key={i} style={{paddingRight: 3, marginTop: 3.5}} name="star" size={starSize} color="gold" />)
+            res.push(<Entypo key={i} onPress={() => handleClick(i)} style={{paddingRight: 3, marginTop: 3.5}} name="star" size={starSize} color="gold" />)
         }
         return res;
     }
@@ -16,7 +16,7 @@ const Stars = ({maxStar, curStar, starSize, style, ratedNumber}) => {
     const genRemainStar = () => {
         const res = [];
         for (let i = 1; i <= remainStar; i++){
-            res.push(<Entypo key={i} style={{paddingRight: 3, marginTop: 3.5}} name="star" size={starSize} color="darkgray" />)
+            res.push(<Entypo key={i} onPress={() => handleClick(i + curStar)} style={{paddingRight: 3, marginTop: 3.5}} name="star" size={starSize} color="darkgray" />)
         }
         return res;
     }

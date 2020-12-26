@@ -50,6 +50,7 @@ export const convertCourse = (course) => {
 
 export const convertCourseV2 = (course) => {
     return {
+        id: course.id,
         imageUrl: course.courseImage,
         title: course.courseTitle,
         instructorName: course.instructorName,

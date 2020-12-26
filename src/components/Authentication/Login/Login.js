@@ -13,13 +13,15 @@ const Login = ({navigation}) => {
     const handleRegister = () => {
         navigation.navigate(REGISTER);
     }
-    const {setContent} = useContext(UserContext);
+    const {setContent, setLoading} = useContext(UserContext);
 
     const handleLogin = () => {
         if (email === '' || password === ''){
             Alert.alert('Erro', 'Empty infomation');
             return;
         }
+
+        setLoading(true);
         const data = {
             email: email,
             password: password
@@ -29,9 +31,11 @@ const Login = ({navigation}) => {
                 async (data) => {
                     setContent(data.token);
                     await SecureStore.setItemAsync(TOKEN_NAME, data.token);
+                    setLoading(false);
                     navigation.navigate(HOME);
                 },
                 (erro) => {
+                    setLoading(false);
                     Alert.alert('Error',erro.message);
                 }
             )

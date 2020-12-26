@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useContext } from 'react';
 import {View, StyleSheet, ScrollView, Text, Alert } from 'react-native';
 import { fetchWithoutAu } from '../../../api/fetchData';
+import { UserContext } from '../../../contexts/UserContext';
 import { API_URL } from '../../../globals/constants';
 import { LOGIN } from '../../../globals/KeyScreen';
 import AsyncAlert from '../../Common/AsyncAlert/AsyncAlert';
@@ -13,6 +15,7 @@ const Register = ({navigation}) => {
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
+    const {setLoading} = useContext(UserContext);
 
     const validEmail = () => {
         const pattern =/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -47,13 +50,16 @@ const Register = ({navigation}) => {
             phone: phone,
             password: password
         }
+        setLoading(true);
         fetchWithoutAu(API_URL + "user/register", 'POST', data)
             .then(
                 async (data) => {
+                    setLoading(false);
                     await AsyncAlert('Success', 'Sign up successfully\nYou will redirect to login.');
                     navigation.navigate(LOGIN);
                 },
                 (erro) => {
+                    setLoading(false);
                     Alert.alert('Erro', erro.message);
                 }
             )

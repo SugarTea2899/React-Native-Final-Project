@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         height: 50,
         flexDirection: 'row',
         marginLeft: 10,
-        marginBottom: 10
+        marginBottom: 15
     },
     number: {
         flex: 2,

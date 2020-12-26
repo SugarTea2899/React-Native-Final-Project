@@ -1,3 +1,4 @@
+import { SHOW_VIDEO } from "../globals/ActionTypes/CourseType";
 import { INIT_USER_CATEGORIES, INIT_USER_INFO, RELOAD_PROFILE_SCREEN } from "../globals/ActionTypes/UserInfoActionType";
 
 export function initUserInfo (userInfo) {
@@ -20,3 +21,4 @@ export function reloadProfileScreen() {
         value: Math.random()
     }
 }
+

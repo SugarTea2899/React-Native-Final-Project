@@ -1,25 +1,24 @@
 import React from 'react';
-import { View, StyleSheet, Text, Image, ScrollView, FlatList } from 'react-native';
+import { View, StyleSheet, Text, Image, ScrollView, FlatList, Alert } from 'react-native';
 import CourseInfoSection from './CourseInfoSection/CourseInfoSection';
 import DescriptionSection from './DescriptionSection/DescriptionSection';
 import IconSection from './IconSection/IconSection';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import ContentList from './ContentList/ContentList';
-import Transcript from './Transcript/Transcript';
 import { Video } from 'expo-av';
-import EmptyContent from './EmptyContent/EmptyContent';
 import { useReducer } from 'react';
 import CourseReducer from '../../reducers/CourseReducer';
 import { CourseContext } from '../../contexts/CourseContext';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
-import { useState } from 'react';
 import { fetchWithAu, fetchWithoutAu } from '../../api/fetchData';
 import { API_URL } from '../../globals/constants';
-import { initContentList, initCourseInfo, reload, updateRegister } from '../../actions/CourseActions';
+import { initContentList, initCourseInfo, reload, showVideo, updateActiveIndex, updateRegister } from '../../actions/CourseActions';
 import ReviewCourse from './ReviewCourse/ReviewCourse';
 import ReviewModal from './ReviewCourse/ReviewModal/ReviewModal';
+import YoutubePlayer from "react-native-youtube-iframe";
+import { useState } from 'react';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -41,13 +40,17 @@ const initialState = {
     averagePoint: 0,
   },
   openReviewCourse: false,
-  reload: Math.random()
+  reload: Math.random(),
+  video: null,
+  activeIndex: { i: -1, j: -1 }
 }
 
 const CourseDetail = ({ route, navigation }) => {
   const { course } = route.params;
   const [state, dispatch] = useReducer(CourseReducer, initialState)
   const { token, setLoading } = useContext(UserContext);
+  const [playing, setPlaying] = useState(false);
+
 
   useEffect(() => {
     setLoading(true);
@@ -62,6 +65,7 @@ const CourseDetail = ({ route, navigation }) => {
           });
           dispatch(initContentList(formatSection));
           dispatch(initCourseInfo(data.payload));
+          dispatch(showVideo(data.payload.promoVidUrl))
           setLoading(false);
         },
         (erro) => {
@@ -92,6 +96,27 @@ const CourseDetail = ({ route, navigation }) => {
     <DescriptionSection content={state.course.description} />
   </React.Fragment>
 
+  const handleSelectLesson = (i, j) => {
+    if (!state.register) {
+      Alert.alert('Error', 'You must register this coures to see lessons');
+      return;
+    }
+
+    setLoading(true)
+    dispatch(updateActiveIndex({ i, j }));
+
+    fetchWithAu(API_URL + `lesson/video/${state.course.id}/${state.contentList[i].data[j].id}`, 'GET', token)
+      .then(
+        (data) => {
+          dispatch(showVideo(data.payload.videoUrl));
+          setLoading(false)
+        },
+        (error) => {
+          console.log(error.message);
+          setLoading(false)
+        }
+      )
+  }
   const content = (<Tab.Navigator
     tabBarOptions={{
       style: {
@@ -106,25 +131,41 @@ const CourseDetail = ({ route, navigation }) => {
       }
     }}
   >
-    <Tab.Screen name="CONTENT" children={() => <ContentList data={state.contentList} />} />
+    <Tab.Screen name="CONTENT" children={() => <ContentList handleClick={handleSelectLesson} activeIndex={state.activeIndex} data={state.contentList} />} />
     <Tab.Screen name="REVIEW" children={() => <ReviewCourse course={state.course} register={state.register} />} />
   </Tab.Navigator>)
 
+  const renderVideoSection = () => {
+    if (state.video && state.video.includes('youtube')) {
+      const youtubeId = state.video.split('/').pop();
+      return (
+        <YoutubePlayer
+          height={200}
+          play={playing}
+          videoId={youtubeId}
+        />
+      )
+    } else {
+      return (
+        <Video
+          source={{ uri: state.video === null ? '' : state.video.replace('https', 'http') }}
+          rate={1.0}
+          volume={1.0}
+          isMuted={false}
+          resizeMode="contain"
+          shouldPlay={false}
+          isLooping={false}
+          useNativeControls
+          style={styles.video}
+        />
+      )
+    }
+  }
   return (
     <CourseContext.Provider value={{ dispatch: dispatch }} >
       <View style={styles.container}>
         <View style={styles.videoSection}>
-          <Video
-            source={{ uri: state.course.promoVidUrl === null ? '' : state.course.promoVidUrl.replace('https', 'http') }}
-            rate={1.0}
-            volume={1.0}
-            isMuted={false}
-            resizeMode="contain"
-            shouldPlay={false}
-            isLooping
-            useNativeControls
-            style={styles.video}
-          />
+          {renderVideoSection()}
         </View>
 
         <View style={styles.contentSection}>
@@ -150,8 +191,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   videoSection: {
-    flex: 1,
-    flexDirection: 'row'
+    height: 200,
   },
   contentSection: {
     flex: 2,

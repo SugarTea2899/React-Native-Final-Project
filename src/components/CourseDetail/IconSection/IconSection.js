@@ -12,17 +12,20 @@ import { API_URL } from '../../../globals/constants';
 import IconButton from '../../Common/IconButton/IconButton';
 const IconSection = ({ courseId, register }) => {
   const [like, setLike] = useState(false);
-  const { token } = useContext(UserContext);
+  const { token, setLoading } = useContext(UserContext);
   const {dispatch} = useContext(CourseContext);
   
   useEffect(() => {
     if (token !== null) {
+      setLoading(true);
       fetchWithAu(API_URL + `user/get-course-like-status/${courseId}`, 'GET', token)
         .then(
           (data) => {
+            setLoading(false);
             setLike(data.likeStatus);
           },
           (error) => {
+            setLoading(false);
             console.log(error.message);
           }
         )
@@ -34,13 +37,15 @@ const IconSection = ({ courseId, register }) => {
       return;
     }
 
-
+    setLoading(true);
     fetchWithAu(API_URL + `user/like-course`, 'POST', token, { courseId: courseId })
       .then(
         (data) => {
+          setLoading(false);
           setLike(data.likeStatus);
         },
         (error) => {
+          setLoading(false);
           console.log(error.message);
         }
       )
@@ -64,13 +69,16 @@ const IconSection = ({ courseId, register }) => {
         {
           text: 'Yes',
           onPress: () => {
+            setLoading(true);
             fetchWithAuV2(API_URL + 'payment/get-free-courses', 'POST', token, {courseId: courseId})
               .then(
                 (data) => {
+                  setLoading(false);
                   Alert.alert('Success', 'Register course successfully.');
                   dispatch(updateRegister(true));
                 },
                 (erro) => {
+                  setLoading(false);
                   Alert.alert('Error', erro.message);
                 }
               )
@@ -90,7 +98,7 @@ const IconSection = ({ courseId, register }) => {
     <View style={styles.container}>
       {like ? <IconButton onClick={handleLikeCourse} name="heart" content="Unlike" /> :
         <IconButton onClick={handleLikeCourse} name="hearto" content="Like" />}
-      <IconButton onClick={handleRegisterCourse} name="plus" content="Register" />
+      <IconButton onClick={handleRegisterCourse} name="plus" content={register ? 'Registered' : 'Register'} />
       <IconButton name="download" content="Download" />
     </View>
   );

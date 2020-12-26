@@ -1,6 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
-import {View, StyleSheet, SectionList } from 'react-native';
+import { View, StyleSheet, SectionList } from 'react-native';
 import { initContentList } from '../../../actions/CourseActions';
 import { CourseContext } from '../../../contexts/CourseContext';
 import { convertHour } from '../../../globals/util';
@@ -26,14 +26,22 @@ const DATA = [
     }
 ]
 
-const ContentList = ({data}) => {
+const ContentList = ({ data, activeIndex = { i: -1, j: -1 }, handleClick }) => {
     return (
         <View style={styles.container}>
             <SectionList
                 sections={data}
                 keyExtractor={(item, index) => index}
-                renderItem={({item}) => <ContentItem content={item.name} time={convertHour(item.hours)} />}
-                renderSectionHeader={({section: {name, sumHours, numberOrder}}) => <ContentHeader title={name} time={convertHour(sumHours)} number={numberOrder} />}
+                renderItem={({ item, index, section: { numberOrder } }) => {
+                    const active = activeIndex.i === numberOrder - 1 && activeIndex.j === index;
+                    return <ContentItem
+                        active={active}
+                        content={item.name}
+                        time={convertHour(item.hours)}
+                        handleClick={() => handleClick(numberOrder - 1, index)}
+                    />
+                }}
+                renderSectionHeader={({ section: { name, sumHours, numberOrder } }) => <ContentHeader title={name} time={convertHour(sumHours)} number={numberOrder} />}
                 listKey={new Date().getTime().toString()}
             />
         </View>

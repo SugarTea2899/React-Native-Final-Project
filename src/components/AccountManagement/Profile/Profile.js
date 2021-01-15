@@ -17,6 +17,7 @@ import { initUserCategories, initUserInfo } from '../../../actions/UserInfoActio
 import { convertToDateTime } from '../../../globals/util';
 import * as SecureStore from 'expo-secure-store';
 import { LanguageContext } from '../../../contexts/LanguageContext';
+import { ThemeContext } from '../../../contexts/ThemeContext';
 
 const initalState = {
   userInfo: {
@@ -37,6 +38,7 @@ const Profile = ({ route, navigation }) => {
   const [state, dispatch] = useReducer(UserInfoReducer, initalState);
   const {token, setContent, setLoading} = useContext(UserContext);
   const {languageConstant} = useContext(LanguageContext);
+  const {theme} = useContext(ThemeContext);
 
   const handleLogin = () => {
     navigation.navigate(languageConstant.LOGIN);
@@ -98,14 +100,14 @@ const Profile = ({ route, navigation }) => {
   }, [state.userInfo])
   return (
     <UserInfoContext.Provider value={{ dispatch: dispatch, state: state }} >
-      <ScrollView>
+      <ScrollView style={{flex: 1}}>
         <View style={styles.container}>
           <View style={styles.topSection}>
-            <Image style={styles.image} source={{uri: state.userInfo.avatar}} />
-            <Text style={styles.name}>{state.userInfo.name}</Text>
+            <Image style={[styles.image, {borderColor: theme.TEXT_COLOR} ]} source={{uri: state.userInfo.avatar}} />
+            <Text style={[styles.name, {color: theme.TEXT_COLOR}]}>{state.userInfo.name}</Text>
           </View>
           <View style={styles.skillSection}>
-            <Text style={styles.interests}>{languageConstant.INTERESTS}</Text>
+            <Text style={[styles.interests, {color: theme.TEXT_COLOR}]}>{languageConstant.INTERESTS}</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {state.userCategories.map((item, index) => <SkillItem id={item.id} key={index} navigation={navigation} ticked content={item.name} />)}
             </ScrollView>
@@ -117,7 +119,7 @@ const Profile = ({ route, navigation }) => {
             <InfoItem style={{ marginTop: 20 }} title={languageConstant.UPDATED_AT} content={convertToDateTime(state.userInfo.updatedAt)} />
           </View>
           {token !== null &&  <MyButton handleClick={handleEditInfo} style={styles.button} text={languageConstant.UPDATE_INFO} />}
-          {token !== null &&  <MyButton handleClick={() => navigation.navigate(CHANGE_PASSWORD, {state: state})} style={styles.button} text={languageConstant.CHANGE_PASSWORD.toUpperCase()} />}
+          {token !== null &&  <MyButton handleClick={() => navigation.navigate(languageConstant.CHANGE_PASSWORD, {state: state})} style={styles.button} text={languageConstant.CHANGE_PASSWORD.toUpperCase()} />}
           {token !== null ?
             <MyButton handleClick={handleLogout} style={styles.button} text={languageConstant.LOGOUT} />
             :

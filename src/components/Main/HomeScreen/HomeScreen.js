@@ -15,11 +15,13 @@ import RegisterdCourse from './RegisteredSection/RegisteredCourse';
 import RegisterSection from './RegisteredSection/RegisterSection';
 import Loader from '../../Common/Loader/Loader';
 import { LanguageContext } from '../../../contexts/LanguageContext';
+import { ThemeContext } from '../../../contexts/ThemeContext';
 
 
 const HomeScreen = ({ navigation }) => {
   const { token, setLoading } = useContext(UserContext);
   const {languageConstant} = useContext(LanguageContext);
+  const {theme} = useContext(ThemeContext)
 
   const [favoriteCourses, setFavoriteCourses] = useState([]);
   const [coursesByCategories, setCourseByCategories] = useState([])
@@ -83,7 +85,7 @@ const HomeScreen = ({ navigation }) => {
         {
           token === null
             ?
-            <Text style={styles.text}>{languageConstant.REQUIRE_LOGIN}</Text>
+            <Text style={[styles.text, {color: theme.TEXT_COLOR} ]}>{languageConstant.REQUIRE_LOGIN}</Text>
             :
             <ScrollView showsVerticalScrollIndicator={false}>
               <CourseSection  courses={favoriteCourses} navigation={navigation} style={{ marginTop: 30 }} title={languageConstant.FAVORITE_COURSES} />

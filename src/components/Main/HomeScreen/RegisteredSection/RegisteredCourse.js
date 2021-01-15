@@ -1,17 +1,23 @@
 import React from 'react';
+import { useContext } from 'react';
 import { View, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
+import { LanguageContext } from '../../../../contexts/LanguageContext';
+import { ThemeContext } from '../../../../contexts/ThemeContext';
 import { COURSE_DETAIL } from '../../../../globals/KeyScreen';
 import { convertToDateTime } from '../../../../globals/util';
 
 
 const RegisterdCourse = ({ course, navigation }) => {
+  const {languageConstant} = useContext(LanguageContext);
+  const {theme} = useContext(ThemeContext);
+
   return (
-    <TouchableOpacity onPress={() => navigation.navigate(COURSE_DETAIL, { course: course })}>
-      <View style={styles.container}>
+    <TouchableOpacity onPress={() => navigation.navigate(languageConstant.COURSE_DETAIL, { course: course })}>
+      <View style={[styles.container, {backgroundColor: theme.COURSE_FOOTER}]}>
         <Image style={styles.image} source={{ uri: course.courseImage }} />
         <View style={styles.textGroup}>
-          <Text numberOfLines={2} style={styles.title}>{course.courseTitle}</Text>
-          <Text style={styles.otherText} >{course.instructorName}</Text>
+          <Text numberOfLines={2} style={[styles.title, {color: theme.TEXT_COLOR}]}>{course.courseTitle}</Text>
+          <Text style={[styles.otherText, {color: theme.TEXT_COLOR_BLUR}]} >{course.instructorName}</Text>
           <Text style={styles.highlightText} >{`Latest: ${convertToDateTime(course.latestLearnTime)}`}</Text>
           <Text style={styles.highlightText} >{`Process: ${course.process}/${course.total}`}</Text>
         </View>

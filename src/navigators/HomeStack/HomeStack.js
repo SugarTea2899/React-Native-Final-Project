@@ -48,43 +48,24 @@ const HomeStack = () => {
             <Stack.Screen
                 name={languageConstant.LOGIN}
                 component={Login}
-                options={{
-                    headerStyle: {
-                        backgroundColor: '#242424'
-                    }
-                }}
             />
             <Stack.Screen
                 name={languageConstant.REGISTER}
                 component={Register}
-                options={{
-                    headerStyle: {
-                        backgroundColor: '#242424'
-                    }
-                }}
             />
             <Stack.Screen
                 name={languageConstant.LIST_COURSE}
                 component={ListCourse}
-                options={({ route }) => ({
-                    title: route.params.title
-                })}
+
             />
             <Stack.Screen
                 name={languageConstant.SKILL_DETAIL}
                 component={SkillDetail}
-                options={({ route }) => ({
-                    title: route.params.content
-                })}
+
             />
             <Stack.Screen
                 name={languageConstant.FORGOT_PASSWORD}
                 component={ForgotPassword}
-                options={{
-                    headerStyle: {
-                        backgroundColor: '#242424'
-                    }
-                }}
             />
             <Stack.Screen
                 name={languageConstant.SETTING}

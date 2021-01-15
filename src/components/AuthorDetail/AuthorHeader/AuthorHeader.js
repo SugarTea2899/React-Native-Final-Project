@@ -5,27 +5,33 @@ import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import SkillItem from '../../Main/BrowseScreen/SkillSection/SkillItem/SkillItem';
+import { useContext } from 'react';
+import { ThemeContext } from '../../../contexts/ThemeContext';
+import { LanguageContext } from '../../../contexts/LanguageContext';
 
 const AuthorHeader = ({ author }) => {
+    const {theme} = useContext(ThemeContext);
+    const {languageConstant} = useContext(LanguageContext);
+    
     return (
         <View style={styles.container}>
             <AuthorItem style={styles.authorItem} imageStyle={styles.imageStyle} author={author} />
             <View style={styles.linkContainer}>
-                <Entypo name="email" size={20} color="white" />
-                <Text style={styles.link}>{author.email}</Text>
+                <Entypo name="email" size={20} color={theme.TEXT_COLOR} />
+                <Text style={[styles.link, {color: theme.TEXT_COLOR}]}>{author.email}</Text>
             </View>
             <View style={styles.linkContainer}>
-                <Feather name="phone" size={20} color="white" />
-                <Text style={styles.link}>{author.phone}</Text>
+                <Feather name="phone" size={20} color={theme.TEXT_COLOR} />
+                <Text style={[styles.link, {color: theme.TEXT_COLOR}]}>{author.phone}</Text>
             </View>
-            <Text style={styles.skill}>Skills</Text>
+            <Text style={[styles.skill, {color: theme.TEXT_COLOR}]}>Skills</Text>
             <ScrollView style={{alignSelf: 'flex-start'}} horizontal={true} showsHorizontalScrollIndicator={false}>
                 <View style={styles.skillSection}>
                     {author.skills.map((item, index) => <SkillItem key={index} disble ticked content={item} />)}
                 </View>
             </ScrollView>
 
-            <Text style={styles.course}>Courses</Text>
+            <Text style={[styles.course, {color: theme.TEXT_COLOR}]}>{languageConstant.COURSE}</Text>
         </View>
     );
 }

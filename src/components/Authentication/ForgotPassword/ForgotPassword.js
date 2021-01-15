@@ -1,12 +1,16 @@
 import React from 'react';
+import { useContext } from 'react';
 import {View, StyleSheet, StatusBar, ScrollView } from 'react-native';
+import { ThemeContext } from '../../../contexts/ThemeContext';
 import MyButton from '../../Common/MyButton/MyButton';
 import MyInput from '../../Common/MyInput/MyInput';
 
 
 const ForgotPassword = () => {
+    const {theme} = useContext(ThemeContext);
+
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {backgroundColor: theme.LOGIN_BACKGROUND}]}>
             <StatusBar  translucent backgroundColor="transparent"/>
             <ScrollView contentContainerStyle={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <MyInput  lable={'EMAIL'}/>

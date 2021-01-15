@@ -21,6 +21,7 @@ import UpdateForm from '../../components/AccountManagement/UpdateForm/UpdateForm
 import ChangePasswordForm from '../../components/AccountManagement/ChangePasswordForm/ChangePasswordForm';
 import { useContext } from 'react';
 import { LanguageContext } from '../../contexts/LanguageContext';
+import { ThemeContext } from '../../contexts/ThemeContext';
 const Stack = createStackNavigator();
 
 const BrowseStack = () => {
@@ -78,9 +79,6 @@ const BrowseStack = () => {
                 component={ForgotPassword}
                 options={{
                     title: 'Forgot Password',
-                    headerStyle: {
-                        backgroundColor: '#242424'
-                    }
                 }}
             />
             <Stack.Screen
@@ -90,20 +88,10 @@ const BrowseStack = () => {
             <Stack.Screen 
                 name={languageConstant.LOGIN}
                 component={Login}
-                options={{
-                    headerStyle: {
-                        backgroundColor: '#242424'
-                    }
-                }}
             />
             <Stack.Screen
                 name={languageConstant.REGISTER}
                 component={Register}
-                options={{
-                    headerStyle: {
-                        backgroundColor: '#242424'
-                    }
-                }}
             />
             <Stack.Screen
                 name={languageConstant.EDIT_INFO_SCREEN}

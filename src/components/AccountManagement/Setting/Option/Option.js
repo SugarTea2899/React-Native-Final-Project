@@ -1,25 +1,29 @@
 import React, { useState } from 'react';
+import { useContext } from 'react';
 import {View, StyleSheet, Switch, Text } from 'react-native';
+import { ThemeContext } from '../../../../contexts/ThemeContext';
 
 
 const Option = ({title, helperText, hideHelperText = false, hideSwit = false, value = true , style, onChange = () => {}}) => {
     const [isEnabled, setIsEnabled] = useState(value);
+    const {theme} = useContext(ThemeContext);
+
     const toggleSwitch = () => {
-        setIsEnabled((previousState) => {
-            onChange(!previousState);
-            return !previousState;
-        })
+
+        setIsEnabled(!isEnabled);
+        onChange(!isEnabled);
     }
+
     return (
         <View style={[styles.container, style]}>
             <View style={styles.textContainer}>
-                <Text style={styles.title}>
+                <Text style={[styles.title, {color: theme.TEXT_COLOR}]}>
                     {title}
                 </Text>
                 {
                     !hideHelperText
                     &&
-                    <Text style={styles.helper}>
+                    <Text style={[styles.helper, {color: theme.TEXT_COLOR_BLUR}]}>
                         {helperText}
                     </Text>
                 }

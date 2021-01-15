@@ -47,20 +47,12 @@ const DownloadStack = () => {
             <Stack.Screen
                 name={languageConstant.LOGIN}
                 component={Login}
-                options={{
-                    headerStyle: {
-                        backgroundColor: '#242424'
-                    }
-                }}
+
             />
             <Stack.Screen
                 name={languageConstant.REGISTER}
                 component={Register}
-                options={{
-                    headerStyle: {
-                        backgroundColor: '#242424'
-                    }
-                }}
+
             />
             <Stack.Screen
                 name={languageConstant.SKILL_DETAIL}
@@ -72,12 +64,7 @@ const DownloadStack = () => {
             <Stack.Screen
                 name={languageConstant.FORGOT_PASSWORD}
                 component={ForgotPassword}
-                options={{
-                    title: 'Forgot Password',
-                    headerStyle: {
-                        backgroundColor: '#242424'
-                    }
-                }}
+
             />
             <Stack.Screen
                 name={languageConstant.SETTING}

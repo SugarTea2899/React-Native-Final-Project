@@ -1,18 +1,24 @@
 import React from 'react';
+import { useContext } from 'react';
 import { View, StyleSheet, ScrollView, Text, Image, TouchableOpacity } from 'react-native';
+import { LanguageContext } from '../../../../../contexts/LanguageContext';
+import { ThemeContext } from '../../../../../contexts/ThemeContext';
 import { COURSE_DETAIL } from '../../../../../globals/KeyScreen';
 import { formatMoney, getAverageStar } from '../../../../../globals/util';
 import Stars from '../../../../Common/Stars/Stars';
 
 const CourseItem = ({ course, navigation }) => {
+  const {theme} = useContext(ThemeContext);
+  const {languageConstant} = useContext(LanguageContext);
+
   return (
-    <TouchableOpacity onPress={() => navigation.navigate(COURSE_DETAIL, { course: course })}>
-      <View style={styles.container}>
+    <TouchableOpacity onPress={() => navigation.navigate(languageConstant.COURSE_DETAIL, { course: course })}>
+      <View style={[styles.container, {backgroundColor: theme.COURSE_FOOTER}]}>
         <Image source={{ uri: course.courseImage }} style={styles.image} />
         <View style={styles.textGroup}>
-          <Text numberOfLines={2} style={styles.title}>{course.courseTitle}</Text>
+          <Text numberOfLines={2} style={[styles.title, {color: theme.TEXT_COLOR}]}>{course.courseTitle}</Text>
           <View style={{ marginTop: 4 }}>
-            <Text style={styles.otherText}>{`${course.instructorName}`}</Text>
+            <Text style={[styles.otherText, theme.TEXT_COLOR_BLUR]}>{`${course.instructorName}`}</Text>
             <Text style={styles.price}>
               {`${formatMoney(course.coursePrice)} - (${course.courseSoldNumber})`}
             </Text>
@@ -31,7 +37,7 @@ const styles = StyleSheet.create({
   container: {
     height: 250,
     width: 200,
-    backgroundColor: '#151c2e',
+    backgroundColor: '#bdbdbd',
     marginRight: 20,
     borderRadius: 3
   },
@@ -51,7 +57,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   otherText: {
-    color: 'lightgray',
+    color: '#424242',
     fontSize: 11,
     marginTop: 2
   },

@@ -1,16 +1,20 @@
 import React from 'react';
 import {View, StyleSheet, Text } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
+import { useContext } from 'react';
+import { ThemeContext } from '../../../../contexts/ThemeContext';
 
 const ContentHeader = ({number, time, title}) => {
+    const {theme} = useContext(ThemeContext);
+
     return (
         <View style={styles.container}>
             <View style={styles.number}>
                 <Text style={styles.numberText}>{number}</Text>
             </View>
             <View style={styles.textGroup}>
-                <Text style={styles.contentText}> {title} </Text>
-                <Text style={styles.time}> {time} </Text>
+                <Text style={[styles.contentText, {color: theme.TEXT_COLOR}]}> {title} </Text>
+                <Text style={[styles.time, {color: theme.TEXT_COLOR_BLUR}]}> {time} </Text>
             </View>
             <View style={styles.iconContainer} >
                 <Entypo name="dots-three-vertical" size={18} color="white" />

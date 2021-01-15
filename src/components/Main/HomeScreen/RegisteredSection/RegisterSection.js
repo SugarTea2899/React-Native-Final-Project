@@ -1,14 +1,18 @@
 import React from 'react';
+import { useContext } from 'react';
 import { View, StyleSheet, ScrollView, Text, Image, TouchableWithoutFeedback } from 'react-native';
+import { ThemeContext } from '../../../../contexts/ThemeContext';
 import RegisterdCourse from './RegisteredCourse';
 
 
 
 const RegisterSection = ({title, style, navigation, courses}) => {
+    const {theme} = useContext(ThemeContext);
+
     return (
         <View style={[styles.container, style]}>
             <View style={styles.textGroup}>
-                <Text style={styles.title}>
+                <Text style={[styles.title, {color: theme.TEXT_COLOR}]}>
                     {title}
                 </Text>
             </View>

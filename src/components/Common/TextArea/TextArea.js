@@ -1,12 +1,16 @@
 import React from 'react';
+import { useContext } from 'react';
 import {View, StyleSheet, Text, ScrollView } from 'react-native';
+import { ThemeContext } from '../../../contexts/ThemeContext';
 
 
 const TextArea = ({style, content}) => {
+    const {theme} = useContext(ThemeContext);
+
     return (
         <View style={[styles.container, style]}>
             <ScrollView nestedScrollEnabled={true} style={styles.scrollView} showsVerticalScrollIndicator={false}>
-                <Text style={styles.text}>
+                <Text style={[styles.text, {color: theme.TEXT_COLOR}]}>
                     {content}
                 </Text>
             </ScrollView>              

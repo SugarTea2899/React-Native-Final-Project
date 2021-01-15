@@ -1,16 +1,20 @@
 import React from 'react';
+import { useContext } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { ThemeContext } from '../../../../contexts/ThemeContext';
 
 
 const ContentItem = ({ content, time, active = false, handleClick = () => {} }) => {
+    const {theme} = useContext(ThemeContext);
+
     let dotColor = active ? 'green' : 'gray'
     return (
         <TouchableWithoutFeedback onPress={handleClick}>
             <View style={styles.container}>
                 <View style={[styles.dot, { backgroundColor: dotColor }]} />
-                <Text style={styles.content}>{content}</Text>
-                <Text style={styles.time}>{time}</Text>
+                <Text style={[styles.content, {color: theme.TEXT_COLOR}]}>{content}</Text>
+                <Text style={[styles.time, {color: theme.TEXT_COLOR_BLUR}]}>{time}</Text>
             </View>
         </TouchableWithoutFeedback>
 

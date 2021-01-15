@@ -3,6 +3,8 @@ import { useContext } from 'react';
 import { View, StyleSheet, Text, FlatList, Alert } from 'react-native';
 import { openReviewCourse } from '../../../actions/CourseActions';
 import { CourseContext } from '../../../contexts/CourseContext';
+import { LanguageContext } from '../../../contexts/LanguageContext';
+import { ThemeContext } from '../../../contexts/ThemeContext';
 import { UserContext } from '../../../contexts/UserContext';
 import { OPEN_REVIEW_COURSE } from '../../../globals/ActionTypes/CourseType';
 import MyButton from '../../Common/MyButton/MyButton';
@@ -14,6 +16,8 @@ import ReviewModal from './ReviewModal/ReviewModal';
 const ReviewCourse = ({ course, register }) => {
   const {dispatch} = useContext(CourseContext);
   const {token} = useContext(UserContext);
+  const {languageConstant} = useContext(LanguageContext);
+  const {theme} = useContext(ThemeContext);
 
   const getReviews = () => {
     if (course.ratings && course.ratings.ratingList)
@@ -38,7 +42,7 @@ const ReviewCourse = ({ course, register }) => {
     <>
       <View style={styles.container}>
         <View style={styles.reviewContainer}>
-          <Text style={styles.text} >
+          <Text style={[styles.text, {color: theme.TEXT_COLOR}]} >
             {'Formality'}
           </Text>
           <Stars
@@ -49,7 +53,7 @@ const ReviewCourse = ({ course, register }) => {
           />
         </View>
         <View style={styles.reviewContainer}>
-          <Text style={styles.text} >
+          <Text style={[styles.text, {color: theme.TEXT_COLOR}]} >
             {'Content'}
           </Text>
           <Stars
@@ -60,7 +64,7 @@ const ReviewCourse = ({ course, register }) => {
           />
         </View>
         <View style={styles.reviewContainer}>
-          <Text style={styles.text} >
+          <Text style={[styles.text, {color: theme.TEXT_COLOR}]} >
             {'Presentation'}
           </Text>
           <Stars

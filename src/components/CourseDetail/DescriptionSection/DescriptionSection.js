@@ -6,12 +6,6 @@ const DescriptionSection = ({content}) => {
     return (
         <View style={styles.container}>
             <TextArea content={content} />
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Take a learning check</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>View related path & courses</Text>
-            </TouchableOpacity>
         </View>
     );
 }
@@ -22,6 +16,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
         paddingLeft: 15,
         paddingRight: 15,
+        marginBottom: 20,
     },
     button: {
         backgroundColor: '#47484a',

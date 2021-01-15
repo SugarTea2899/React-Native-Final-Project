@@ -1,8 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableHighlight } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import { useContext } from 'react';
+import { ThemeContext } from '../../../contexts/ThemeContext';
 
 const IconButton = ({ name, content, onClick }) => {
+    const {theme} = useContext(ThemeContext);
+
     return (
         <View style={styles.content}>
             <TouchableHighlight onPress={onClick}>
@@ -11,7 +15,7 @@ const IconButton = ({ name, content, onClick }) => {
                 </View>
             </TouchableHighlight>
 
-            <Text style={styles.text}>{content}</Text>
+            <Text style={[styles.text, {color: theme.TEXT_COLOR}]}>{content}</Text>
         </View>
     );
 }

@@ -10,12 +10,15 @@ import MyButton from '../../Common/MyButton/MyButton';
 import MyInput from '../../Common/MyInput/MyInput';
 import * as SecureStore from 'expo-secure-store';
 import { HOME } from '../../../globals/KeyScreen';
+import { LanguageContext } from '../../../contexts/LanguageContext';
 
 const ChangePasswordForm = ({ route, navigation }) => {
   const [oldPass, setOldPass] = useState('');
   const [newPass, setNewPass] = useState('');
   const [confirmPass, setConfirmPass] = useState('');
   const { token, setContent } = useContext(UserContext);
+  const {languageConstant} = useContext(LanguageContext);
+
   const { state } = route.params;
 
   const handleSave = () => {
@@ -54,9 +57,9 @@ const ChangePasswordForm = ({ route, navigation }) => {
   }
   return (
     <View style={styles.container}>
-      <MyInput text={oldPass} setText={setOldPass} isPassWord lable={'OLD PASSWORD'} />
-      <MyInput text={newPass} setText={setNewPass} isPassWord style={{ marginTop: 25 }} lable={'NEW PASSWORD'} />
-      <MyInput text={confirmPass} setText={setConfirmPass} isPassWord style={{ marginTop: 25 }} lable={'CONFIRM PASSWORD'} />
+      <MyInput text={oldPass} setText={setOldPass} isPassWord lable={languageConstant.OLD_PASSWORD} />
+      <MyInput text={newPass} setText={setNewPass} isPassWord style={{ marginTop: 25 }} lable={languageConstant.NEW_PASSWORD} />
+      <MyInput text={confirmPass} setText={setConfirmPass} isPassWord style={{ marginTop: 25 }} lable={languageConstant.CONFIRM_PASSWORD} />
       <MyButton handleClick={handleSave} style={styles.button} text='SAVE' />
     </View>
   );

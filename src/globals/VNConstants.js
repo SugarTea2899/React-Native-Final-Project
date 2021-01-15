@@ -28,7 +28,16 @@ export const COURSE = 'Khoá Học'
 export const RESULT = 'Kết Quả'
 export const LANGUAGE = 'Ngôn Ngữ'
 export const THEME = 'Chủ Đề'
-
+export const NAME = 'TÊN'
+export const UPDATE = 'Cập Nhật'
+export const OLD_PASSWORD = 'MẬT KHẨU CŨ'
+export const NEW_PASSWORD = 'MẬT KHẨU MỚI'
+export const CONFIRM_PASSWORD = 'XÁC NHẬN MẬT KHẨU'
+export const REGISTERED = 'Đã Đăng Ký'
+export const LESSON = 'BÀI HỌC'
+export const REVIEW = 'ĐÁNH GIÁ'
+export const LIKE = 'Thích'
+export const UNLIKE = 'Bỏ Thích'
 //Key Screen
 export const BROWSE = 'Khám Phá';
 export const PROFILE = 'Thông Tin';

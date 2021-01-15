@@ -1,23 +1,27 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
-import { COURSE_DETAIL } from '../../../globals/KeyScreen';
 import { formatMoney, getAverageStar } from '../../../globals/util';
 import Stars from '../../Common/Stars/Stars';
+import { useContext } from 'react';
+import { ThemeContext } from '../../../contexts/ThemeContext';
+import { LanguageContext } from '../../../contexts/LanguageContext';
 
 const ListCourseItem = ({ course, navigation }) => {
+  const {theme} = useContext(ThemeContext);
+  const {languageConstant} = useContext(LanguageContext);
+
   return (
-    <TouchableOpacity onPress={() => navigation.navigate(COURSE_DETAIL, { course: course })}>
+    <TouchableOpacity onPress={() => navigation.navigate(languageConstant.COURSE_DETAIL, { course: course })}>
       <View style={styles.container}>
         <Image style={styles.image} source={{ uri: course.imageUrl }} />
         <View style={styles.textGroup}>
-          <Text numberOfLines={2} style={styles.title}>
+          <Text numberOfLines={2} style={[styles.title, {color: theme.TEXT_COLOR}]}>
             {course.title}
           </Text>
-          <Text style={styles.otherText}>
+          <Text style={[styles.otherText, {color: theme.TEXT_COLOR_BLUR}]}>
             {course.instructorName}
           </Text>
-          <Text style={styles.otherText}>
+          <Text style={[styles.otherText, {color: theme.TEXT_COLOR_BLUR}]}>
             {
               course.totalHours
                 ?
@@ -32,7 +36,6 @@ const ListCourseItem = ({ course, navigation }) => {
           <Stars style={{ marginTop: 0, marginLeft: 1 }} maxStar={5} curStar={getAverageStar(course)} starSize={12} ratedNumber={course.ratedNumber} />
 
         </View>
-        <Entypo style={{ alignSelf: 'center', flex: 1, textAlign: 'right' }} name="dots-three-vertical" size={20} color="white" />
       </View>
     </TouchableOpacity>
 
@@ -45,12 +48,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomColor: 'gray',
     borderBottomWidth: 0.7,
-    flex: 1
+    flex: 1,
+    marginLeft: 7,
+    marginRight: 7,
   },
   image: {
     height: 80,
     alignSelf: 'center',
-    flex: 3,
+    flex: 2.5,
     resizeMode: 'stretch',
   },
   textGroup: {

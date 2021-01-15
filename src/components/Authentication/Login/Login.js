@@ -8,11 +8,13 @@ import { FORGOT_PASSWORD, HOME, REGISTER } from '../../../globals/KeyScreen';
 import MyButton from '../../Common/MyButton/MyButton';
 import MyInput from '../../Common/MyInput/MyInput';
 import { LanguageContext } from '../../../contexts/LanguageContext';
+import { ThemeContext } from '../../../contexts/ThemeContext';
 
 
 const Login = ({navigation}) => {
 
     const {languageConstant} = useContext(LanguageContext);
+    const {theme} = useContext(ThemeContext);
 
     const handleRegister = () => {
         navigation.navigate(languageConstant.REGISTER);
@@ -47,8 +49,7 @@ const Login = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     return (
-        <View style={styles.container}>
-            <StatusBar  translucent backgroundColor="transparent"/>
+        <View style={[styles.container, {backgroundColor: theme.LOGIN_BACKGROUND}]}>
             <ScrollView contentContainerStyle={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <MyInput text={email} setText={setEmail} lable={'EMAIL'} />
                 <MyInput text={password} setText={setPassword} style={{marginTop: 35}} isPassWord={true} lable={languageConstant.PASSWORD.toUpperCase()}/>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { View, StyleSheet, ScrollView, Text, Image, TouchableWithoutFeedback } from 'react-native';
 import { LanguageContext } from '../../../../contexts/LanguageContext';
+import { ThemeContext } from '../../../../contexts/ThemeContext';
 import { LIST_COURSE } from '../../../../globals/KeyScreen';
 import { convertCourse, convertCourseV2 } from '../../../../globals/util';
 
@@ -11,6 +12,7 @@ import CourseItem from './CourseItem/CourseItem';
 
 const CourseSection = ({ title, style, navigation, courses, hideSeeAll = false }) => {
     const {languageConstant} = useContext(LanguageContext);
+    const {theme} = useContext(ThemeContext);
 
     const handleSeeAll = () => {
         navigation.navigate(languageConstant.LIST_COURSE, {title: title, courses: courses.map(item => convertCourseV2(item))})
@@ -25,7 +27,7 @@ const CourseSection = ({ title, style, navigation, courses, hideSeeAll = false }
     return (
         <View style={[styles.container, style]}>
             <View style={styles.textGroup}>
-                <Text style={styles.title}>
+                <Text style={[styles.title, {color: theme.TEXT_COLOR}]}>
                     {title}
                 </Text>
                 {!hideSeeAll && <TouchableWithoutFeedback onPress={handleSeeAll}><Text style={styles.seeALL}>{languageConstant.SEE_ALL}</Text></TouchableWithoutFeedback> }

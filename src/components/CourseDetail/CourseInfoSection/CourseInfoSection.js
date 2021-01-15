@@ -1,20 +1,26 @@
 import React from 'react';
+import { useContext } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { LanguageContext } from '../../../contexts/LanguageContext';
+import { ThemeContext } from '../../../contexts/ThemeContext';
 import { AUTHOR } from '../../../globals/KeyScreen';
 import { formatMoney } from '../../../globals/util';
 import Stars from '../../Common/Stars/Stars';
 
 const CourseInfoSection = ({ course, navigation }) => {
+  const {theme} = useContext(ThemeContext);
+  const {languageConstant} = useContext(LanguageContext);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{course.title}</Text>
+      <Text style={[styles.title, {color: theme.TEXT_COLOR}]}>{course.title}</Text>
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <TouchableOpacity onPress={() => { navigation.navigate(AUTHOR, { authorId: course.instructorId }) }}>
           <View style={styles.skill}>
             <Text style={styles.skillName}>{course.instructor.name}</Text>
           </View>
         </TouchableOpacity>
-        <Text style={styles.price}>{` -  ${formatMoney(course.price)}`}</Text>
+        <Text style={[styles.price, {color: theme.TEXT_COLOR}]}>{` -  ${formatMoney(course.price)}`}</Text>
         <Stars
           style={styles.stars}
           maxStar={5}
@@ -23,7 +29,7 @@ const CourseInfoSection = ({ course, navigation }) => {
           starSize={12}
         />
       </View>
-      <Text style={styles.otherText}>
+      <Text style={[styles.otherText, {color: theme.TEXT_COLOR_BLUR}]}>
         {`${new Date(course.createdAt).toLocaleDateString()}  -  ${course.totalHours} hours`}
       </Text>
     </View>

@@ -1,5 +1,7 @@
 import React from 'react';
+import { useContext } from 'react';
 import {View, StyleSheet, SectionList, Text } from 'react-native';
+import { LanguageContext } from '../../contexts/LanguageContext';
 import ListAuthorsItem from '../Authors/ListAuthorsItem/ListAuthorsItem';
 import ListCourseItem from '../Courses/ListCourseItem/ListCourseItem';
 import ListPathItem from '../Paths/ListPathItem/ListPathItem';
@@ -7,13 +9,14 @@ import Header from './Header/Header';
 
 
 const MixedList = ({navigation, results}) => {
+    const {languageConstant} = useContext(LanguageContext);
 
     const renderItem = ({item, index, section}) => {
         if (index >= 4) return <Text style={styles.emptyText}> </Text>;
         switch (section.title){
-            case 'Courses':
+            case languageConstant.COURSE:
                 return <ListCourseItem navigation={navigation} course={item}/>
-            case 'Authors':
+            case languageConstant.AUTHOR:
                 return <ListAuthorsItem navigation={navigation} author={item} />
         }       
     };

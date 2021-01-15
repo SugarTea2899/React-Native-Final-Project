@@ -16,6 +16,7 @@ import { API_URL, TOKEN_NAME } from '../../../globals/constants';
 import { initUserCategories, initUserInfo } from '../../../actions/UserInfoActions';
 import { convertToDateTime } from '../../../globals/util';
 import * as SecureStore from 'expo-secure-store';
+import { LanguageContext } from '../../../contexts/LanguageContext';
 
 const initalState = {
   userInfo: {
@@ -35,9 +36,10 @@ const initalState = {
 const Profile = ({ route, navigation }) => {
   const [state, dispatch] = useReducer(UserInfoReducer, initalState);
   const {token, setContent, setLoading} = useContext(UserContext);
+  const {languageConstant} = useContext(LanguageContext);
 
   const handleLogin = () => {
-    navigation.navigate(LOGIN);
+    navigation.navigate(languageConstant.LOGIN);
   }
   const handleLogout = () => {
     Alert.alert(
@@ -49,7 +51,7 @@ const Profile = ({ route, navigation }) => {
           onPress: async () => {
             setContent(null);
             await SecureStore.deleteItemAsync(TOKEN_NAME);
-            navigation.navigate(HOME);
+            navigation.navigate(languageConstant.HOME);
           }
         },
         {
@@ -60,7 +62,7 @@ const Profile = ({ route, navigation }) => {
     )
   }
   const handleEditInfo = () => {
-    navigation.navigate(EDIT_INFO_SCREEN, {userInfo: state.userInfo, dispatch: dispatch});
+    navigation.navigate(languageConstant.EDIT_INFO_SCREEN, {userInfo: state.userInfo, dispatch: dispatch});
   }
 
   useEffect(() => {
@@ -103,23 +105,23 @@ const Profile = ({ route, navigation }) => {
             <Text style={styles.name}>{state.userInfo.name}</Text>
           </View>
           <View style={styles.skillSection}>
-            <Text style={styles.interests}>Interests</Text>
+            <Text style={styles.interests}>{languageConstant.INTERESTS}</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {state.userCategories.map((item, index) => <SkillItem id={item.id} key={index} navigation={navigation} ticked content={item.name} />)}
             </ScrollView>
           </View>
           <View style={styles.infoSection}>
             <InfoItem title='EMAIL' content={state.userInfo.email} />
-            <InfoItem style={{ marginTop: 20 }} title='PHONE NUMBER' content={state.userInfo.phone} />
-            <InfoItem style={{ marginTop: 20 }} title='Created At' content={convertToDateTime(state.userInfo.createdAt)} />
-            <InfoItem style={{ marginTop: 20 }} title='Updated At' content={convertToDateTime(state.userInfo.updatedAt)} />
+            <InfoItem style={{ marginTop: 20 }} title={languageConstant.PHONE_NUMBER} content={state.userInfo.phone} />
+            <InfoItem style={{ marginTop: 20 }} title={languageConstant.CREATED_AT} content={convertToDateTime(state.userInfo.createdAt)} />
+            <InfoItem style={{ marginTop: 20 }} title={languageConstant.UPDATED_AT} content={convertToDateTime(state.userInfo.updatedAt)} />
           </View>
-          {token !== null &&  <MyButton handleClick={handleEditInfo} style={styles.button} text={'UPDATE INFORMATION'} />}
-          {token !== null &&  <MyButton handleClick={() => navigation.navigate(CHANGE_PASSWORD, {state: state})} style={styles.button} text={'CHANGE PASSWORD'} />}
+          {token !== null &&  <MyButton handleClick={handleEditInfo} style={styles.button} text={languageConstant.UPDATE_INFO} />}
+          {token !== null &&  <MyButton handleClick={() => navigation.navigate(CHANGE_PASSWORD, {state: state})} style={styles.button} text={languageConstant.CHANGE_PASSWORD.toUpperCase()} />}
           {token !== null ?
-            <MyButton handleClick={handleLogout} style={styles.button} text={'LOGOUT'} />
+            <MyButton handleClick={handleLogout} style={styles.button} text={languageConstant.LOGOUT} />
             :
-            <MyButton handleClick={handleLogin} style={styles.button} text={'LOG IN'} />
+            <MyButton handleClick={handleLogin} style={styles.button} text={languageConstant.LOGIN.toUpperCase()} />
           }
         </View>
       </ScrollView>

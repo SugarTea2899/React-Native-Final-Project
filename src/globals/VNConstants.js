@@ -1,0 +1,54 @@
+
+//Cotent
+export const NEW_RELEASE = 'KHOÁ MỚI';
+export const FAVORITE_COURSES = 'Khoá Học Yêu Thích'
+export const COURSE_IN_CATEGORY = 'Khoá Học Trong Lĩnh Vực'
+export const COURSE_LEARNING = 'Khoá Học Đang Học'
+export const RECOMMEND_FOR_YOU = 'Gợi Ý Cho Bạn'
+export const SEE_ALL = 'Xem Thêm >'
+export const API_URL = 'http://api.dev.letstudy.org/';
+export const TOP_SELL = 'BÁN CHẠY';
+export const TOP_RATE = 'NỔI BẬT';
+export const TOKEN_NAME = 'online-learning-token';
+export const USER_INFO = 'user-info'
+export const REQUIRE_LOGIN = 'Bạn phải đăng nhập để xem nội dung trang này.'
+export const INTERESTS = 'Quan tâm'
+export const PHONE_NUMBER = 'ĐIỆN THOẠI'
+export const CREATED_AT = 'NGÀY TẠO'
+export const UPDATED_AT = 'CHỈNH SỬA GẦN NHẤT'
+export const LOGOUT = 'ĐĂNG XUẤT'
+export const UPDATE_INFO = 'CẬP NHẬT THÔNG TIN' 
+export const CATEGORY = 'Lĩnh vực'
+export const PASSWORD = 'Mật Khẩu'
+export const CREATE_ACCOUNT = 'Tạo Tài Khoản'
+export const USER_NAME = 'Tên Tài Khoản'
+export const RE_PASSWORD = 'Nhập Lại Mật Khẩu'
+export const ALL = 'Tất Cả'
+export const COURSE = 'Khoá Học'
+export const RESULT = 'Kết Quả'
+export const LANGUAGE = 'Ngôn Ngữ'
+export const THEME = 'Chủ Đề'
+
+//Key Screen
+export const BROWSE = 'Khám Phá';
+export const PROFILE = 'Thông Tin';
+export const COURSE_SUGGEST = 'Khoá Học Gợi Ý';
+export const PATH_SUGGEST = 'Path Suggest';
+export const COURSE_DETAIL = 'Chi Tiết Khoá Học';
+export const PATH_DETAIL = 'Path Detail';
+export const SKILL_DETAIL = 'Skill Detail';
+export const LIST_COURSE = 'Danh Sách Khoá Học';
+export const LIST_PATH = 'List Path';
+export const AUTHOR = 'Tác Giả';
+export const FORGOT_PASSWORD = 'Quên Mật Khẩu';
+export const SETTING = 'Cài Đặt';
+export const LOGIN = 'Đăng Nhập';
+export const HOME = 'Trang Chủ';
+export const REGISTER = 'Đăng Ký';
+export const DOWNLOAD = 'Tải Về';
+export const SEARCH = 'Tìm Kiếm';
+export const COURSE_TAB = 'Khoá Học';
+export const PATH_TAB = 'PATHS';
+export const AUTHOR_TAB = 'Tác Giả';
+export const EDIT_INFO_SCREEN = 'Cập Nhật Thông Tin';
+export const CHANGE_PASSWORD = 'Đổi Mật Khẩu';

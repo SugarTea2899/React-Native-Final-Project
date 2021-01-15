@@ -14,6 +14,9 @@ import { useEffect } from 'react';
 import { fetchWithAu } from './src/api/fetchData';
 import Loader from './src/components/Common/Loader/Loader';
 import { useCallback } from 'react';
+import { LanguageContext } from './src/contexts/LanguageContext';
+import * as eng from './src/globals/EngConstants';
+import * as vni from './src/globals/VNConstants';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,6 +27,8 @@ LogBox.ignoreLogs([
 export default function App() {
   const [user, setUser] = useState({ token: null });
   const [loading, setLoading] = useState(false);
+  const [isEnglish, setIsEnglish] = useState(true);
+  const language = isEnglish ? eng : vni;
 
   const handleSetUser = (token) => {
     setUser({ token: token })
@@ -54,43 +59,46 @@ export default function App() {
     checkToken();
   }, [])
   return (
-    <UserContext.Provider value={{ token: user.token, setContent: handleSetUser, setLoading: handleSetLoading }} >
-      <NavigationContainer theme={DarkTheme}>
-        <StatusBar backgroundColor={'#121212'} />
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
-              switch (route.name) {
-                case 'Home':
-                  iconName = "home";
-                  break;
-                case 'Downloads':
-                  iconName = 'download';
-                  break;
-                case 'Browse':
-                  iconName = 'earth';
-                  break;
-                case 'Search':
-                  iconName = 'search1';
-                  break;
-              }
-              return <AntDesign name={iconName} size={size} color={color} />;
-            },
-          })}
-          tabBarOptions={{
-            activeTintColor: 'dodgerblue',
-            inactiveTintColor: 'gray'
-          }}
-        >
-          <Tab.Screen name="Home" component={HomeStack} />
-          <Tab.Screen name="Downloads" component={DownloadStack} />
-          <Tab.Screen name="Browse" component={BrowseStack} />
-          <Tab.Screen name="Search" component={SearchStack} />
-        </Tab.Navigator>
-        <Loader loading={loading} />
-      </NavigationContainer>
-    </UserContext.Provider>
+    <LanguageContext.Provider value={{languageConstant: isEnglish ? eng : vni, setLanguage: setIsEnglish}} >
+      <UserContext.Provider value={{ token: user.token, setContent: handleSetUser, setLoading: handleSetLoading }} >
+        <NavigationContainer theme={DarkTheme}>
+          <StatusBar backgroundColor={'#121212'} />
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
+                switch (route.name) {
+                  case language.HOME:
+                    iconName = "home";
+                    break;
+                  case language.DOWNLOAD:
+                    iconName = 'download';
+                    break;
+                  case language.BROWSE:
+                    iconName = 'earth';
+                    break;
+                  case language.SEARCH:
+                    iconName = 'search1';
+                    break;
+                }
+                return <AntDesign name={iconName} size={size} color={color} />;
+              },
+            })}
+            tabBarOptions={{
+              activeTintColor: 'dodgerblue',
+              inactiveTintColor: 'gray'
+            }}
+          >
+            <Tab.Screen name={language.HOME} component={HomeStack} />
+            <Tab.Screen name={language.DOWNLOAD} component={DownloadStack} />
+            <Tab.Screen name={language.BROWSE} component={BrowseStack} />
+            <Tab.Screen name={language.SEARCH} component={SearchStack} />
+          </Tab.Navigator>
+          <Loader loading={loading} />
+        </NavigationContainer>
+      </UserContext.Provider>
+    </LanguageContext.Provider>
+
 
   );
 }

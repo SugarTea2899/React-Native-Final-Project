@@ -7,11 +7,15 @@ import ListPaths from '../../Paths/ListPaths/ListPaths';
 import MixedList from '../../MixedList/MixedList';
 import SearchBar from '../../Other/SearchBar/SearchBar';
 import { useState } from 'react';
+import { useContext } from 'react';
+import { LanguageContext } from '../../../contexts/LanguageContext';
 
 
 const Tab = createMaterialTopTabNavigator();
 
 const SearchScreen = ({navigation}) => {
+    const {languageConstant} = useContext(LanguageContext);
+
     const [result, setResult] = useState({
         courses: [],
         authors: []
@@ -20,11 +24,11 @@ const SearchScreen = ({navigation}) => {
     const getMixedList = () => {
         return [
             {
-                title: 'Courses',
+                title: languageConstant.COURSE,
                 data: result.courses
             },
             {
-                title: 'Authors',
+                title: languageConstant.AUTHOR,
                 data: result.authors
             }
         ]
@@ -34,9 +38,9 @@ const SearchScreen = ({navigation}) => {
         <View style={styles.container}>
             <SearchBar setResult={setResult} />
             <Tab.Navigator>
-                <Tab.Screen name="ALL" children={() => <MixedList navigation={navigation} results={getMixedList()} />} />
-                <Tab.Screen name="COURSES" children={() => <ListCourse navigation={navigation} courses={result.courses} />} />
-                <Tab.Screen name="AUTHORS" children={() => <ListAuthors navigation={navigation} authors={result.authors} />} />
+                <Tab.Screen name={languageConstant.ALL} children={() => <MixedList navigation={navigation} results={getMixedList()} />} />
+                <Tab.Screen name={languageConstant.COURSE} children={() => <ListCourse navigation={navigation} courses={result.courses} />} />
+                <Tab.Screen name={languageConstant.AUTHOR} children={() => <ListAuthors navigation={navigation} authors={result.authors} />} />
             </Tab.Navigator>
         </View>
     );

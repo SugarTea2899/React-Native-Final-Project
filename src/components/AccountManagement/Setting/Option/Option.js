@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import {View, StyleSheet, Switch, Text } from 'react-native';
 
 
-const Option = ({title, helperText, hideHelperText = false, hideSwit = false, style}) => {
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState)
-
+const Option = ({title, helperText, hideHelperText = false, hideSwit = false, value = true , style, onChange = () => {}}) => {
+    const [isEnabled, setIsEnabled] = useState(value);
+    const toggleSwitch = () => {
+        setIsEnabled((previousState) => {
+            onChange(!previousState);
+            return !previousState;
+        })
+    }
     return (
         <View style={[styles.container, style]}>
             <View style={styles.textContainer}>
@@ -46,14 +50,14 @@ const styles = StyleSheet.create({
     },
     title: {
         color: 'white',
-        fontSize: 17
+        fontSize: 22
     },
     helper: {
         color: 'gray',
-        fontSize: 11
+        fontSize: 12
     },
     swit: {
-        flex: 1
+        flex: 1,
     }
 });
 

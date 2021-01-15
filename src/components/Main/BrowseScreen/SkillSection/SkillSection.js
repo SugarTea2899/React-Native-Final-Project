@@ -1,11 +1,15 @@
 import React from 'react';
+import { useContext } from 'react';
 import { View, ScrollView, StyleSheet, Text } from 'react-native';
+import { LanguageContext } from '../../../../contexts/LanguageContext';
 import SkillItem from './SkillItem/SkillItem';
 
 const SkillSection = ({navigation, categories}) => {
+    const {languageConstant} = useContext(LanguageContext);
+
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Categories</Text>
+            <Text style={styles.text}>{languageConstant.CATEGORY}</Text>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 {categories && categories.map((item, index) => <SkillItem id={item.id} key={index} navigation={navigation} content={item.name}/> )}
             </ScrollView>

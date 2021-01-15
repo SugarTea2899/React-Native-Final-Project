@@ -8,13 +8,17 @@ import CourseDetail from '../../components/CourseDetail/CourseDetail';
 import PathDetail from '../../components/PathDetail/PathDetail';
 import ForgotPassword from '../../components/Authentication/ForgotPassword/ForgotPassword';
 import { AUTHOR, COURSE_DETAIL, PATH_DETAIL, SEARCH } from '../../globals/KeyScreen';
+import { useContext } from 'react';
+import { LanguageContext } from '../../contexts/LanguageContext';
 const Stack = createStackNavigator();
 
 const SearchStack = () => {
+    const {languageConstant} = useContext(LanguageContext);
+
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name={SEARCH}
+                name={languageConstant.SEARCH}
                 component={SearchScreen}
                 options={{headerShown: false}} 
             />
@@ -23,17 +27,10 @@ const SearchStack = () => {
                 component={AuthorDetail}
             /> 
             <Stack.Screen 
-                name={COURSE_DETAIL}
+                name={languageConstant.COURSE_DETAIL}
                 component={CourseDetail}
                 options={({route}) => ({
                     title: route.params.course.title
-                })}
-            />
-            <Stack.Screen 
-                name={PATH_DETAIL}
-                component={PathDetail}
-                options={({route}) => ({
-                    title: route.params.path.title
                 })}
             />
         </Stack.Navigator>

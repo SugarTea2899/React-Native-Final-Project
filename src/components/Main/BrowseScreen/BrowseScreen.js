@@ -14,10 +14,12 @@ import { fetchWithAu, fetchWithoutAu } from '../../../api/fetchData';
 import { API_URL } from '../../../globals/constants';
 import CourseSection from '../HomeScreen/CourseSection/CourseSection';
 import { convertCourse } from '../../../globals/util';
+import { LanguageContext } from '../../../contexts/LanguageContext';
 const BrowseScreen = ({navigation}) => {
     const {token, setLoading} = useContext(UserContext);
     const [categories, setCategories] = useState([]);
     const [recommendCourses, setRecommendCourses] = useState([]);
+    const {languageConstant} = useContext(LanguageContext);
 
     useEffect(() => {
         setLoading(true);
@@ -58,7 +60,7 @@ const BrowseScreen = ({navigation}) => {
                 {
                     token !== null
                     &&
-                    <CourseSection style={{marginTop: 30}} title='Recommend For You' navigation={navigation} courses={recommendCourses} />
+                    <CourseSection style={{marginTop: 30}} title={languageConstant.RECOMMEND_FOR_YOU} navigation={navigation} courses={recommendCourses} />
                 }
 
             </ScrollView>

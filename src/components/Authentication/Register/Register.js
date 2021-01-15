@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useContext } from 'react';
 import {View, StyleSheet, ScrollView, Text, Alert } from 'react-native';
 import { fetchWithoutAu } from '../../../api/fetchData';
+import { LanguageContext } from '../../../contexts/LanguageContext';
 import { UserContext } from '../../../contexts/UserContext';
 import { API_URL } from '../../../globals/constants';
 import { LOGIN } from '../../../globals/KeyScreen';
@@ -16,6 +17,7 @@ const Register = ({navigation}) => {
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
     const {setLoading} = useContext(UserContext);
+    const {languageConstant} = useContext(LanguageContext);
 
     const validEmail = () => {
         const pattern =/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -56,7 +58,7 @@ const Register = ({navigation}) => {
                 async (data) => {
                     setLoading(false);
                     await AsyncAlert('Success', 'Sign up successfully\nYou will redirect to login.');
-                    navigation.navigate(LOGIN);
+                    navigation.navigate(languageConstant.LOGIN);
                 },
                 (erro) => {
                     setLoading(false);
@@ -67,14 +69,14 @@ const Register = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Register</Text>
+            <Text style={styles.title}>{languageConstant.REGISTER}</Text>
             <ScrollView contentContainerStyle={styles.scrollView} showsVerticalScrollIndicator={false}>
-                <MyInput text={username} setText={setUsername} lable={'USERNAME'}/>
+                <MyInput text={username} setText={setUsername} lable={languageConstant.USER_NAME.toUpperCase()}/>
                 <MyInput text={email} setText={setEmail} style={{marginTop: 30}} lable={'EMAIL'}/>
-                <MyInput text={phone} setText={setPhone}  isNumber style={{marginTop: 30}} lable={'PHONE'}/>
-                <MyInput text={password} setText={setPassword} isPassWord style={{marginTop: 30}} lable={'PASSWORD'}/>
-                <MyInput text={rePassword} setText={setRePassword} isPassWord style={{marginTop: 30}} lable={'RE-PASSWORD'}/>
-                <MyButton handleClick={handleLogin} style={styles.button}  text={'SIGN UP'} />
+                <MyInput text={phone} setText={setPhone}  isNumber style={{marginTop: 30}} lable={languageConstant.PHONE_NUMBER.toUpperCase()}/>
+                <MyInput text={password} setText={setPassword} isPassWord style={{marginTop: 30}} lable={languageConstant.PASSWORD.toUpperCase()}/>
+                <MyInput text={rePassword} setText={setRePassword} isPassWord style={{marginTop: 30}} lable={languageConstant.RE_PASSWORD.toUpperCase()}/>
+                <MyButton handleClick={handleLogin} style={styles.button}  text={languageConstant.REGISTER.toUpperCase()} />
             </ScrollView>
         </View>
     );

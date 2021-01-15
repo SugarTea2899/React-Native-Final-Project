@@ -19,13 +19,17 @@ import { BROWSE, PATH_SUGGEST, PROFILE, COURSE_DETAIL, PATH_DETAIL, SKILL_DETAIL
 import Register from '../../components/Authentication/Register/Register';
 import UpdateForm from '../../components/AccountManagement/UpdateForm/UpdateForm';
 import ChangePasswordForm from '../../components/AccountManagement/ChangePasswordForm/ChangePasswordForm';
+import { useContext } from 'react';
+import { LanguageContext } from '../../contexts/LanguageContext';
 const Stack = createStackNavigator();
 
 const BrowseStack = () => {
+    const {languageConstant} = useContext(LanguageContext);
+
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name={BROWSE}
+                name={languageConstant.BROWSE}
                 component={BrowseScreen}
                 options={ ({navigation}) => ({
                     headerRight: () => (
@@ -34,64 +38,43 @@ const BrowseStack = () => {
                 })}
             />
             <Stack.Screen
-                name={PROFILE}
+                name={languageConstant.PROFILE}
                 component={Profile}
             />            
             <Stack.Screen
-                name={COURSE_SUGGEST}
+                name={languageConstant.COURSE_SUGGEST}
                 component={CoursesSuggest}
                 options={{
                     headerShown: false
                 }}
             />
-            <Stack.Screen
-                name={PATH_SUGGEST}
-                component={PathSuggest}
-                options={{
-                    headerShown: false
-                }}
-            />
             <Stack.Screen 
-                name={COURSE_DETAIL}
+                name={languageConstant.COURSE_DETAIL}
                 component={CourseDetail}
                 options={({route}) => ({
                     title: route.params.course.title || route.params.course.courseTitle
                 })}
             />
             <Stack.Screen 
-                name={PATH_DETAIL}
-                component={PathDetail}
-                options={({route}) => ({
-                    title: route.params.path.title
-                })}
-            />
-            <Stack.Screen 
-                name={SKILL_DETAIL}
+                name={languageConstant.SKILL_DETAIL}
                 component={SkillDetail}
                 options={({route}) => ({
                     title: route.params.content
                 })}
             />
             <Stack.Screen
-                name={LIST_COURSE}
+                name={languageConstant.LIST_COURSE}
                 component={ListCourse}
                 options={({route}) => ({
                     title: route.params.title
                 })}
             />
             <Stack.Screen
-                name={LIST_PATH}
-                component={ListPaths}
-                options={({route}) => ({
-                    title: route.params.title
-                })}
-            /> 
-            <Stack.Screen
-                name={AUTHOR}
+                name={languageConstant.AUTHOR}
                 component={AuthorDetail}
             />
             <Stack.Screen
-                name={FORGOT_PASSWORD}
+                name={languageConstant.FORGOT_PASSWORD}
                 component={ForgotPassword}
                 options={{
                     title: 'Forgot Password',
@@ -101,11 +84,11 @@ const BrowseStack = () => {
                 }}
             />
             <Stack.Screen
-                name={SETTING}
+                name={languageConstant.SETTING}
                 component={Setting}
             />
             <Stack.Screen 
-                name={LOGIN}
+                name={languageConstant.LOGIN}
                 component={Login}
                 options={{
                     headerStyle: {
@@ -114,7 +97,7 @@ const BrowseStack = () => {
                 }}
             />
             <Stack.Screen
-                name={REGISTER}
+                name={languageConstant.REGISTER}
                 component={Register}
                 options={{
                     headerStyle: {
@@ -123,11 +106,11 @@ const BrowseStack = () => {
                 }}
             />
             <Stack.Screen
-                name={EDIT_INFO_SCREEN}
+                name={languageConstant.EDIT_INFO_SCREEN}
                 component={UpdateForm}
             />
             <Stack.Screen
-                name={CHANGE_PASSWORD}
+                name={languageConstant.CHANGE_PASSWORD}
                 component={ChangePasswordForm}
             />
         </Stack.Navigator>

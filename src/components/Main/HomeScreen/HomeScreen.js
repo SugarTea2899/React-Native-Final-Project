@@ -14,20 +14,21 @@ import { convertCourse } from '../../../globals/util';
 import RegisterdCourse from './RegisteredSection/RegisteredCourse';
 import RegisterSection from './RegisteredSection/RegisterSection';
 import Loader from '../../Common/Loader/Loader';
+import { LanguageContext } from '../../../contexts/LanguageContext';
 
 
 const HomeScreen = ({ navigation }) => {
   const { token, setLoading } = useContext(UserContext);
+  const {languageConstant} = useContext(LanguageContext);
+
   const [favoriteCourses, setFavoriteCourses] = useState([]);
   const [coursesByCategories, setCourseByCategories] = useState([])
   const [coursesRegistered, setCoursesRegitered] = useState([]);
   const isFocused = useIsFocused();
 
-
-  useEffect(() => {
+  const fetchData = () => {
     if (token !== null && isFocused) {
       const info = decode(token);
-      setLoading(true);
       fetchWithAu(API_URL + 'user/get-favorite-courses', 'GET', token)
         .then(
           (data) => {
@@ -62,8 +63,19 @@ const HomeScreen = ({ navigation }) => {
             console.log(erro.message);
           }
         )
+    } else {
+      setLoading(false);
     }
-  }, [token, isFocused])
+  }
+
+  useEffect(() => {
+    setLoading(true);
+    fetchData();
+  }, [token])
+
+  useEffect(() => {
+    fetchData();
+  }, [isFocused])
 
   return (
     <>
@@ -71,12 +83,12 @@ const HomeScreen = ({ navigation }) => {
         {
           token === null
             ?
-            <Text style={styles.text}>You must login to see this page.</Text>
+            <Text style={styles.text}>{languageConstant.REQUIRE_LOGIN}</Text>
             :
             <ScrollView showsVerticalScrollIndicator={false}>
-              <CourseSection  courses={favoriteCourses} navigation={navigation} style={{ marginTop: 30 }} title={'Favorite Courses'} />
-              <CourseSection  courses={coursesByCategories} navigation={navigation} style={{ marginTop: 40 }} title={'Courses In Your Categories'} />
-              <RegisterSection courses={coursesRegistered} navigation={navigation} style={{ marginTop: 40 }} title={'Courses Learning'} />
+              <CourseSection  courses={favoriteCourses} navigation={navigation} style={{ marginTop: 30 }} title={languageConstant.FAVORITE_COURSES} />
+              <CourseSection  courses={coursesByCategories} navigation={navigation} style={{ marginTop: 40 }} title={languageConstant.COURSE_IN_CATEGORY} />
+              <RegisterSection courses={coursesRegistered} navigation={navigation} style={{ marginTop: 40 }} title={languageConstant.COURSE_LEARNING} />
             </ScrollView>
         }
 
@@ -91,6 +103,8 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontSize: 17,
+    paddingLeft: 15,
+    paddingRight: 15,
   }
 })
 

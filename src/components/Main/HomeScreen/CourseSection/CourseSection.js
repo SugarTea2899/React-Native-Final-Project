@@ -1,5 +1,7 @@
 import React from 'react';
+import { useContext } from 'react';
 import { View, StyleSheet, ScrollView, Text, Image, TouchableWithoutFeedback } from 'react-native';
+import { LanguageContext } from '../../../../contexts/LanguageContext';
 import { LIST_COURSE } from '../../../../globals/KeyScreen';
 import { convertCourse, convertCourseV2 } from '../../../../globals/util';
 
@@ -8,8 +10,10 @@ import CourseItem from './CourseItem/CourseItem';
 
 
 const CourseSection = ({ title, style, navigation, courses, hideSeeAll = false }) => {
+    const {languageConstant} = useContext(LanguageContext);
+
     const handleSeeAll = () => {
-        navigation.navigate(LIST_COURSE, {title: title, courses: courses.map(item => convertCourseV2(item))})
+        navigation.navigate(languageConstant.LIST_COURSE, {title: title, courses: courses.map(item => convertCourseV2(item))})
     }
     const renderCourse = () => {
         if (hideSeeAll) {
@@ -24,7 +28,7 @@ const CourseSection = ({ title, style, navigation, courses, hideSeeAll = false }
                 <Text style={styles.title}>
                     {title}
                 </Text>
-                {!hideSeeAll && <TouchableWithoutFeedback onPress={handleSeeAll}><Text style={styles.seeALL}>{"See All >"}</Text></TouchableWithoutFeedback> }
+                {!hideSeeAll && <TouchableWithoutFeedback onPress={handleSeeAll}><Text style={styles.seeALL}>{languageConstant.SEE_ALL}</Text></TouchableWithoutFeedback> }
             </View>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 {

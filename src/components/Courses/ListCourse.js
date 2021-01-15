@@ -1,16 +1,20 @@
 import React from 'react';
+import { useContext } from 'react';
 import { View, StyleSheet, ScrollView, Text, Image } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import { LanguageContext } from '../../contexts/LanguageContext';
 import ListCourseItem from './ListCourseItem/ListCourseItem';
 
 
 
 const ListCourse = ({style, header, hideTotal, navigation, courses = [], route}) => {
+    const {languageConstant} = useContext(LanguageContext);
+
     let finalCourse = courses.slice();
     if (route && route.params && route.params.courses !== undefined) finalCourse = route.params.courses.slice();
     return (
         <View style={[styles.container, style]}>
-            {!hideTotal && <Text style={styles.total}>{`${finalCourse.length} Results`}</Text>}
+            {!hideTotal && <Text style={styles.total}>{`${finalCourse.length} ${languageConstant.RESULT}`}</Text>}
             <FlatList
                 data={finalCourse}
                 renderItem={({item, index}) => <ListCourseItem key={index} navigation={navigation} course={item}/>}

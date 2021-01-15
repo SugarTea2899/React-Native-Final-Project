@@ -7,11 +7,15 @@ import * as SecureStore from 'expo-secure-store';
 import { FORGOT_PASSWORD, HOME, REGISTER } from '../../../globals/KeyScreen';
 import MyButton from '../../Common/MyButton/MyButton';
 import MyInput from '../../Common/MyInput/MyInput';
+import { LanguageContext } from '../../../contexts/LanguageContext';
 
 
 const Login = ({navigation}) => {
+
+    const {languageConstant} = useContext(LanguageContext);
+
     const handleRegister = () => {
-        navigation.navigate(REGISTER);
+        navigation.navigate(languageConstant.REGISTER);
     }
     const {setContent, setLoading} = useContext(UserContext);
 
@@ -32,7 +36,7 @@ const Login = ({navigation}) => {
                     setContent(data.token);
                     await SecureStore.setItemAsync(TOKEN_NAME, data.token);
                     setLoading(false);
-                    navigation.navigate(HOME);
+                    navigation.navigate(languageConstant.HOME);
                 },
                 (erro) => {
                     setLoading(false);
@@ -47,13 +51,13 @@ const Login = ({navigation}) => {
             <StatusBar  translucent backgroundColor="transparent"/>
             <ScrollView contentContainerStyle={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <MyInput text={email} setText={setEmail} lable={'EMAIL'} />
-                <MyInput text={password} setText={setPassword} style={{marginTop: 35}} isPassWord={true} lable={'PASSWORD'}/>
-                <TouchableWithoutFeedback onPress={() => {navigation.navigate(FORGOT_PASSWORD)}}>
-                    <Text style={styles.forgotPassword}>Forgot Password?</Text>
+                <MyInput text={password} setText={setPassword} style={{marginTop: 35}} isPassWord={true} lable={languageConstant.PASSWORD.toUpperCase()}/>
+                <TouchableWithoutFeedback onPress={() => {navigation.navigate(languageConstant.FORGOT_PASSWORD)}}>
+                    <Text style={styles.forgotPassword}>{languageConstant.FORGOT_PASSWORD}</Text>
                 </TouchableWithoutFeedback>
-                <MyButton handleClick={handleLogin} style={styles.button}  text={'LOGIN'} />
+                <MyButton handleClick={handleLogin} style={styles.button}  text={languageConstant.LOGIN.toUpperCase()} />
                 <TouchableWithoutFeedback onPress={handleRegister}>
-                    <Text style={styles.create}>Create Account</Text>
+                    <Text style={styles.create}>{languageConstant.CREATE_ACCOUNT}</Text>
                 </TouchableWithoutFeedback>
             </ScrollView>
         </View>

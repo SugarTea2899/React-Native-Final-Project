@@ -14,14 +14,18 @@ import ListPaths from '../../components/Paths/ListPaths/ListPaths';
 import { CHANGE_PASSWORD, COURSE_DETAIL, DOWNLOAD, EDIT_INFO_SCREEN, FORGOT_PASSWORD, LIST_PATH, LOGIN, PROFILE, REGISTER, SETTING, SKILL_DETAIL } from '../../globals/KeyScreen';
 import UpdateForm from '../../components/AccountManagement/UpdateForm/UpdateForm';
 import ChangePasswordForm from '../../components/AccountManagement/ChangePasswordForm/ChangePasswordForm';
+import { useContext } from 'react';
+import { LanguageContext } from '../../contexts/LanguageContext';
 
 const Stack = createStackNavigator();
 
 const DownloadStack = () => {
+    const {languageConstant} = useContext(LanguageContext);
+
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name={DOWNLOAD}
+                name={languageConstant.DOWNLOAD}
                 component={DownloadScreen}
                 options={({ navigation }) => ({
                     headerRight: () => (
@@ -30,18 +34,18 @@ const DownloadStack = () => {
                 })}
             />
             <Stack.Screen
-                name={PROFILE}
+                name={languageConstant.PROFILE}
                 component={Profile}
             />
             <Stack.Screen
-                name={COURSE_DETAIL}
+                name={languageConstant.COURSE_DETAIL}
                 component={CourseDetail}
                 options={({ route }) => ({
                     title: route.params.course.title || route.params.course.courseTitle
                 })}
             />
             <Stack.Screen
-                name={LOGIN}
+                name={languageConstant.LOGIN}
                 component={Login}
                 options={{
                     headerStyle: {
@@ -50,7 +54,7 @@ const DownloadStack = () => {
                 }}
             />
             <Stack.Screen
-                name={REGISTER}
+                name={languageConstant.REGISTER}
                 component={Register}
                 options={{
                     headerStyle: {
@@ -59,14 +63,14 @@ const DownloadStack = () => {
                 }}
             />
             <Stack.Screen
-                name={SKILL_DETAIL}
+                name={languageConstant.SKILL_DETAIL}
                 component={SkillDetail}
                 options={({ route }) => ({
                     title: route.params.content
                 })}
             />
             <Stack.Screen
-                name={FORGOT_PASSWORD}
+                name={languageConstant.FORGOT_PASSWORD}
                 component={ForgotPassword}
                 options={{
                     title: 'Forgot Password',
@@ -76,22 +80,15 @@ const DownloadStack = () => {
                 }}
             />
             <Stack.Screen
-                name={LIST_PATH}
-                component={ListPaths}
-                options={({ route }) => ({
-                    title: route.params.title
-                })}
-            />
-            <Stack.Screen
-                name={SETTING}
+                name={languageConstant.SETTING}
                 component={Setting}
             />
             <Stack.Screen
-                name={EDIT_INFO_SCREEN}
+                name={languageConstant.EDIT_INFO_SCREEN}
                 component={UpdateForm}
             />
             <Stack.Screen
-                name={CHANGE_PASSWORD}
+                name={languageConstant.CHANGE_PASSWORD}
                 component={ChangePasswordForm}
             />
         </Stack.Navigator>

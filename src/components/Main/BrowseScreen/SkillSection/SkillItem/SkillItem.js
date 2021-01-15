@@ -2,11 +2,15 @@ import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { SKILL_DETAIL } from '../../../../../globals/KeyScreen';
+import { useContext } from 'react';
+import { LanguageContext } from '../../../../../contexts/LanguageContext';
 
 
 const SkillItem = ({id, content, ticked, navigation, style, disble = false}) => {
+    const {languageConstant} = useContext(LanguageContext);
+
     return (
-        <TouchableOpacity onPress={() => disble ? '' : navigation.navigate(SKILL_DETAIL, {id: id, content: content})}>
+        <TouchableOpacity onPress={() => disble ? '' : navigation.navigate(languageConstant.SKILL_DETAIL, {id: id, content: content})}>
             <View style={[styles.skill, style]}>
                 {
                     ticked 

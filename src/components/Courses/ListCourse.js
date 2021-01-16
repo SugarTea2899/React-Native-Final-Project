@@ -9,7 +9,7 @@ import ListCourseItem from './ListCourseItem/ListCourseItem';
 
 const ListCourse = ({style, header, hideTotal, navigation, courses = [], route}) => {
     const {languageConstant} = useContext(LanguageContext);
-
+    
     let finalCourse = courses.slice();
     if (route && route.params && route.params.courses !== undefined) finalCourse = route.params.courses.slice();
     return (

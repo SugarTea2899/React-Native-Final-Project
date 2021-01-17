@@ -4,13 +4,12 @@ import { AntDesign } from '@expo/vector-icons';
 import { useContext } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeContext';
 
-const IconButton = ({ name, content, onClick }) => {
+const IconButton = ({ name, content, onClick, style = {} }) => {
     const {theme} = useContext(ThemeContext);
-
     return (
         <View style={styles.content}>
             <TouchableHighlight onPress={onClick}>
-                <View style={styles.iconContainer}>
+                <View style={[styles.iconContainer, style]}>
                     <AntDesign name={name} size={20} color="white" />
                 </View>
             </TouchableHighlight>
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#47484a',
         borderRadius: 20,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     text: {
         flex: 1,

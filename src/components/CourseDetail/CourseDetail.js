@@ -61,15 +61,18 @@ const initialState = {
   reload: Math.random(),
   video: null,
   activeIndex: { i: -1, j: -1 },
+  processDownload: {
+    
+  }
 };
 
 const CourseDetail = ({ route, navigation }) => {
   const { course } = route.params;
   const [state, dispatch] = useReducer(CourseReducer, initialState);
   const { token, setLoading } = useContext(UserContext);
-  const {theme} = useContext(ThemeContext);
-  const {languageConstant} = useContext(LanguageContext);
-  
+  const { theme } = useContext(ThemeContext);
+  const { languageConstant } = useContext(LanguageContext);
+
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
@@ -82,6 +85,7 @@ const CourseDetail = ({ route, navigation }) => {
           delete formatItem.lesson;
           return formatItem;
         });
+
         dispatch(initContentList(formatSection));
         dispatch(initCourseInfo(data.payload));
         dispatch(showVideo(data.payload.promoVidUrl));
@@ -202,11 +206,16 @@ const CourseDetail = ({ route, navigation }) => {
     }
   };
   return (
-    <CourseContext.Provider value={{ dispatch: dispatch }}>
-      <StatusBar  hidden/>
+    <CourseContext.Provider value={{ dispatch: dispatch, state: state }}>
+      <StatusBar  />
       <View style={styles.container}>
         <View style={styles.videoSection}>{renderVideoSection()}</View>
-        <View style={[styles.contentSection, {backgroundColor: theme.CONTENT_SECTION_COURSE}]}>
+        <View
+          style={[
+            styles.contentSection,
+            { backgroundColor: theme.CONTENT_SECTION_COURSE },
+          ]}
+        >
           <FlatList
             ListHeaderComponent={header}
             data={[1]}
@@ -235,7 +244,6 @@ const styles = StyleSheet.create({
   },
   video: {
     flex: 1,
-    height: "auto",
     resizeMode: "stretch",
   },
 });

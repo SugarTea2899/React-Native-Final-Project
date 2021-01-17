@@ -66,14 +66,15 @@ const HomeScreen = ({ navigation }) => {
           }
         )
     } else {
-      setLoading(false);
+      if (isFocused)
+        setLoading(false);
     }
   }
 
   useEffect(() => {
     setLoading(true);
     fetchData();
-  }, [token])
+  }, [])
 
   useEffect(() => {
     fetchData();

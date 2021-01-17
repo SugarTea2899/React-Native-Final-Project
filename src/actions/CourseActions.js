@@ -1,4 +1,4 @@
-import { INIT_CONTENT_LIST, INIT_COURSE_INFO, OPEN_REVIEW_COURSE, RELOAD, SHOW_VIDEO, UPDATE_ACTIVE_INDEX, UPDATE_REGISTER } from "../globals/ActionTypes/CourseType";
+import { INIT_CONTENT_LIST, INIT_COURSE_INFO, OPEN_REVIEW_COURSE, RELOAD, RESET_DOWNLOAD_PROCESS, SHOW_VIDEO, UPDATE_ACTIVE_INDEX, UPDATE_DOWNLOAD_PROCESS, UPDATE_REGISTER } from "../globals/ActionTypes/CourseType";
 
 export function initContentList(contentList) {
     return {
@@ -46,5 +46,19 @@ export function updateActiveIndex(value) {
     return {
         type: UPDATE_ACTIVE_INDEX,
         value: value
+    }
+}
+
+export function updateDownloadProcess(value) {
+    return {
+        type: UPDATE_DOWNLOAD_PROCESS,
+        value: value
+    }
+}
+
+export function resetDownloadProcess(){
+    return{
+        type: RESET_DOWNLOAD_PROCESS,
+        value: {}
     }
 }

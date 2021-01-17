@@ -5,6 +5,8 @@ import { useContext } from "react";
 import { View, StyleSheet, Text, Alert } from "react-native";
 import {
   initContentList,
+  resetDownloadProcess,
+  updateDownloadProcess,
   updateRegister,
 } from "../../../actions/CourseActions";
 import { fetchWithAu, fetchWithAuV2 } from "../../../api/fetchData";
@@ -12,14 +14,14 @@ import { CourseContext } from "../../../contexts/CourseContext";
 import { LanguageContext } from "../../../contexts/LanguageContext";
 import { UserContext } from "../../../contexts/UserContext";
 import { API_URL } from "../../../globals/constants";
+import * as FileSystem from "expo-file-system";
 
 import IconButton from "../../Common/IconButton/IconButton";
 const IconSection = ({ courseId, register }) => {
   const [like, setLike] = useState(false);
   const { token, setLoading } = useContext(UserContext);
-  const { dispatch } = useContext(CourseContext);
+  const { dispatch, state } = useContext(CourseContext);
   const { languageConstant } = useContext(LanguageContext);
-
   useEffect(() => {
     if (token !== null) {
       setLoading(true);
@@ -102,12 +104,93 @@ const IconSection = ({ courseId, register }) => {
       { cancelable: false }
     );
   };
+
+  const handleDownloadCourse = async () => {
+    if (state.video.includes('youtube')) {
+      alert('You cannot download Youtube videos.');
+      return;
+    }
+    let filename = `${state.course.title}`;
+    if (state.activeIndex.i != -1) {
+      filename += ` ${state.contentList[state.activeIndex.i].name}`;
+    }
+
+    if (state.activeIndex.j != -1) {
+      filename += ` ${
+        state.contentList[state.activeIndex.i].data[state.activeIndex.j].name
+      }`;
+    }
+    filename = filename.replace(/ /g, "-");
+    //check file existed
+    const isExisted = await checkFile(filename);
+    if (isExisted) {
+      alert('This video is downloaded');
+      return;
+    }
+    //--------
+
+    //update process download
+    const callback = (downloadProgress) => {
+      const progress =
+        (downloadProgress.totalBytesWritten / downloadProgress.totalBytesExpectedToWrite) * 100;
+
+      if (progress < 25) {
+        dispatch(updateDownloadProcess({borderWidth: 2}))
+      }
+
+      if (progress >= 25) {
+        dispatch(updateDownloadProcess({borderTopColor: 'dodgerblue'}))
+      }
+
+      if (progress >= 50) {
+        dispatch(updateDownloadProcess({borderRightColor: 'dodgerblue'}))
+      }
+
+      if (progress >= 75) {
+        dispatch(updateDownloadProcess({borderBottomColor: 'dodgerblue'}))
+      }
+
+      if (progress >= 100) {
+        dispatch(updateDownloadProcess({borderLeftColor: 'dodgerblue'}))
+      }
+    };
+
+    const downloadResumable = FileSystem.createDownloadResumable(
+      state.video,
+      FileSystem.documentDirectory + filename + ".mp4",
+      {},
+      callback
+    );
+    //-------
+
+    try {
+      const { uri } = await downloadResumable.downloadAsync();
+      dispatch(resetDownloadProcess());
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  //file name include extension
+  const checkFile = async (filename) => {
+    const res = await FileSystem.getInfoAsync(FileSystem.documentDirectory + filename + ".mp4");
+    return res.exists;
+  }
+
   return (
     <View style={styles.container}>
       {like ? (
-        <IconButton onClick={handleLikeCourse} name="heart" content={languageConstant.UNLIKE} />
+        <IconButton
+          onClick={handleLikeCourse}
+          name="heart"
+          content={languageConstant.UNLIKE}
+        />
       ) : (
-        <IconButton onClick={handleLikeCourse} name="hearto" content={languageConstant.LIKE} />
+        <IconButton
+          onClick={handleLikeCourse}
+          name="hearto"
+          content={languageConstant.LIKE}
+        />
       )}
       <IconButton
         onClick={handleRegisterCourse}
@@ -116,7 +199,12 @@ const IconSection = ({ courseId, register }) => {
           register ? languageConstant.REGISTERED : languageConstant.REGISTER
         }
       />
-      <IconButton name="download" content={languageConstant.DOWNLOAD} />
+      <IconButton
+        onClick={handleDownloadCourse}
+        name="download"
+        content={languageConstant.DOWNLOAD}
+        style={state.processDownload}
+      />
     </View>
   );
 };

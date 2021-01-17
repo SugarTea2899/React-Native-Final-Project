@@ -5,3 +5,5 @@ export const OPEN_REVIEW_COURSE = 'open-review-course';
 export const RELOAD = 'reload';
 export const SHOW_VIDEO = 'show-video';
 export const UPDATE_ACTIVE_INDEX = 'update-active-index';
+export const UPDATE_DOWNLOAD_PROCESS = 'update-download-process';
+export const RESET_DOWNLOAD_PROCESS = 'reset-download-process';

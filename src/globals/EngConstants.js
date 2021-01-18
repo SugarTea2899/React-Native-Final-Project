@@ -30,11 +30,12 @@ export const UPDATE = 'Update'
 export const OLD_PASSWORD = 'OLD PASSWORD'
 export const NEW_PASSWORD = 'NEW PASSWORD'
 export const CONFIRM_PASSWORD = 'CONFIRM PASSWORD'
-export const REGISTERED = 'Register'
+export const REGISTERED = 'Registered'
 export const LESSON = 'LESSON'
 export const REVIEW = 'REVIEW'
 export const LIKE = 'Like'
 export const UNLIKE = 'Unlike'
+export const SHARE = 'Share'
 //Key Screen
 export const BROWSE = 'Browse';
 export const PROFILE = 'Profile';

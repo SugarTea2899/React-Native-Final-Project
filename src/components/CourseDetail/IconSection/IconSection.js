@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
-import { View, StyleSheet, Text, Alert } from "react-native";
+import { View, StyleSheet, Text, Alert, Share } from "react-native";
 import {
   initContentList,
   resetDownloadProcess,
@@ -106,8 +106,8 @@ const IconSection = ({ courseId, register }) => {
   };
 
   const handleDownloadCourse = async () => {
-    if (state.video.includes('youtube')) {
-      alert('You cannot download Youtube videos.');
+    if (state.video.includes("youtube")) {
+      alert("You cannot download Youtube videos.");
       return;
     }
     let filename = `${state.course.title}`;
@@ -124,7 +124,7 @@ const IconSection = ({ courseId, register }) => {
     //check file existed
     const isExisted = await checkFile(filename);
     if (isExisted) {
-      alert('This video is downloaded');
+      alert("This video is downloaded");
       return;
     }
     //--------
@@ -132,26 +132,28 @@ const IconSection = ({ courseId, register }) => {
     //update process download
     const callback = (downloadProgress) => {
       const progress =
-        (downloadProgress.totalBytesWritten / downloadProgress.totalBytesExpectedToWrite) * 100;
+        (downloadProgress.totalBytesWritten /
+          downloadProgress.totalBytesExpectedToWrite) *
+        100;
 
       if (progress < 25) {
-        dispatch(updateDownloadProcess({borderWidth: 2}))
+        dispatch(updateDownloadProcess({ borderWidth: 2 }));
       }
 
       if (progress >= 25) {
-        dispatch(updateDownloadProcess({borderTopColor: 'dodgerblue'}))
+        dispatch(updateDownloadProcess({ borderTopColor: "dodgerblue" }));
       }
 
       if (progress >= 50) {
-        dispatch(updateDownloadProcess({borderRightColor: 'dodgerblue'}))
+        dispatch(updateDownloadProcess({ borderRightColor: "dodgerblue" }));
       }
 
       if (progress >= 75) {
-        dispatch(updateDownloadProcess({borderBottomColor: 'dodgerblue'}))
+        dispatch(updateDownloadProcess({ borderBottomColor: "dodgerblue" }));
       }
 
       if (progress >= 100) {
-        dispatch(updateDownloadProcess({borderLeftColor: 'dodgerblue'}))
+        dispatch(updateDownloadProcess({ borderLeftColor: "dodgerblue" }));
       }
     };
 
@@ -173,8 +175,21 @@ const IconSection = ({ courseId, register }) => {
 
   //file name include extension
   const checkFile = async (filename) => {
-    const res = await FileSystem.getInfoAsync(FileSystem.documentDirectory + filename + ".mp4");
+    const res = await FileSystem.getInfoAsync(
+      FileSystem.documentDirectory + filename + ".mp4"
+    );
     return res.exists;
+  };
+
+  const handleShare = async () => {
+    try {
+      const message = `${state.course.title}\nhttp://dev.letstudy.org/course-detail/${state.course.id}`
+      const result = await Share.share({
+        message: message
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   return (
@@ -204,6 +219,11 @@ const IconSection = ({ courseId, register }) => {
         name="download"
         content={languageConstant.DOWNLOAD}
         style={state.processDownload}
+      />
+      <IconButton
+        onClick={handleShare}
+        name="sharealt"
+        content={languageConstant.SHARE}
       />
     </View>
   );

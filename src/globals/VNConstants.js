@@ -38,6 +38,7 @@ export const LESSON = 'BÀI HỌC'
 export const REVIEW = 'ĐÁNH GIÁ'
 export const LIKE = 'Thích'
 export const UNLIKE = 'Bỏ Thích'
+export const SHARE = 'Chia Sẻ'
 //Key Screen
 export const BROWSE = 'Khám Phá';
 export const PROFILE = 'Thông Tin';

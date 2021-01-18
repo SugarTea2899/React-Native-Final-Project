@@ -14,14 +14,16 @@ import { fetchWithoutAu } from "../../../api/fetchData";
 import { API_URL } from "../../../globals/constants";
 import { ThemeContext } from "../../../contexts/ThemeContext";
 
-const SearchBar = ({ setResult }) => {
+const SearchBar = ({ setResult, value }) => {
+
   const [text, setText] = useState("");
   const { token } = useContext(UserContext);
   const { theme } = useContext(ThemeContext);
+  const {setLoading} = useContext(UserContext);
 
   const search = (value) => {
-    setText(value);
-    if (value.length !== 0 && token !== null) {
+    if (value && value.length !== 0 && token !== null) {
+      setLoading(true);
       const data = {
         token: token,
         keyword: value,
@@ -30,35 +32,52 @@ const SearchBar = ({ setResult }) => {
       };
       fetchWithoutAu(API_URL + "course/searchV2", "POST", data).then(
         (data) => {
+          setLoading(false);
           setResult({
             courses: data.payload.courses.data.slice(),
             authors: data.payload.instructors.data.slice(),
+            searchValue: value
           });
         },
         (error) => {
+          setLoading(false);
           console.log(error.message);
         }
       );
     } else {
-      if (value.length === 0) setResult({ courses: [], authors: [] });
+      if (value && value.length === 0) setResult({ courses: [], authors: [], searchValue: '' });
     }
   };
 
   const remove = () => {
     setText("");
-    setResult({ courses: [], authors: [] });
+    setResult({ courses: [], authors: [], searchValue: '' });
   };
+
+  useEffect(() => {
+    setText(value);
+    search(value);
+  }, [value])
+
   return (
     <View style={styles.bar}>
       <TextInput
         value={text}
-        style={[styles.textInput, {color: theme.TEXT_COLOR}]}
+        style={[styles.textInput, { color: theme.TEXT_COLOR }]}
         onChangeText={(text) => {
-          search(text);
+          setText(text);
         }}
         placeholder={"Search"}
         placeholderTextColor={theme.TEXT_COLOR_BLUR}
       />
+      <TouchableWithoutFeedback onPress={() => search(text)}>
+        <FontAwesome
+          style={{marginRight: 15}}
+          name="search"
+          size={22}
+          color={theme.TEXT_COLOR}
+        />
+      </TouchableWithoutFeedback>
       <TouchableWithoutFeedback onPress={() => remove()}>
         <FontAwesome
           style={styles.customIcon}
@@ -82,7 +101,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginRight: 20,
     marginLeft: 20,
-    marginTop: 15,
+    marginTop: 30,
   },
   textInput: {
     flex: 1,
@@ -93,7 +112,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   customIcon: {
-    marginRight: 4,
+    marginRight: 7,
   },
 });
 

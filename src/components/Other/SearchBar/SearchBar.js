@@ -14,50 +14,29 @@ import { fetchWithoutAu } from "../../../api/fetchData";
 import { API_URL } from "../../../globals/constants";
 import { ThemeContext } from "../../../contexts/ThemeContext";
 
-const SearchBar = ({ setResult, value }) => {
-
+const SearchBar = ({ setResult, value, search = () => {} }) => {
   const [text, setText] = useState("");
-  const { token } = useContext(UserContext);
   const { theme } = useContext(ThemeContext);
-  const {setLoading} = useContext(UserContext);
-
-  const search = (value) => {
-    if (value && value.length !== 0 && token !== null) {
-      setLoading(true);
-      const data = {
-        token: token,
-        keyword: value,
-        limit: 20,
-        offset: 0,
-      };
-      fetchWithoutAu(API_URL + "course/searchV2", "POST", data).then(
-        (data) => {
-          setLoading(false);
-          setResult({
-            courses: data.payload.courses.data.slice(),
-            authors: data.payload.instructors.data.slice(),
-            searchValue: value
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.log(error.message);
-        }
-      );
-    } else {
-      if (value && value.length === 0) setResult({ courses: [], authors: [], searchValue: '' });
-    }
-  };
 
   const remove = () => {
     setText("");
-    setResult({ courses: [], authors: [], searchValue: '' });
+    setResult({
+      courses: [],
+      authors: [],
+      searchValue: "",
+      totalCourses: 0,
+      totalAuthors: 0,
+      offsetCourses: 0,
+      offsetAuthors: 0,
+    });
   };
 
   useEffect(() => {
-    setText(value);
-    search(value);
-  }, [value])
+    if (value !== text) {
+      setText(value);
+      search(value, 0);
+    }
+  }, [value]);
 
   return (
     <View style={styles.bar}>
@@ -70,9 +49,9 @@ const SearchBar = ({ setResult, value }) => {
         placeholder={"Search"}
         placeholderTextColor={theme.TEXT_COLOR_BLUR}
       />
-      <TouchableWithoutFeedback onPress={() => search(text)}>
+      <TouchableWithoutFeedback onPress={() => search(text, 0)}>
         <FontAwesome
-          style={{marginRight: 15}}
+          style={{ marginRight: 15 }}
           name="search"
           size={22}
           color={theme.TEXT_COLOR}

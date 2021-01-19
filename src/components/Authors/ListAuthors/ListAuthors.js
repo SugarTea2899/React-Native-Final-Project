@@ -1,16 +1,27 @@
 import React from 'react';
+import { useState } from 'react';
 import {View, StyleSheet, FlatList, Text } from 'react-native';
 import ListAuthorsItem from '../ListAuthorsItem/ListAuthorsItem'
 
 
-const ListAuthors = ({style, navigation, authors}) => {
+const ListAuthors = ({style, navigation, authors, total, loadMore = () => {}}) => {
+    let _total = total ? total : authors.length;
+    const [onEndReachedCall, setOnEndReachedCall] = useState(true); 
     return (
         <View style={[styles.container, style]}>
-            <Text style={styles.total}>{`${authors.length} Results`}</Text>
+            <Text style={styles.total}>{`${_total} Results`}</Text>
             <FlatList 
                 data={authors}
                 renderItem={({item}) => <ListAuthorsItem navigation={navigation} author={item}/>}
                 keyExtractor={item => item.id}
+                onMomentumScrollBegin={() => setOnEndReachedCall(false)}
+                onEndReached={() => {
+                    if (!onEndReachedCall) {
+                        loadMore();
+                        setOnEndReachedCall(true);
+                    }
+                }}
+                onEndReachedThreshold={0.01}
             />
         </View>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import { View, StyleSheet, ScrollView, Text, Image } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
@@ -7,19 +8,30 @@ import ListCourseItem from './ListCourseItem/ListCourseItem';
 
 
 
-const ListCourse = ({style, header, hideTotal, navigation, courses = [], route}) => {
+const ListCourse = ({style, header, hideTotal, navigation, courses = [], route, loadMore = () => {}, total}) => {
     const {languageConstant} = useContext(LanguageContext);
-    
+    const [onEndReachedCall, setOnEndReachedCall] = useState(true);
+
     let finalCourse = courses.slice();
     if (route && route.params && route.params.courses !== undefined) finalCourse = route.params.courses.slice();
+    let _total = total ? total : finalCourse.length;
+
     return (
         <View style={[styles.container, style]}>
-            {!hideTotal && <Text style={styles.total}>{`${finalCourse.length} ${languageConstant.RESULT}`}</Text>}
+            {!hideTotal && <Text style={styles.total}>{`${_total} ${languageConstant.RESULT}`}</Text>}
             <FlatList
                 data={finalCourse}
-                renderItem={({item, index}) => <ListCourseItem key={index} navigation={navigation} course={item}/>}
+                renderItem={({item, index}) => <ListCourseItem navigation={navigation} course={item}/>}
                 keyExtractor={item => item.id}
                 ListHeaderComponent={header}
+                onMomentumScrollBegin={() => setOnEndReachedCall(false)}
+                onEndReached={() => {
+                    if (!onEndReachedCall) {
+                        loadMore();
+                        setOnEndReachedCall(true);
+                    }
+                }}
+                onEndReachedThreshold={0.01}
             />
         </View>
     );

@@ -28,7 +28,7 @@ const MixedList = ({navigation, results}) => {
                 sections={results}
                 keyExtractor={(item, index) => item.id}
                 renderItem={renderItem}
-                renderSectionHeader={({section: {title, data}}) => <Header navigation={navigation} title={title} total={data.length}/>}
+                renderSectionHeader={({section: {title, total, data}}) => <Header navigation={navigation} title={title} total={total}/>}
                 listKey={new Date().getTime().toString()}
                 nestedScrollEnabled
             />

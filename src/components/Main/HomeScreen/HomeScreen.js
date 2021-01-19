@@ -77,7 +77,8 @@ const HomeScreen = ({ navigation }) => {
   }, [])
 
   useEffect(() => {
-    fetchData();
+    if (isFocused)
+      fetchData();
   }, [isFocused])
 
   return (

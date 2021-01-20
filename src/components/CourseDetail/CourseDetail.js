@@ -204,7 +204,9 @@ const CourseDetail = ({ route, navigation }) => {
       await exVideoRef.current.setPositionAsync(value);
     };
     if (exVideoRef.current !== null && currentTime !== 0) {
-      seekVideo(currentTime);
+      setTimeout(() => {
+        seekVideo(currentTime);
+      }, 500)
     }
   }, [exVideoRef, currentTime]);
 

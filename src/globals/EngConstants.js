@@ -56,3 +56,4 @@ export const COURSE_TAB = 'Course';
 export const AUTHOR_TAB = 'Author';
 export const EDIT_INFO_SCREEN = 'Update Information';
 export const CHANGE_PASSWORD = 'Change Password';
+export const LEARNING_COURSE = 'Learning Course';

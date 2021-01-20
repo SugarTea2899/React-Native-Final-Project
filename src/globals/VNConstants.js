@@ -63,3 +63,4 @@ export const PATH_TAB = 'PATHS';
 export const AUTHOR_TAB = 'Tác Giả';
 export const EDIT_INFO_SCREEN = 'Cập Nhật Thông Tin';
 export const CHANGE_PASSWORD = 'Đổi Mật Khẩu';
+export const LEARNING_COURSE = 'Khoá Học Đang Học';

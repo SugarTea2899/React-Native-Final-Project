@@ -61,6 +61,8 @@ const Login = ({ navigation }) => {
       const result = await Google.logInAsync({
         androidClientId:
           "146264078726-g7q754q9t9lgoutv38d4jdlge8l9ffi2.apps.googleusercontent.com",
+        androidStandaloneAppClientId:
+          "146264078726-g7q754q9t9lgoutv38d4jdlge8l9ffi2.apps.googleusercontent.com",
         scopes: ["profile", "email"],
       });
       const data = {

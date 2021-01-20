@@ -121,7 +121,7 @@ const Profile = ({ route, navigation }) => {
           {token !== null &&  <MyButton handleClick={handleEditInfo} style={styles.button} text={languageConstant.UPDATE_INFO} />}
           {token !== null &&  <MyButton handleClick={() => navigation.navigate(languageConstant.CHANGE_PASSWORD, {state: state})} style={styles.button} text={languageConstant.CHANGE_PASSWORD.toUpperCase()} />}
           {token !== null ?
-            <MyButton handleClick={handleLogout} style={styles.button} text={languageConstant.LOGOUT} />
+            <MyButton handleClick={handleLogout} style={styles.button} text={languageConstant.LOGOUT.toUpperCase()} />
             :
             <MyButton handleClick={handleLogin} style={styles.button} text={languageConstant.LOGIN.toUpperCase()} />
           }

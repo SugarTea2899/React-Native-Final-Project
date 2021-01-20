@@ -19,7 +19,7 @@ const RegisterdCourse = ({ course, navigation }) => {
           <Text numberOfLines={2} style={[styles.title, {color: theme.TEXT_COLOR}]}>{course.courseTitle}</Text>
           <Text style={[styles.otherText, {color: theme.TEXT_COLOR_BLUR}]} >{course.instructorName}</Text>
           <Text style={styles.highlightText} >{`Latest: ${convertToDateTime(course.latestLearnTime)}`}</Text>
-          <Text style={styles.highlightText} >{`Process: ${course.process}/${course.total}`}</Text>
+          <Text style={styles.highlightText} >{`Process: ${course.learnLesson}/${course.total} Lessons`}</Text>
         </View>
       </View>
     </TouchableOpacity>

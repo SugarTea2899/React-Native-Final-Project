@@ -22,25 +22,24 @@ const IconSection = ({ courseId, register }) => {
   const { token, setLoading } = useContext(UserContext);
   const { dispatch, state } = useContext(CourseContext);
   const { languageConstant } = useContext(LanguageContext);
+
   useEffect(() => {
     if (token !== null) {
-      setLoading(true);
       fetchWithAu(
         API_URL + `user/get-course-like-status/${courseId}`,
         "GET",
         token
       ).then(
         (data) => {
-          setLoading(false);
           setLike(data.likeStatus);
         },
         (error) => {
-          setLoading(false);
           console.log(error.message);
         }
       );
     }
   }, []);
+
   const handleLikeCourse = () => {
     if (token === null) {
       Alert.alert("Error", "You must login to do this action.");

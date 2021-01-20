@@ -15,7 +15,6 @@ const ListCourse = ({style, header, hideTotal, navigation, courses = [], route, 
     let finalCourse = courses.slice();
     if (route && route.params && route.params.courses !== undefined) finalCourse = route.params.courses.slice();
     let _total = total ? total : finalCourse.length;
-
     return (
         <View style={[styles.container, style]}>
             {!hideTotal && <Text style={styles.total}>{`${_total} ${languageConstant.RESULT}`}</Text>}

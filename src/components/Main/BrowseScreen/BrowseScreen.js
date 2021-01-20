@@ -15,44 +15,48 @@ import { API_URL } from "../../../globals/constants";
 import CourseSection from "../HomeScreen/CourseSection/CourseSection";
 import { convertCourse } from "../../../globals/util";
 import { LanguageContext } from "../../../contexts/LanguageContext";
+import { useIsFocused } from "@react-navigation/native";
 const BrowseScreen = ({ navigation }) => {
   const { token, setLoading } = useContext(UserContext);
   const [categories, setCategories] = useState([]);
   const [recommendCourses, setRecommendCourses] = useState([]);
   const { languageConstant } = useContext(LanguageContext);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
-    setLoading(true);
-    fetchWithoutAu(API_URL + "category/all", "GET").then(
-      (data) => {
-        setCategories(data.payload);
-        setLoading(false);
-      },
-      (error) => {
-        console.log(error.message);
-      }
-    );
-
-    if (token !== null) {
+    if (isFocused) {
       setLoading(true);
-      const info = decode(token);
-      fetchWithAu(
-        API_URL + `user/recommend-course/${info.id}/10/1`,
-        "GET",
-        token
-      ).then(
+      fetchWithoutAu(API_URL + "category/all", "GET").then(
         (data) => {
-          const newCourses = data.payload.map((item) => convertCourse(item));
-          setRecommendCourses(newCourses);
+          setCategories(data.payload);
           setLoading(false);
         },
         (error) => {
           console.log(error.message);
-          setLoading(false);
         }
       );
+
+      if (token !== null) {
+        setLoading(true);
+        const info = decode(token);
+        fetchWithAu(
+          API_URL + `user/recommend-course/${info.id}/10/1`,
+          "GET",
+          token
+        ).then(
+          (data) => {
+            const newCourses = data.payload.map((item) => convertCourse(item));
+            setRecommendCourses(newCourses);
+            setLoading(false);
+          },
+          (error) => {
+            console.log(error.message);
+            setLoading(false);
+          }
+        );
+      }
     }
-  }, []);
+  }, [isFocused]);
 
   return (
     <View style={{ flex: 1, paddingBottom: 20 }}>

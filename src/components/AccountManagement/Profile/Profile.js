@@ -53,7 +53,7 @@ const Profile = ({ route, navigation }) => {
           onPress: async () => {
             setContent(null);
             await SecureStore.deleteItemAsync(TOKEN_NAME);
-            navigation.navigate(languageConstant.HOME);
+            navigation.popToTop();
           }
         },
         {

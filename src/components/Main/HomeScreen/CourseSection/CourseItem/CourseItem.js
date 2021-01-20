@@ -18,7 +18,7 @@ const CourseItem = ({ course, navigation }) => {
         <View style={styles.textGroup}>
           <Text numberOfLines={2} style={[styles.title, {color: theme.TEXT_COLOR}]}>{course.courseTitle}</Text>
           <View style={{ marginTop: 4 }}>
-            <Text style={[styles.otherText, theme.TEXT_COLOR_BLUR]}>{`${course.instructorName}`}</Text>
+            <Text style={[styles.otherText,{color: theme.TEXT_COLOR_BLUR} ]}>{`${course.instructorName}`}</Text>
             <Text style={styles.price}>
               {`${formatMoney(course.coursePrice)} - (${course.courseSoldNumber})`}
             </Text>
@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   otherText: {
-    color: '#424242',
     fontSize: 11,
     marginTop: 2
   },

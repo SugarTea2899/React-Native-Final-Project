@@ -15,6 +15,7 @@ import { LanguageContext } from "../../../contexts/LanguageContext";
 import { UserContext } from "../../../contexts/UserContext";
 import { API_URL } from "../../../globals/constants";
 import * as FileSystem from "expo-file-system";
+import * as Linking from 'expo-linking';
 
 import IconButton from "../../Common/IconButton/IconButton";
 const IconSection = ({ courseId, register }) => {
@@ -69,6 +70,37 @@ const IconSection = ({ courseId, register }) => {
 
     if (register) {
       Alert.alert("Error", "You have already registerd this course");
+      return;
+    }
+
+    if (state.course.price > 0) {
+      const purchaseCourse = () => {
+        setLoading(true);
+        fetchWithAu(API_URL + 'payment/checkout-momo', 'POST', token, {courseId: state.course.id})
+          .then(
+            (data) => {
+              setLoading(false);
+              Linking.openURL(data.checkoutUrl);
+            },
+            (error) => {
+              setLoading(false);
+            }
+          )
+      }
+      Alert.alert(
+        "Confirm",
+        "Do you want to purchase this course.",[
+          {
+            text: 'Yes',
+            onPress: () => {
+              purchaseCourse();
+            }
+          },
+          {
+            text: 'No',
+          }
+        ]
+      )
       return;
     }
 
@@ -167,6 +199,7 @@ const IconSection = ({ courseId, register }) => {
     try {
       const { uri } = await downloadResumable.downloadAsync();
       dispatch(resetDownloadProcess());
+      alert('Download video successfully.')
     } catch (error) {
       console.log(error.message);
     }

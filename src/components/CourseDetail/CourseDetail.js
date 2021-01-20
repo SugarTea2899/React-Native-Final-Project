@@ -8,6 +8,7 @@ import {
   FlatList,
   Alert,
   StatusBar,
+  AppState,
 } from "react-native";
 import CourseInfoSection from "./CourseInfoSection/CourseInfoSection";
 import DescriptionSection from "./DescriptionSection/DescriptionSection";
@@ -38,6 +39,8 @@ import { useState } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { LanguageContext } from "../../contexts/LanguageContext";
 import { useRef } from "react";
+import Transcript from "./Transcript/Transcript";
+import { useIsFocused } from "@react-navigation/native";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -76,11 +79,36 @@ const CourseDetail = ({ route, navigation }) => {
   const [rendered, setRendered] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
 
+  const appState = useRef(AppState.currentState);
   const exVideoRef = useRef(null);
   const activeIndexRef = useRef(null);
   const ytVideoRef = useRef(null);
   const ytCurTime = useRef(0);
   const ytCounter = useRef(null);
+
+  const handleAppStateChange = (newState) => {
+    if (newState === 'active' && appState.current === 'background') {
+      if (token !== null) {
+        setLoading(true);
+        fetchWithAu(
+          API_URL + `user/check-own-course/${course.id}`,
+          "GET",
+          token
+        ).then(
+          (data) => {
+            setLoading(false);
+            dispatch(updateRegister(data.payload.isUserOwnCourse));
+          },
+          (erro) => {
+            setLoading(false);
+            console.log(erro.message);
+          }
+        );
+      }
+    }
+    appState.current = newState;
+  }
+
   useEffect(() => {
     setLoading(true);
     fetchWithoutAu(API_URL + `course/get-course-detail/${course.id}/null`).then(
@@ -107,6 +135,13 @@ const CourseDetail = ({ route, navigation }) => {
     );
   }, [state.reload]);
 
+  useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
+
+    return () => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    }
+  }, [])
   //get register status
   useEffect(() => {
     if (token !== null) {
@@ -127,7 +162,6 @@ const CourseDetail = ({ route, navigation }) => {
     return () => {
       updateBeforeLeave();
       updateBeforeLeaveYT();
-
     };
   }, []);
 
@@ -162,7 +196,7 @@ const CourseDetail = ({ route, navigation }) => {
     } else {
       if (rendered) setLoading(false);
     }
-  }, [state.contentList, token, state.register]);
+  }, [state.contentList, token, state.register, rendered]);
 
   //seek expo video
   useEffect(() => {
@@ -185,6 +219,8 @@ const CourseDetail = ({ route, navigation }) => {
     if (ytVideoRef.current !== null && currentTime !== 0)
       seekVideo(currentTime / 1000);
   }, [ytVideoRef, currentTime]);
+
+
 
   const header = (
     <React.Fragment>
@@ -251,6 +287,12 @@ const CourseDetail = ({ route, navigation }) => {
           <ReviewCourse course={state.course} register={state.register} />
         )}
       />
+      <Tab.Screen
+        name={languageConstant.EXERCISE}
+        children={() => (
+          <Transcript />
+        )}
+      />
     </Tab.Navigator>
   );
 
@@ -276,7 +318,7 @@ const CourseDetail = ({ route, navigation }) => {
       ytCurTime.current = curTime;
 
       ytCounter.current = setInterval(() => {
-         ytCurTime.current++;
+        ytCurTime.current++;
       }, 1000);
     }
 
@@ -285,7 +327,6 @@ const CourseDetail = ({ route, navigation }) => {
         clearInterval(ytCounter.current);
         ytCounter.current = null;
       }
-
     }
     if (event === "ended" && state.activeIndex.i !== -1) {
       fetchWithAu(API_URL + "lesson/update-status", "POST", token, {
@@ -300,6 +341,7 @@ const CourseDetail = ({ route, navigation }) => {
     }
   };
 
+  //save time before leave expo video
   const updateBeforeLeave = async () => {
     if (
       activeIndexRef !== null &&
@@ -327,6 +369,7 @@ const CourseDetail = ({ route, navigation }) => {
     }
   };
 
+  //save time before leave youtube video
   const updateBeforeLeaveYT = async () => {
     if (
       activeIndexRef !== null &&
@@ -344,7 +387,6 @@ const CourseDetail = ({ route, navigation }) => {
         data
       ).then(
         (data) => {
-
           console.log(data);
         },
         (error) => {

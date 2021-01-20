@@ -85,7 +85,7 @@ const UpdateForm = ({ route, navigation }) => {
                       onPress: async () => {
                         setContent(null);
                         await SecureStore.deleteItemAsync(TOKEN_NAME);
-                        navigation.navigate(HOME);
+                        navigation.popToTop();
                       },
                     },
                   ]

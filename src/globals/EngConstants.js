@@ -36,6 +36,7 @@ export const REVIEW = 'REVIEW'
 export const LIKE = 'Like'
 export const UNLIKE = 'Unlike'
 export const SHARE = 'Share'
+export const EXERCISE = 'Exercise'
 //Key Screen
 export const BROWSE = 'Browse';
 export const PROFILE = 'Profile';

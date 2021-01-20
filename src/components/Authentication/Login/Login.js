@@ -46,7 +46,7 @@ const Login = ({ navigation }) => {
         setContent(data.token);
         await SecureStore.setItemAsync(TOKEN_NAME, data.token);
         setLoading(false);
-        navigation.navigate(languageConstant.HOME);
+        navigation.popToTop();
       },
       (erro) => {
         setLoading(false);
@@ -74,7 +74,7 @@ const Login = ({ navigation }) => {
           setContent(data.token);
           await SecureStore.setItemAsync(TOKEN_NAME, data.token);
           setLoading(false);
-          navigation.navigate(languageConstant.HOME);
+          navigation.popToTop();
         },
         (error) => {
           setLoading(false);

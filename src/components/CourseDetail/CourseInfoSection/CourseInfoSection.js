@@ -30,7 +30,7 @@ const CourseInfoSection = ({ course, navigation }) => {
         />
       </View>
       <Text style={[styles.otherText, {color: theme.TEXT_COLOR_BLUR}]}>
-        {`${new Date(course.createdAt).toLocaleDateString()}  -  ${course.totalHours} hours`}
+        {`${new Date(course.createdAt).toLocaleDateString()}  -  ${course.totalHours.toFixed(2)} hours`}
       </Text>
     </View>
   );

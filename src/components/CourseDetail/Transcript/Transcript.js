@@ -5,12 +5,6 @@ import {View, StyleSheet, TextInput } from 'react-native';
 const Transcript = () => {
     return (
         <View style={styles.container}>
-            <TextInput 
-                style={styles.textInput}
-                placeholder={'Search transcript'}
-                placeholderTextColor='white'
-                autoFocus={false}
-            />
         </View>
     );
 }
